@@ -1,0 +1,54 @@
+2024-04-10T16:37:12.737+07:00  INFO 71416 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : Starting OnThiServiceApplication using Java 21.0.2 with PID 71416 (N:\OnThiService\target\classes started by nhan0 in N:\OnThiService)
+2024-04-10T16:37:12.738+07:00  INFO 71416 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-04-10T16:37:12.776+07:00  INFO 71416 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-04-10T16:37:12.777+07:00  INFO 71416 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-04-10T16:37:13.335+07:00  INFO 71416 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-10T16:37:13.346+07:00  INFO 71416 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaceinterfaces.
+2024-04-10T16:37:13.999+07:00  INFO 71416 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
+2024-04-10T16:37:14.007+07:00  INFO 71416 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-10T16:37:14.007+07:00  INFO 71416 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-04-10T16:37:14.053+07:00  INFO 71416 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-10T16:37:14.053+07:00  INFO 71416 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1240 ms
+2024-04-10T16:37:14.116+07:00  INFO 71416 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Starting...
+2024-04-10T16:37:14.194+07:00  INFO 71416 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPoolOnThi - Added connection org.mariadb.jdbc.Connection@6f1b0b50
+2024-04-10T16:37:14.196+07:00  INFO 71416 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Start completed.
+2024-04-10T16:37:14.243+07:00  INFO 71416 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: s_onthi]
+2024-04-10T16:37:14.303+07:00  INFO 71416 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2024-04-10T16:37:14.615+07:00  INFO 71416 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MariaDB103Dialect
+2024-04-10T16:37:14.617+07:00  WARN 71416 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MariaDB103Dialect has been deprecated; use org.hibernate.dialect.MariaDBDialect instead
+2024-04-10T16:37:14.848+07:00  INFO 71416 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-10T16:37:14.858+07:00  INFO 71416 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 's_onthi'
+2024-04-10T16:37:15.449+07:00  WARN 71416 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-10T16:37:15.966+07:00  WARN 71416 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2024-04-10T16:37:16.028+07:00  INFO 71416 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8899 (http) with context path ''
+2024-04-10T16:37:16.035+07:00  INFO 71416 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : Started OnThiServiceApplication in 4.144 seconds (process running for 6.739)
+2024-04-10T16:37:26.489+07:00  INFO 71416 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 's_onthi'
+2024-04-10T16:37:26.490+07:00  INFO 71416 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown initiated...
+2024-04-10T16:37:26.492+07:00  INFO 71416 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown completed.
+2024-04-10T16:40:10.108+07:00  INFO 60552 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : Starting OnThiServiceApplication using Java 21.0.2 with PID 60552 (N:\OnThiService\target\classes started by nhan0 in N:\OnThiService)
+2024-04-10T16:40:10.109+07:00  INFO 60552 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-04-10T16:40:10.153+07:00  INFO 60552 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-04-10T16:40:10.153+07:00  INFO 60552 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-04-10T16:40:10.872+07:00  INFO 60552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-10T16:40:10.882+07:00  INFO 60552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaceinterfaces.
+2024-04-10T16:40:11.438+07:00  INFO 60552 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
+2024-04-10T16:40:11.445+07:00  INFO 60552 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-10T16:40:11.445+07:00  INFO 60552 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-04-10T16:40:11.488+07:00  INFO 60552 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-10T16:40:11.488+07:00  INFO 60552 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1335 ms
+2024-04-10T16:40:11.539+07:00  INFO 60552 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Starting...
+2024-04-10T16:40:11.613+07:00  INFO 60552 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPoolOnThi - Added connection org.mariadb.jdbc.Connection@511217ed
+2024-04-10T16:40:11.616+07:00  INFO 60552 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Start completed.
+2024-04-10T16:40:11.651+07:00  INFO 60552 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: s_onthi]
+2024-04-10T16:40:11.690+07:00  INFO 60552 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2024-04-10T16:40:11.973+07:00  INFO 60552 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MariaDB103Dialect
+2024-04-10T16:40:11.975+07:00  WARN 60552 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MariaDB103Dialect has been deprecated; use org.hibernate.dialect.MariaDBDialect instead
+2024-04-10T16:40:12.182+07:00  INFO 60552 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-10T16:40:12.192+07:00  INFO 60552 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 's_onthi'
+2024-04-10T16:40:12.808+07:00  WARN 60552 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-10T16:40:13.284+07:00  WARN 60552 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2024-04-10T16:40:13.344+07:00  INFO 60552 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8899 (http) with context path ''
+2024-04-10T16:40:13.350+07:00  INFO 60552 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : Started OnThiServiceApplication in 3.617 seconds (process running for 4.318)
+2024-04-10T16:40:16.075+07:00  INFO 60552 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 's_onthi'
+2024-04-10T16:40:16.076+07:00  INFO 60552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown initiated...
+2024-04-10T16:40:16.078+07:00  INFO 60552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown completed.
