@@ -52,3 +52,269 @@
 2024-04-10T16:40:16.075+07:00  INFO 60552 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 's_onthi'
 2024-04-10T16:40:16.076+07:00  INFO 60552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown initiated...
 2024-04-10T16:40:16.078+07:00  INFO 60552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown completed.
+2024-04-10T16:52:44.812+07:00  INFO 67288 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : Starting OnThiServiceApplication using Java 21.0.2 with PID 67288 (N:\OnThiService\target\classes started by nhan0 in N:\OnThiService)
+2024-04-10T16:52:44.813+07:00  INFO 67288 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-04-10T16:52:44.858+07:00  INFO 67288 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-04-10T16:52:44.858+07:00  INFO 67288 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-04-10T16:52:45.651+07:00  INFO 67288 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-10T16:52:45.662+07:00  INFO 67288 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaceinterfaces.
+2024-04-10T16:52:46.147+07:00  INFO 67288 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jwtTokenProvider' of type [cfm.onthi.sercurity.JwtTokenProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:52:46.148+07:00  INFO 67288 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jwtTokenFilter' of type [cfm.onthi.sercurity.JwtTokenFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:52:46.164+07:00  INFO 67288 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'customPermissionEvaluator' of type [cfm.onthi.sercurity.CustomPermissionEvaluator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:52:46.164+07:00  INFO 67288 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'webSecurityConfiguration' of type [cfm.onthi.configurations.WebSecurityConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:52:46.442+07:00  INFO 67288 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
+2024-04-10T16:52:46.449+07:00  INFO 67288 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-10T16:52:46.449+07:00  INFO 67288 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-04-10T16:52:46.494+07:00  INFO 67288 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-10T16:52:46.495+07:00  INFO 67288 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1636 ms
+2024-04-10T16:52:46.571+07:00  INFO 67288 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Starting...
+2024-04-10T16:52:46.647+07:00  INFO 67288 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPoolOnThi - Added connection org.mariadb.jdbc.Connection@188784c8
+2024-04-10T16:52:46.648+07:00  INFO 67288 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Start completed.
+2024-04-10T16:52:46.690+07:00  INFO 67288 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: s_onthi]
+2024-04-10T16:52:46.735+07:00  INFO 67288 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2024-04-10T16:52:47.063+07:00  INFO 67288 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MariaDB103Dialect
+2024-04-10T16:52:47.065+07:00  WARN 67288 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MariaDB103Dialect has been deprecated; use org.hibernate.dialect.MariaDBDialect instead
+2024-04-10T16:52:47.332+07:00  INFO 67288 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-10T16:52:47.343+07:00  INFO 67288 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 's_onthi'
+2024-04-10T16:52:48.342+07:00  WARN 67288 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-10T16:52:48.928+07:00  INFO 67288 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@488d85d9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@590a7217, org.springframework.security.web.context.SecurityContextHolderFilter@3668cb44, org.springframework.security.web.header.HeaderWriterFilter@4e2c9e52, org.springframework.web.filter.CorsFilter@4b8c6eb0, org.springframework.security.web.authentication.logout.LogoutFilter@3922e543, cfm.onthi.sercurity.JwtTokenFilter@52e13f01, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6fe70fe4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@18a6af97, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6e0db06f, org.springframework.security.web.session.SessionManagementFilter@13646f1f, org.springframework.security.web.access.ExceptionTranslationFilter@58ab0014, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2020d68f]
+2024-04-10T16:52:48.930+07:00  WARN 67288 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsWebFilter' defined in class path resource [cfm/onthi/configurations/WebSecurityConfiguration.class]: Post-processing of merged bean definition failed
+2024-04-10T16:52:48.931+07:00  INFO 67288 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 's_onthi'
+2024-04-10T16:52:48.932+07:00  INFO 67288 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown initiated...
+2024-04-10T16:52:48.934+07:00  INFO 67288 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown completed.
+2024-04-10T16:52:48.936+07:00  INFO 67288 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-04-10T16:52:48.946+07:00  INFO 67288 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-04-10T16:52:48.964+07:00 ERROR 67288 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsWebFilter' defined in class path resource [cfm/onthi/configurations/WebSecurityConfiguration.class]: Post-processing of merged bean definition failed
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:575) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:950) ~[spring-context-6.0.14.jar:6.0.14]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.0.14.jar:6.0.14]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:733) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:435) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290) ~[spring-boot-3.0.13.jar:3.0.13]
+	at cfm.onthi.OnThiServiceApplication.main(OnThiServiceApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.0.13.jar:3.0.13]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [org.springframework.web.cors.reactive.CorsWebFilter] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@5a07e868]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.0.14.jar:6.0.14]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320) ~[spring-core-6.0.14.jar:6.0.14]
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.buildPersistenceMetadata(PersistenceAnnotationBeanPostProcessor.java:446) ~[spring-orm-6.0.14.jar:6.0.14]
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findPersistenceMetadata(PersistenceAnnotationBeanPostProcessor.java:417) ~[spring-orm-6.0.14.jar:6.0.14]
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findInjectionMetadata(PersistenceAnnotationBeanPostProcessor.java:371) ~[spring-orm-6.0.14.jar:6.0.14]
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessMergedBeanDefinition(PersistenceAnnotationBeanPostProcessor.java:353) ~[spring-orm-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyMergedBeanDefinitionPostProcessors(AbstractAutowireCapableBeanFactory.java:1083) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:572) ~[spring-beans-6.0.14.jar:6.0.14]
+	... 18 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: reactor/core/publisher/Mono
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3578) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2676) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.0.14.jar:6.0.14]
+	... 25 common frames omitted
+Caused by: java.lang.ClassNotFoundException: reactor.core.publisher.Mono
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[na:na]
+	... 29 common frames omitted
+
+2024-04-10T16:53:13.392+07:00  INFO 70620 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : Starting OnThiServiceApplication using Java 21.0.2 with PID 70620 (N:\OnThiService\target\classes started by nhan0 in N:\OnThiService)
+2024-04-10T16:53:13.393+07:00  INFO 70620 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-04-10T16:53:13.435+07:00  INFO 70620 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-04-10T16:53:13.435+07:00  INFO 70620 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-04-10T16:53:13.882+07:00  INFO 70620 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-10T16:53:13.891+07:00  INFO 70620 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaceinterfaces.
+2024-04-10T16:53:14.351+07:00  INFO 70620 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jwtTokenProvider' of type [cfm.onthi.sercurity.JwtTokenProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:53:14.354+07:00  INFO 70620 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jwtTokenFilter' of type [cfm.onthi.sercurity.JwtTokenFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:53:14.367+07:00  INFO 70620 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'customPermissionEvaluator' of type [cfm.onthi.sercurity.CustomPermissionEvaluator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:53:14.367+07:00  INFO 70620 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'webSecurityConfiguration' of type [cfm.onthi.configurations.WebSecurityConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:53:14.634+07:00  INFO 70620 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
+2024-04-10T16:53:14.640+07:00  INFO 70620 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-10T16:53:14.640+07:00  INFO 70620 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-04-10T16:53:14.689+07:00  INFO 70620 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-10T16:53:14.690+07:00  INFO 70620 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1255 ms
+2024-04-10T16:53:14.757+07:00  INFO 70620 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Starting...
+2024-04-10T16:53:14.836+07:00  INFO 70620 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPoolOnThi - Added connection org.mariadb.jdbc.Connection@38f3bda5
+2024-04-10T16:53:14.838+07:00  INFO 70620 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Start completed.
+2024-04-10T16:53:14.888+07:00  INFO 70620 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: s_onthi]
+2024-04-10T16:53:14.929+07:00  INFO 70620 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2024-04-10T16:53:15.237+07:00  INFO 70620 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MariaDB103Dialect
+2024-04-10T16:53:15.239+07:00  WARN 70620 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MariaDB103Dialect has been deprecated; use org.hibernate.dialect.MariaDBDialect instead
+2024-04-10T16:53:15.466+07:00  INFO 70620 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-10T16:53:15.474+07:00  INFO 70620 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 's_onthi'
+2024-04-10T16:53:16.315+07:00  WARN 70620 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-10T16:53:16.775+07:00  INFO 70620 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4c65c567, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@41583dfc, org.springframework.security.web.context.SecurityContextHolderFilter@72d77b81, org.springframework.security.web.header.HeaderWriterFilter@3bb2600f, org.springframework.web.filter.CorsFilter@73565e81, org.springframework.security.web.authentication.logout.LogoutFilter@258f1541, cfm.onthi.sercurity.JwtTokenFilter@5f4505ac, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@161d2a5e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@30c3118a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@433d9b8e, org.springframework.security.web.session.SessionManagementFilter@2e7bb707, org.springframework.security.web.access.ExceptionTranslationFilter@2b429123, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@27d8dcb0]
+2024-04-10T16:53:16.778+07:00  WARN 70620 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsWebFilter' defined in class path resource [cfm/onthi/configurations/WebSecurityConfiguration.class]: Post-processing of merged bean definition failed
+2024-04-10T16:53:16.779+07:00  INFO 70620 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 's_onthi'
+2024-04-10T16:53:16.779+07:00  INFO 70620 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown initiated...
+2024-04-10T16:53:16.782+07:00  INFO 70620 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown completed.
+2024-04-10T16:53:16.785+07:00  INFO 70620 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-04-10T16:53:16.793+07:00  INFO 70620 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-04-10T16:53:16.810+07:00 ERROR 70620 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsWebFilter' defined in class path resource [cfm/onthi/configurations/WebSecurityConfiguration.class]: Post-processing of merged bean definition failed
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:575) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:950) ~[spring-context-6.0.14.jar:6.0.14]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.0.14.jar:6.0.14]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:733) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:435) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290) ~[spring-boot-3.0.13.jar:3.0.13]
+	at cfm.onthi.OnThiServiceApplication.main(OnThiServiceApplication.java:14) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.0.13.jar:3.0.13]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [org.springframework.web.cors.reactive.CorsWebFilter] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@5a07e868]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.0.14.jar:6.0.14]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320) ~[spring-core-6.0.14.jar:6.0.14]
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.buildPersistenceMetadata(PersistenceAnnotationBeanPostProcessor.java:446) ~[spring-orm-6.0.14.jar:6.0.14]
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findPersistenceMetadata(PersistenceAnnotationBeanPostProcessor.java:417) ~[spring-orm-6.0.14.jar:6.0.14]
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findInjectionMetadata(PersistenceAnnotationBeanPostProcessor.java:371) ~[spring-orm-6.0.14.jar:6.0.14]
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessMergedBeanDefinition(PersistenceAnnotationBeanPostProcessor.java:353) ~[spring-orm-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyMergedBeanDefinitionPostProcessors(AbstractAutowireCapableBeanFactory.java:1083) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:572) ~[spring-beans-6.0.14.jar:6.0.14]
+	... 18 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: reactor/core/publisher/Mono
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3578) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2676) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.0.14.jar:6.0.14]
+	... 25 common frames omitted
+Caused by: java.lang.ClassNotFoundException: reactor.core.publisher.Mono
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[na:na]
+	... 29 common frames omitted
+
+2024-04-10T16:55:26.744+07:00  INFO 53164 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : Starting OnThiServiceApplication using Java 21.0.2 with PID 53164 (N:\OnThiService\target\classes started by nhan0 in N:\OnThiService)
+2024-04-10T16:55:26.746+07:00  INFO 53164 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-04-10T16:55:26.803+07:00  INFO 53164 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-04-10T16:55:26.803+07:00  INFO 53164 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-04-10T16:55:27.308+07:00  INFO 53164 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-10T16:55:27.318+07:00  INFO 53164 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaceinterfaces.
+2024-04-10T16:55:27.768+07:00  INFO 53164 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jwtTokenProvider' of type [cfm.onthi.sercurity.JwtTokenProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:55:27.770+07:00  INFO 53164 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jwtTokenFilter' of type [cfm.onthi.sercurity.JwtTokenFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:55:27.783+07:00  INFO 53164 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'customPermissionEvaluator' of type [cfm.onthi.sercurity.CustomPermissionEvaluator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:55:27.784+07:00  INFO 53164 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'webSecurityConfiguration' of type [cfm.onthi.configurations.WebSecurityConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:55:28.081+07:00  INFO 53164 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
+2024-04-10T16:55:28.087+07:00  INFO 53164 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-10T16:55:28.088+07:00  INFO 53164 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-04-10T16:55:28.136+07:00  INFO 53164 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-10T16:55:28.136+07:00  INFO 53164 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1332 ms
+2024-04-10T16:55:28.208+07:00  INFO 53164 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Starting...
+2024-04-10T16:55:28.283+07:00  INFO 53164 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPoolOnThi - Added connection org.mariadb.jdbc.Connection@554db958
+2024-04-10T16:55:28.284+07:00  INFO 53164 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Start completed.
+2024-04-10T16:55:28.334+07:00  INFO 53164 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: s_onthi]
+2024-04-10T16:55:28.382+07:00  INFO 53164 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2024-04-10T16:55:28.688+07:00  INFO 53164 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MariaDB103Dialect
+2024-04-10T16:55:28.692+07:00  WARN 53164 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MariaDB103Dialect has been deprecated; use org.hibernate.dialect.MariaDBDialect instead
+2024-04-10T16:55:28.954+07:00  INFO 53164 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-10T16:55:28.964+07:00  INFO 53164 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 's_onthi'
+2024-04-10T16:55:29.830+07:00  WARN 53164 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-10T16:55:30.302+07:00  INFO 53164 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@10c3c5ce, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@bd82d85, org.springframework.security.web.context.SecurityContextHolderFilter@4f362832, org.springframework.security.web.header.HeaderWriterFilter@2a6eef78, org.springframework.web.filter.CorsFilter@27d8dcb0, org.springframework.security.web.authentication.logout.LogoutFilter@7b745507, cfm.onthi.sercurity.JwtTokenFilter@235805f3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@31d9f1cb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@50727283, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70dd27b6, org.springframework.security.web.session.SessionManagementFilter@7efd947, org.springframework.security.web.access.ExceptionTranslationFilter@3c43051f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@94abc5f]
+2024-04-10T16:55:30.305+07:00  WARN 53164 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsWebFilter' defined in class path resource [cfm/onthi/configurations/WebSecurityConfiguration.class]: Post-processing of merged bean definition failed
+2024-04-10T16:55:30.306+07:00  INFO 53164 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 's_onthi'
+2024-04-10T16:55:30.306+07:00  INFO 53164 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown initiated...
+2024-04-10T16:55:30.311+07:00  INFO 53164 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown completed.
+2024-04-10T16:55:30.314+07:00  INFO 53164 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-04-10T16:55:30.323+07:00  INFO 53164 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-04-10T16:55:30.341+07:00 ERROR 53164 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsWebFilter' defined in class path resource [cfm/onthi/configurations/WebSecurityConfiguration.class]: Post-processing of merged bean definition failed
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:575) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:950) ~[spring-context-6.0.14.jar:6.0.14]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.0.14.jar:6.0.14]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:733) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:435) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301) ~[spring-boot-3.0.13.jar:3.0.13]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290) ~[spring-boot-3.0.13.jar:3.0.13]
+	at cfm.onthi.OnThiServiceApplication.main(OnThiServiceApplication.java:14) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.0.13.jar:3.0.13]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [org.springframework.web.cors.reactive.CorsWebFilter] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@5a07e868]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.0.14.jar:6.0.14]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320) ~[spring-core-6.0.14.jar:6.0.14]
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.buildPersistenceMetadata(PersistenceAnnotationBeanPostProcessor.java:446) ~[spring-orm-6.0.14.jar:6.0.14]
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findPersistenceMetadata(PersistenceAnnotationBeanPostProcessor.java:417) ~[spring-orm-6.0.14.jar:6.0.14]
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.findInjectionMetadata(PersistenceAnnotationBeanPostProcessor.java:371) ~[spring-orm-6.0.14.jar:6.0.14]
+	at org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor.postProcessMergedBeanDefinition(PersistenceAnnotationBeanPostProcessor.java:353) ~[spring-orm-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyMergedBeanDefinitionPostProcessors(AbstractAutowireCapableBeanFactory.java:1083) ~[spring-beans-6.0.14.jar:6.0.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:572) ~[spring-beans-6.0.14.jar:6.0.14]
+	... 18 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: reactor/core/publisher/Mono
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3578) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2676) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.0.14.jar:6.0.14]
+	... 25 common frames omitted
+Caused by: java.lang.ClassNotFoundException: reactor.core.publisher.Mono
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[na:na]
+	... 29 common frames omitted
+
+2024-04-10T16:56:41.492+07:00  INFO 71368 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : Starting OnThiServiceApplication using Java 21.0.2 with PID 71368 (N:\OnThiService\target\classes started by nhan0 in N:\OnThiService)
+2024-04-10T16:56:41.494+07:00  INFO 71368 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-04-10T16:56:41.539+07:00  INFO 71368 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-04-10T16:56:41.539+07:00  INFO 71368 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-04-10T16:56:42.006+07:00  INFO 71368 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-10T16:56:42.016+07:00  INFO 71368 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaceinterfaces.
+2024-04-10T16:56:42.469+07:00  INFO 71368 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jwtTokenProvider' of type [cfm.onthi.sercurity.JwtTokenProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:56:42.474+07:00  INFO 71368 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jwtTokenFilter' of type [cfm.onthi.sercurity.JwtTokenFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:56:42.489+07:00  INFO 71368 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'customPermissionEvaluator' of type [cfm.onthi.sercurity.CustomPermissionEvaluator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:56:42.489+07:00  INFO 71368 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'webSecurityConfiguration' of type [cfm.onthi.configurations.WebSecurityConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-04-10T16:56:42.796+07:00  INFO 71368 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8899 (http)
+2024-04-10T16:56:42.803+07:00  INFO 71368 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-10T16:56:42.804+07:00  INFO 71368 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-04-10T16:56:42.854+07:00  INFO 71368 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-10T16:56:42.854+07:00  INFO 71368 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1314 ms
+2024-04-10T16:56:42.928+07:00  INFO 71368 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Starting...
+2024-04-10T16:56:43.013+07:00  INFO 71368 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPoolOnThi - Added connection org.mariadb.jdbc.Connection@cc549a
+2024-04-10T16:56:43.015+07:00  INFO 71368 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Start completed.
+2024-04-10T16:56:43.066+07:00  INFO 71368 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: s_onthi]
+2024-04-10T16:56:43.125+07:00  INFO 71368 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2024-04-10T16:56:43.438+07:00  INFO 71368 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MariaDB103Dialect
+2024-04-10T16:56:43.440+07:00  WARN 71368 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MariaDB103Dialect has been deprecated; use org.hibernate.dialect.MariaDBDialect instead
+2024-04-10T16:56:43.698+07:00  INFO 71368 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-04-10T16:56:43.708+07:00  INFO 71368 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 's_onthi'
+2024-04-10T16:56:44.589+07:00  WARN 71368 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-10T16:56:45.066+07:00  INFO 71368 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@94abc5f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@30e2d76e, org.springframework.security.web.context.SecurityContextHolderFilter@759244a, org.springframework.security.web.header.HeaderWriterFilter@1615c573, org.springframework.web.filter.CorsFilter@3695b2a9, org.springframework.security.web.authentication.logout.LogoutFilter@43a87ad6, cfm.onthi.sercurity.JwtTokenFilter@3f6648f8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7efd947, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3286b652, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ac8dc82, org.springframework.security.web.session.SessionManagementFilter@3bb2600f, org.springframework.security.web.access.ExceptionTranslationFilter@63178cdf, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4f4c912c]
+2024-04-10T16:56:45.391+07:00  WARN 71368 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2024-04-10T16:56:45.467+07:00  INFO 71368 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8899 (http) with context path ''
+2024-04-10T16:56:45.482+07:00  INFO 71368 --- [restartedMain] cfm.onthi.OnThiServiceApplication        : Started OnThiServiceApplication in 4.363 seconds (process running for 5.059)
+2024-04-10T16:56:55.353+07:00  INFO 71368 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 's_onthi'
+2024-04-10T16:56:55.354+07:00  INFO 71368 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown initiated...
+2024-04-10T16:56:55.356+07:00  INFO 71368 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPoolOnThi - Shutdown completed.
