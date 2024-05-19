@@ -4,17 +4,21 @@
 package cfm.onthi.entities.tables;
 
 
+import cfm.onthi.entities.Indexes;
 import cfm.onthi.entities.Keys;
 import cfm.onthi.entities.SOnthi;
 import cfm.onthi.entities.tables.records.OtLessonRecord;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function13;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
@@ -64,7 +68,7 @@ public class OtLesson extends TableImpl<OtLessonRecord> {
     /**
      * The column <code>s_onthi.ot_lesson.LESSON_PARENT</code>.
      */
-    public final TableField<OtLessonRecord, Long> LESSON_PARENT = createField(DSL.name("LESSON_PARENT"), SQLDataType.BIGINT.defaultValue(DSL.field("NULL", SQLDataType.BIGINT)), this, "");
+    public final TableField<OtLessonRecord, Long> LESSON_PARENT = createField(DSL.name("LESSON_PARENT"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>s_onthi.ot_lesson.LESSON_NAME</code>.
@@ -74,22 +78,22 @@ public class OtLesson extends TableImpl<OtLessonRecord> {
     /**
      * The column <code>s_onthi.ot_lesson.DURATION</code>.
      */
-    public final TableField<OtLessonRecord, Double> DURATION = createField(DSL.name("DURATION"), SQLDataType.FLOAT.defaultValue(DSL.field("NULL", SQLDataType.FLOAT)), this, "");
+    public final TableField<OtLessonRecord, Double> DURATION = createField(DSL.name("DURATION"), SQLDataType.FLOAT, this, "");
 
     /**
      * The column <code>s_onthi.ot_lesson.SUBJECT</code>.
      */
-    public final TableField<OtLessonRecord, String> SUBJECT = createField(DSL.name("SUBJECT"), SQLDataType.VARCHAR(100).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtLessonRecord, String> SUBJECT = createField(DSL.name("SUBJECT"), SQLDataType.VARCHAR(100), this, "");
 
     /**
      * The column <code>s_onthi.ot_lesson.ORDER</code>.
      */
-    public final TableField<OtLessonRecord, Long> ORDER = createField(DSL.name("ORDER"), SQLDataType.BIGINT.defaultValue(DSL.field("NULL", SQLDataType.BIGINT)), this, "");
+    public final TableField<OtLessonRecord, Long> ORDER = createField(DSL.name("ORDER"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>s_onthi.ot_lesson.CONTINUE_TIME</code>.
      */
-    public final TableField<OtLessonRecord, Double> CONTINUE_TIME = createField(DSL.name("CONTINUE_TIME"), SQLDataType.FLOAT.defaultValue(DSL.field("NULL", SQLDataType.FLOAT)), this, "");
+    public final TableField<OtLessonRecord, Double> CONTINUE_TIME = createField(DSL.name("CONTINUE_TIME"), SQLDataType.FLOAT, this, "");
 
     /**
      * The column <code>s_onthi.ot_lesson.VIEW</code>.
@@ -99,22 +103,22 @@ public class OtLesson extends TableImpl<OtLessonRecord> {
     /**
      * The column <code>s_onthi.ot_lesson.DESCRIPTION</code>.
      */
-    public final TableField<OtLessonRecord, String> DESCRIPTION = createField(DSL.name("DESCRIPTION"), SQLDataType.VARCHAR(1000).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtLessonRecord, String> DESCRIPTION = createField(DSL.name("DESCRIPTION"), SQLDataType.VARCHAR(1000), this, "");
 
     /**
      * The column <code>s_onthi.ot_lesson.CREATED_DATE</code>.
      */
-    public final TableField<OtLessonRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtLessonRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>s_onthi.ot_lesson.LAST_MODIFIED_BY</code>.
      */
-    public final TableField<OtLessonRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtLessonRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>s_onthi.ot_lesson.LAST_MODIFIED_DATE</code>.
      */
-    public final TableField<OtLessonRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtLessonRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private OtLesson(Name alias, Table<OtLessonRecord> aliased) {
         this(alias, aliased, null);
@@ -155,6 +159,11 @@ public class OtLesson extends TableImpl<OtLessonRecord> {
     }
 
     @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.OT_LESSON_ID_COURSE);
+    }
+
+    @Override
     public Identity<OtLessonRecord, Long> getIdentity() {
         return (Identity<OtLessonRecord, Long>) super.getIdentity();
     }
@@ -162,6 +171,23 @@ public class OtLesson extends TableImpl<OtLessonRecord> {
     @Override
     public UniqueKey<OtLessonRecord> getPrimaryKey() {
         return Keys.KEY_OT_LESSON_PRIMARY;
+    }
+
+    @Override
+    public List<ForeignKey<OtLessonRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.OT_LESSON_IBFK_1);
+    }
+
+    private transient OtCourse _otCourse;
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_course</code> table.
+     */
+    public OtCourse otCourse() {
+        if (_otCourse == null)
+            _otCourse = new OtCourse(this, Keys.OT_LESSON_IBFK_1);
+
+        return _otCourse;
     }
 
     @Override

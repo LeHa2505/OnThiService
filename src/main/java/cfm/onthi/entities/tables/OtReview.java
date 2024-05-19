@@ -4,17 +4,21 @@
 package cfm.onthi.entities.tables;
 
 
+import cfm.onthi.entities.Indexes;
 import cfm.onthi.entities.Keys;
 import cfm.onthi.entities.SOnthi;
 import cfm.onthi.entities.tables.records.OtReviewRecord;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function7;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
@@ -74,17 +78,17 @@ public class OtReview extends TableImpl<OtReviewRecord> {
     /**
      * The column <code>s_onthi.ot_review.CREATED_DATE</code>.
      */
-    public final TableField<OtReviewRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtReviewRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>s_onthi.ot_review.LAST_MODIFIED_BY</code>.
      */
-    public final TableField<OtReviewRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtReviewRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>s_onthi.ot_review.LAST_MODIFIED_DATE</code>.
      */
-    public final TableField<OtReviewRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtReviewRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private OtReview(Name alias, Table<OtReviewRecord> aliased) {
         this(alias, aliased, null);
@@ -125,6 +129,11 @@ public class OtReview extends TableImpl<OtReviewRecord> {
     }
 
     @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.OT_REVIEW_ID_COURSE);
+    }
+
+    @Override
     public Identity<OtReviewRecord, Long> getIdentity() {
         return (Identity<OtReviewRecord, Long>) super.getIdentity();
     }
@@ -132,6 +141,23 @@ public class OtReview extends TableImpl<OtReviewRecord> {
     @Override
     public UniqueKey<OtReviewRecord> getPrimaryKey() {
         return Keys.KEY_OT_REVIEW_PRIMARY;
+    }
+
+    @Override
+    public List<ForeignKey<OtReviewRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.OT_REVIEW_IBFK_1);
+    }
+
+    private transient OtCourse _otCourse;
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_course</code> table.
+     */
+    public OtCourse otCourse() {
+        if (_otCourse == null)
+            _otCourse = new OtCourse(this, Keys.OT_REVIEW_IBFK_1);
+
+        return _otCourse;
     }
 
     @Override

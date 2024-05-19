@@ -9,6 +9,8 @@ import cfm.onthi.entities.SOnthi;
 import cfm.onthi.entities.tables.records.OtRoleRecord;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 import org.jooq.Field;
@@ -59,7 +61,7 @@ public class OtRole extends TableImpl<OtRoleRecord> {
     /**
      * The column <code>s_onthi.ot_role.ROLE_DESCRIBE</code>.
      */
-    public final TableField<OtRoleRecord, String> ROLE_DESCRIBE = createField(DSL.name("ROLE_DESCRIBE"), SQLDataType.VARCHAR(255).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtRoleRecord, String> ROLE_DESCRIBE = createField(DSL.name("ROLE_DESCRIBE"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>s_onthi.ot_role.ROLE_KEY</code>.
@@ -79,17 +81,17 @@ public class OtRole extends TableImpl<OtRoleRecord> {
     /**
      * The column <code>s_onthi.ot_role.CREATED_DATE</code>.
      */
-    public final TableField<OtRoleRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtRoleRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>s_onthi.ot_role.LAST_MODIFIED_BY</code>.
      */
-    public final TableField<OtRoleRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtRoleRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>s_onthi.ot_role.LAST_MODIFIED_DATE</code>.
      */
-    public final TableField<OtRoleRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtRoleRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private OtRole(Name alias, Table<OtRoleRecord> aliased) {
         this(alias, aliased, null);
@@ -137,6 +139,24 @@ public class OtRole extends TableImpl<OtRoleRecord> {
     @Override
     public UniqueKey<OtRoleRecord> getPrimaryKey() {
         return Keys.KEY_OT_ROLE_PRIMARY;
+    }
+
+    @Override
+    public List<ForeignKey<OtRoleRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.OT_ROLE_IBFK_1);
+    }
+
+    private transient OtUserRole _otUserRole;
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_user_role</code>
+     * table.
+     */
+    public OtUserRole otUserRole() {
+        if (_otUserRole == null)
+            _otUserRole = new OtUserRole(this, Keys.OT_ROLE_IBFK_1);
+
+        return _otUserRole;
     }
 
     @Override

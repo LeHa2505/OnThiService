@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
@@ -29,7 +30,10 @@ import org.jooq.impl.UpdatableRecordImpl;
 @Entity
 @Table(
     name = "ot_lesson",
-    schema = "s_onthi"
+    schema = "s_onthi",
+    indexes = {
+        @Index(name = "ID_COURSE", columnList = "ID_COURSE ASC")
+    }
 )
 public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implements Record13<Long, Long, Long, String, Double, String, Long, Double, Long, String, LocalDateTime, String, LocalDateTime> {
 

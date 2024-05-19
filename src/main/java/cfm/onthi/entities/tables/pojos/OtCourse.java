@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
@@ -23,7 +24,10 @@ import java.time.LocalDateTime;
 @Entity
 @Table(
     name = "ot_course",
-    schema = "s_onthi"
+    schema = "s_onthi",
+    indexes = {
+        @Index(name = "ID_TEACHER", columnList = "ID_TEACHER ASC")
+    }
 )
 public class OtCourse implements Serializable {
 
@@ -34,6 +38,7 @@ public class OtCourse implements Serializable {
     private String categoryName;
     private Double schedule;
     private String courseName;
+    private Long typeCourse;
     private LocalDate startDate;
     private LocalDate endDate;
     private Double duration;
@@ -52,6 +57,7 @@ public class OtCourse implements Serializable {
         this.categoryName = value.categoryName;
         this.schedule = value.schedule;
         this.courseName = value.courseName;
+        this.typeCourse = value.typeCourse;
         this.startDate = value.startDate;
         this.endDate = value.endDate;
         this.duration = value.duration;
@@ -69,6 +75,7 @@ public class OtCourse implements Serializable {
         String categoryName,
         Double schedule,
         String courseName,
+        Long typeCourse,
         LocalDate startDate,
         LocalDate endDate,
         Double duration,
@@ -84,6 +91,7 @@ public class OtCourse implements Serializable {
         this.categoryName = categoryName;
         this.schedule = schedule;
         this.courseName = courseName;
+        this.typeCourse = typeCourse;
         this.startDate = startDate;
         this.endDate = endDate;
         this.duration = duration;
@@ -170,6 +178,21 @@ public class OtCourse implements Serializable {
      */
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_course.TYPE_COURSE</code>.
+     */
+    @Column(name = "TYPE_COURSE")
+    public Long getTypeCourse() {
+        return this.typeCourse;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_course.TYPE_COURSE</code>.
+     */
+    public void setTypeCourse(Long typeCourse) {
+        this.typeCourse = typeCourse;
     }
 
     /**
@@ -346,6 +369,12 @@ public class OtCourse implements Serializable {
         }
         else if (!this.courseName.equals(other.courseName))
             return false;
+        if (this.typeCourse == null) {
+            if (other.typeCourse != null)
+                return false;
+        }
+        else if (!this.typeCourse.equals(other.typeCourse))
+            return false;
         if (this.startDate == null) {
             if (other.startDate != null)
                 return false;
@@ -412,6 +441,7 @@ public class OtCourse implements Serializable {
         result = prime * result + ((this.categoryName == null) ? 0 : this.categoryName.hashCode());
         result = prime * result + ((this.schedule == null) ? 0 : this.schedule.hashCode());
         result = prime * result + ((this.courseName == null) ? 0 : this.courseName.hashCode());
+        result = prime * result + ((this.typeCourse == null) ? 0 : this.typeCourse.hashCode());
         result = prime * result + ((this.startDate == null) ? 0 : this.startDate.hashCode());
         result = prime * result + ((this.endDate == null) ? 0 : this.endDate.hashCode());
         result = prime * result + ((this.duration == null) ? 0 : this.duration.hashCode());
@@ -433,6 +463,7 @@ public class OtCourse implements Serializable {
         sb.append(", ").append(categoryName);
         sb.append(", ").append(schedule);
         sb.append(", ").append(courseName);
+        sb.append(", ").append(typeCourse);
         sb.append(", ").append(startDate);
         sb.append(", ").append(endDate);
         sb.append(", ").append(duration);

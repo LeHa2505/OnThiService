@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
@@ -18,8 +19,8 @@ import java.time.LocalDateTime;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record14;
-import org.jooq.Row14;
+import org.jooq.Record15;
+import org.jooq.Row15;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
@@ -30,9 +31,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 @Entity
 @Table(
     name = "ot_course",
-    schema = "s_onthi"
+    schema = "s_onthi",
+    indexes = {
+        @Index(name = "ID_TEACHER", columnList = "ID_TEACHER ASC")
+    }
 )
-public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implements Record14<Long, Long, String, Double, String, LocalDate, LocalDate, Double, Double, Double, String, LocalDateTime, String, LocalDateTime> {
+public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implements Record15<Long, Long, String, Double, String, Long, LocalDate, LocalDate, Double, Double, Double, String, LocalDateTime, String, LocalDateTime> {
 
     private static final long serialVersionUID = 1L;
 
@@ -114,10 +118,25 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     /**
+     * Setter for <code>s_onthi.ot_course.TYPE_COURSE</code>.
+     */
+    public void setTypeCourse(Long value) {
+        set(5, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_course.TYPE_COURSE</code>.
+     */
+    @Column(name = "TYPE_COURSE")
+    public Long getTypeCourse() {
+        return (Long) get(5);
+    }
+
+    /**
      * Setter for <code>s_onthi.ot_course.START_DATE</code>.
      */
     public void setStartDate(LocalDate value) {
-        set(5, value);
+        set(6, value);
     }
 
     /**
@@ -125,14 +144,14 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
      */
     @Column(name = "START_DATE")
     public LocalDate getStartDate() {
-        return (LocalDate) get(5);
+        return (LocalDate) get(6);
     }
 
     /**
      * Setter for <code>s_onthi.ot_course.END_DATE</code>.
      */
     public void setEndDate(LocalDate value) {
-        set(6, value);
+        set(7, value);
     }
 
     /**
@@ -140,14 +159,14 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
      */
     @Column(name = "END_DATE")
     public LocalDate getEndDate() {
-        return (LocalDate) get(6);
+        return (LocalDate) get(7);
     }
 
     /**
      * Setter for <code>s_onthi.ot_course.DURATION</code>.
      */
     public void setDuration(Double value) {
-        set(7, value);
+        set(8, value);
     }
 
     /**
@@ -155,14 +174,14 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
      */
     @Column(name = "DURATION")
     public Double getDuration() {
-        return (Double) get(7);
+        return (Double) get(8);
     }
 
     /**
      * Setter for <code>s_onthi.ot_course.PRICE</code>.
      */
     public void setPrice(Double value) {
-        set(8, value);
+        set(9, value);
     }
 
     /**
@@ -170,14 +189,14 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
      */
     @Column(name = "PRICE", nullable = false)
     public Double getPrice() {
-        return (Double) get(8);
+        return (Double) get(9);
     }
 
     /**
      * Setter for <code>s_onthi.ot_course.DISCOUNT</code>.
      */
     public void setDiscount(Double value) {
-        set(9, value);
+        set(10, value);
     }
 
     /**
@@ -185,14 +204,14 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
      */
     @Column(name = "DISCOUNT")
     public Double getDiscount() {
-        return (Double) get(9);
+        return (Double) get(10);
     }
 
     /**
      * Setter for <code>s_onthi.ot_course.DESCRIPTION</code>.
      */
     public void setDescription(String value) {
-        set(10, value);
+        set(11, value);
     }
 
     /**
@@ -200,14 +219,14 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
      */
     @Column(name = "DESCRIPTION", length = 2000)
     public String getDescription() {
-        return (String) get(10);
+        return (String) get(11);
     }
 
     /**
      * Setter for <code>s_onthi.ot_course.CREATED_DATE</code>.
      */
     public void setCreatedDate(LocalDateTime value) {
-        set(11, value);
+        set(12, value);
     }
 
     /**
@@ -215,14 +234,14 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
      */
     @Column(name = "CREATED_DATE", precision = 6)
     public LocalDateTime getCreatedDate() {
-        return (LocalDateTime) get(11);
+        return (LocalDateTime) get(12);
     }
 
     /**
      * Setter for <code>s_onthi.ot_course.LAST_MODIFIED_BY</code>.
      */
     public void setLastModifiedBy(String value) {
-        set(12, value);
+        set(13, value);
     }
 
     /**
@@ -230,14 +249,14 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
      */
     @Column(name = "LAST_MODIFIED_BY", length = 50)
     public String getLastModifiedBy() {
-        return (String) get(12);
+        return (String) get(13);
     }
 
     /**
      * Setter for <code>s_onthi.ot_course.LAST_MODIFIED_DATE</code>.
      */
     public void setLastModifiedDate(LocalDateTime value) {
-        set(13, value);
+        set(14, value);
     }
 
     /**
@@ -245,7 +264,7 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
      */
     @Column(name = "LAST_MODIFIED_DATE", precision = 6)
     public LocalDateTime getLastModifiedDate() {
-        return (LocalDateTime) get(13);
+        return (LocalDateTime) get(14);
     }
 
     // -------------------------------------------------------------------------
@@ -258,17 +277,17 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     // -------------------------------------------------------------------------
-    // Record14 type implementation
+    // Record15 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row14<Long, Long, String, Double, String, LocalDate, LocalDate, Double, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row14) super.fieldsRow();
+    public Row15<Long, Long, String, Double, String, Long, LocalDate, LocalDate, Double, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row15) super.fieldsRow();
     }
 
     @Override
-    public Row14<Long, Long, String, Double, String, LocalDate, LocalDate, Double, Double, Double, String, LocalDateTime, String, LocalDateTime> valuesRow() {
-        return (Row14) super.valuesRow();
+    public Row15<Long, Long, String, Double, String, Long, LocalDate, LocalDate, Double, Double, Double, String, LocalDateTime, String, LocalDateTime> valuesRow() {
+        return (Row15) super.valuesRow();
     }
 
     @Override
@@ -297,47 +316,52 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public Field<LocalDate> field6() {
-        return OtCourse.OT_COURSE.START_DATE;
+    public Field<Long> field6() {
+        return OtCourse.OT_COURSE.TYPE_COURSE;
     }
 
     @Override
     public Field<LocalDate> field7() {
+        return OtCourse.OT_COURSE.START_DATE;
+    }
+
+    @Override
+    public Field<LocalDate> field8() {
         return OtCourse.OT_COURSE.END_DATE;
     }
 
     @Override
-    public Field<Double> field8() {
+    public Field<Double> field9() {
         return OtCourse.OT_COURSE.DURATION;
     }
 
     @Override
-    public Field<Double> field9() {
+    public Field<Double> field10() {
         return OtCourse.OT_COURSE.PRICE;
     }
 
     @Override
-    public Field<Double> field10() {
+    public Field<Double> field11() {
         return OtCourse.OT_COURSE.DISCOUNT;
     }
 
     @Override
-    public Field<String> field11() {
+    public Field<String> field12() {
         return OtCourse.OT_COURSE.DESCRIPTION;
     }
 
     @Override
-    public Field<LocalDateTime> field12() {
+    public Field<LocalDateTime> field13() {
         return OtCourse.OT_COURSE.CREATED_DATE;
     }
 
     @Override
-    public Field<String> field13() {
+    public Field<String> field14() {
         return OtCourse.OT_COURSE.LAST_MODIFIED_BY;
     }
 
     @Override
-    public Field<LocalDateTime> field14() {
+    public Field<LocalDateTime> field15() {
         return OtCourse.OT_COURSE.LAST_MODIFIED_DATE;
     }
 
@@ -367,47 +391,52 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public LocalDate component6() {
-        return getStartDate();
+    public Long component6() {
+        return getTypeCourse();
     }
 
     @Override
     public LocalDate component7() {
+        return getStartDate();
+    }
+
+    @Override
+    public LocalDate component8() {
         return getEndDate();
     }
 
     @Override
-    public Double component8() {
+    public Double component9() {
         return getDuration();
     }
 
     @Override
-    public Double component9() {
+    public Double component10() {
         return getPrice();
     }
 
     @Override
-    public Double component10() {
+    public Double component11() {
         return getDiscount();
     }
 
     @Override
-    public String component11() {
+    public String component12() {
         return getDescription();
     }
 
     @Override
-    public LocalDateTime component12() {
+    public LocalDateTime component13() {
         return getCreatedDate();
     }
 
     @Override
-    public String component13() {
+    public String component14() {
         return getLastModifiedBy();
     }
 
     @Override
-    public LocalDateTime component14() {
+    public LocalDateTime component15() {
         return getLastModifiedDate();
     }
 
@@ -437,47 +466,52 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public LocalDate value6() {
-        return getStartDate();
+    public Long value6() {
+        return getTypeCourse();
     }
 
     @Override
     public LocalDate value7() {
+        return getStartDate();
+    }
+
+    @Override
+    public LocalDate value8() {
         return getEndDate();
     }
 
     @Override
-    public Double value8() {
+    public Double value9() {
         return getDuration();
     }
 
     @Override
-    public Double value9() {
+    public Double value10() {
         return getPrice();
     }
 
     @Override
-    public Double value10() {
+    public Double value11() {
         return getDiscount();
     }
 
     @Override
-    public String value11() {
+    public String value12() {
         return getDescription();
     }
 
     @Override
-    public LocalDateTime value12() {
+    public LocalDateTime value13() {
         return getCreatedDate();
     }
 
     @Override
-    public String value13() {
+    public String value14() {
         return getLastModifiedBy();
     }
 
     @Override
-    public LocalDateTime value14() {
+    public LocalDateTime value15() {
         return getLastModifiedDate();
     }
 
@@ -512,61 +546,67 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public OtCourseRecord value6(LocalDate value) {
-        setStartDate(value);
+    public OtCourseRecord value6(Long value) {
+        setTypeCourse(value);
         return this;
     }
 
     @Override
     public OtCourseRecord value7(LocalDate value) {
+        setStartDate(value);
+        return this;
+    }
+
+    @Override
+    public OtCourseRecord value8(LocalDate value) {
         setEndDate(value);
         return this;
     }
 
     @Override
-    public OtCourseRecord value8(Double value) {
+    public OtCourseRecord value9(Double value) {
         setDuration(value);
         return this;
     }
 
     @Override
-    public OtCourseRecord value9(Double value) {
+    public OtCourseRecord value10(Double value) {
         setPrice(value);
         return this;
     }
 
     @Override
-    public OtCourseRecord value10(Double value) {
+    public OtCourseRecord value11(Double value) {
         setDiscount(value);
         return this;
     }
 
     @Override
-    public OtCourseRecord value11(String value) {
+    public OtCourseRecord value12(String value) {
         setDescription(value);
         return this;
     }
 
     @Override
-    public OtCourseRecord value12(LocalDateTime value) {
+    public OtCourseRecord value13(LocalDateTime value) {
         setCreatedDate(value);
         return this;
     }
 
     @Override
-    public OtCourseRecord value13(String value) {
+    public OtCourseRecord value14(String value) {
         setLastModifiedBy(value);
         return this;
     }
 
     @Override
-    public OtCourseRecord value14(LocalDateTime value) {
+    public OtCourseRecord value15(LocalDateTime value) {
         setLastModifiedDate(value);
         return this;
     }
 
     @Override
-    public OtCourseRecord values(Long value1, Long value2, String value3, Double value4, String value5, LocalDate value6, LocalDate value7, Double value8, Double value9, Double value10, String value11, LocalDateTime value12, String value13, LocalDateTime value14) {
+    public OtCourseRecord values(Long value1, Long value2, String value3, Double value4, String value5, Long value6, LocalDate value7, LocalDate value8, Double value9, Double value10, Double value11, String value12, LocalDateTime value13, String value14, LocalDateTime value15) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -581,6 +621,7 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
         value12(value12);
         value13(value13);
         value14(value14);
+        value15(value15);
         return this;
     }
 
@@ -598,7 +639,7 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     /**
      * Create a detached, initialised OtCourseRecord
      */
-    public OtCourseRecord(Long idCourse, Long idTeacher, String categoryName, Double schedule, String courseName, LocalDate startDate, LocalDate endDate, Double duration, Double price, Double discount, String description, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
+    public OtCourseRecord(Long idCourse, Long idTeacher, String categoryName, Double schedule, String courseName, Long typeCourse, LocalDate startDate, LocalDate endDate, Double duration, Double price, Double discount, String description, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
         super(OtCourse.OT_COURSE);
 
         setIdCourse(idCourse);
@@ -606,6 +647,7 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
         setCategoryName(categoryName);
         setSchedule(schedule);
         setCourseName(courseName);
+        setTypeCourse(typeCourse);
         setStartDate(startDate);
         setEndDate(endDate);
         setDuration(duration);
@@ -629,6 +671,7 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
             setCategoryName(value.getCategoryName());
             setSchedule(value.getSchedule());
             setCourseName(value.getCourseName());
+            setTypeCourse(value.getTypeCourse());
             setStartDate(value.getStartDate());
             setEndDate(value.getEndDate());
             setDuration(value.getDuration());

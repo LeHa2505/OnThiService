@@ -4,17 +4,21 @@
 package cfm.onthi.entities.tables;
 
 
+import cfm.onthi.entities.Indexes;
 import cfm.onthi.entities.Keys;
 import cfm.onthi.entities.SOnthi;
 import cfm.onthi.entities.tables.records.OtDocumentRecord;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function9;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
@@ -74,7 +78,7 @@ public class OtDocument extends TableImpl<OtDocumentRecord> {
     /**
      * The column <code>s_onthi.ot_document.TYPE_DOCUMENT</code>.
      */
-    public final TableField<OtDocumentRecord, Long> TYPE_DOCUMENT = createField(DSL.name("TYPE_DOCUMENT"), SQLDataType.BIGINT.defaultValue(DSL.field("NULL", SQLDataType.BIGINT)), this, "");
+    public final TableField<OtDocumentRecord, Long> TYPE_DOCUMENT = createField(DSL.name("TYPE_DOCUMENT"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>s_onthi.ot_document.DOWNLOAD_STATUS</code>.
@@ -84,17 +88,17 @@ public class OtDocument extends TableImpl<OtDocumentRecord> {
     /**
      * The column <code>s_onthi.ot_document.CREATED_DATE</code>.
      */
-    public final TableField<OtDocumentRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtDocumentRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>s_onthi.ot_document.LAST_MODIFIED_BY</code>.
      */
-    public final TableField<OtDocumentRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtDocumentRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>s_onthi.ot_document.LAST_MODIFIED_DATE</code>.
      */
-    public final TableField<OtDocumentRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtDocumentRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private OtDocument(Name alias, Table<OtDocumentRecord> aliased) {
         this(alias, aliased, null);
@@ -135,6 +139,11 @@ public class OtDocument extends TableImpl<OtDocumentRecord> {
     }
 
     @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.OT_DOCUMENT_ID_LESSON);
+    }
+
+    @Override
     public Identity<OtDocumentRecord, Long> getIdentity() {
         return (Identity<OtDocumentRecord, Long>) super.getIdentity();
     }
@@ -142,6 +151,23 @@ public class OtDocument extends TableImpl<OtDocumentRecord> {
     @Override
     public UniqueKey<OtDocumentRecord> getPrimaryKey() {
         return Keys.KEY_OT_DOCUMENT_PRIMARY;
+    }
+
+    @Override
+    public List<ForeignKey<OtDocumentRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.OT_DOCUMENT_IBFK_1);
+    }
+
+    private transient OtLesson _otLesson;
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_lesson</code> table.
+     */
+    public OtLesson otLesson() {
+        if (_otLesson == null)
+            _otLesson = new OtLesson(this, Keys.OT_DOCUMENT_IBFK_1);
+
+        return _otLesson;
     }
 
     @Override

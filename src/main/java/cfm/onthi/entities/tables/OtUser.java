@@ -4,18 +4,22 @@
 package cfm.onthi.entities.tables;
 
 
+import cfm.onthi.entities.Indexes;
 import cfm.onthi.entities.Keys;
 import cfm.onthi.entities.SOnthi;
 import cfm.onthi.entities.tables.records.OtUserRecord;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function18;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
@@ -60,12 +64,12 @@ public class OtUser extends TableImpl<OtUserRecord> {
     /**
      * The column <code>s_onthi.ot_user.ID_SCHOOL</code>.
      */
-    public final TableField<OtUserRecord, Long> ID_SCHOOL = createField(DSL.name("ID_SCHOOL"), SQLDataType.BIGINT.defaultValue(DSL.field("NULL", SQLDataType.BIGINT)), this, "");
+    public final TableField<OtUserRecord, Long> ID_SCHOOL = createField(DSL.name("ID_SCHOOL"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>s_onthi.ot_user.TYPE_USER</code>.
      */
-    public final TableField<OtUserRecord, Long> TYPE_USER = createField(DSL.name("TYPE_USER"), SQLDataType.BIGINT.defaultValue(DSL.field("NULL", SQLDataType.BIGINT)), this, "");
+    public final TableField<OtUserRecord, Long> TYPE_USER = createField(DSL.name("TYPE_USER"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>s_onthi.ot_user.USERNAME</code>.
@@ -85,42 +89,42 @@ public class OtUser extends TableImpl<OtUserRecord> {
     /**
      * The column <code>s_onthi.ot_user.PHONE</code>.
      */
-    public final TableField<OtUserRecord, String> PHONE = createField(DSL.name("PHONE"), SQLDataType.VARCHAR(15).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtUserRecord, String> PHONE = createField(DSL.name("PHONE"), SQLDataType.VARCHAR(15), this, "");
 
     /**
      * The column <code>s_onthi.ot_user.GRADE</code>.
      */
-    public final TableField<OtUserRecord, Long> GRADE = createField(DSL.name("GRADE"), SQLDataType.BIGINT.defaultValue(DSL.field("NULL", SQLDataType.BIGINT)), this, "");
+    public final TableField<OtUserRecord, Long> GRADE = createField(DSL.name("GRADE"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>s_onthi.ot_user.GENDER</code>.
      */
-    public final TableField<OtUserRecord, Long> GENDER = createField(DSL.name("GENDER"), SQLDataType.BIGINT.defaultValue(DSL.field("NULL", SQLDataType.BIGINT)), this, "");
+    public final TableField<OtUserRecord, Long> GENDER = createField(DSL.name("GENDER"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>s_onthi.ot_user.BOD</code>.
      */
-    public final TableField<OtUserRecord, LocalDate> BOD = createField(DSL.name("BOD"), SQLDataType.LOCALDATE.defaultValue(DSL.field("NULL", SQLDataType.LOCALDATE)), this, "");
+    public final TableField<OtUserRecord, LocalDate> BOD = createField(DSL.name("BOD"), SQLDataType.LOCALDATE, this, "");
 
     /**
      * The column <code>s_onthi.ot_user.ADDRESS</code>.
      */
-    public final TableField<OtUserRecord, String> ADDRESS = createField(DSL.name("ADDRESS"), SQLDataType.VARCHAR(500).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtUserRecord, String> ADDRESS = createField(DSL.name("ADDRESS"), SQLDataType.VARCHAR(500), this, "");
 
     /**
      * The column <code>s_onthi.ot_user.DESCRIPTION</code>.
      */
-    public final TableField<OtUserRecord, String> DESCRIPTION = createField(DSL.name("DESCRIPTION"), SQLDataType.VARCHAR(2000).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtUserRecord, String> DESCRIPTION = createField(DSL.name("DESCRIPTION"), SQLDataType.VARCHAR(2000), this, "");
 
     /**
      * The column <code>s_onthi.ot_user.FACEBOOK</code>.
      */
-    public final TableField<OtUserRecord, String> FACEBOOK = createField(DSL.name("FACEBOOK"), SQLDataType.VARCHAR(1000).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtUserRecord, String> FACEBOOK = createField(DSL.name("FACEBOOK"), SQLDataType.VARCHAR(1000), this, "");
 
     /**
      * The column <code>s_onthi.ot_user.INSTAGRAM</code>.
      */
-    public final TableField<OtUserRecord, String> INSTAGRAM = createField(DSL.name("INSTAGRAM"), SQLDataType.VARCHAR(1000).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtUserRecord, String> INSTAGRAM = createField(DSL.name("INSTAGRAM"), SQLDataType.VARCHAR(1000), this, "");
 
     /**
      * The column <code>s_onthi.ot_user.ACTIVE</code>.
@@ -130,17 +134,17 @@ public class OtUser extends TableImpl<OtUserRecord> {
     /**
      * The column <code>s_onthi.ot_user.CREATED_DATE</code>.
      */
-    public final TableField<OtUserRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtUserRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>s_onthi.ot_user.LAST_MODIFIED_BY</code>.
      */
-    public final TableField<OtUserRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtUserRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>s_onthi.ot_user.LAST_MODIFIED_DATE</code>.
      */
-    public final TableField<OtUserRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtUserRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private OtUser(Name alias, Table<OtUserRecord> aliased) {
         this(alias, aliased, null);
@@ -181,6 +185,11 @@ public class OtUser extends TableImpl<OtUserRecord> {
     }
 
     @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.OT_USER_ID_SCHOOL);
+    }
+
+    @Override
     public Identity<OtUserRecord, Long> getIdentity() {
         return (Identity<OtUserRecord, Long>) super.getIdentity();
     }
@@ -188,6 +197,23 @@ public class OtUser extends TableImpl<OtUserRecord> {
     @Override
     public UniqueKey<OtUserRecord> getPrimaryKey() {
         return Keys.KEY_OT_USER_PRIMARY;
+    }
+
+    @Override
+    public List<ForeignKey<OtUserRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.OT_USER_IBFK_1);
+    }
+
+    private transient OtSchool _otSchool;
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_school</code> table.
+     */
+    public OtSchool otSchool() {
+        if (_otSchool == null)
+            _otSchool = new OtSchool(this, Keys.OT_USER_IBFK_1);
+
+        return _otSchool;
     }
 
     @Override

@@ -1,7 +1,8 @@
 package cfm.onthi.configurations;
 
 import cfm.onthi.dtos.base.ResponseDTO;
-import cfm.onthi.sercurity.JwtTokenFilter;
+import cfm.onthi.sercurity.JWTAuthenticationFilter;
+import cfm.onthi.sercurity.JwtAuthEntryPoint;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -23,9 +24,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.reactive.CorsWebFilter;
-import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 import java.io.IOException;
 
@@ -33,36 +31,64 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 class WebSecurityConfiguration extends GlobalMethodSecurityConfiguration {
-    private final JwtTokenFilter jwtTokenFilter;
+    private JWTAuthenticationFilter jwtTokenFilter;
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private JwtAuthEntryPoint authEntryPoint;
+
     @Autowired
     private PermissionEvaluator permissionEvaluator;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors(Customizer.withDefaults())
-                .csrf()
-                .disable()
-                .authorizeRequests(authorize -> authorize
-                        .requestMatchers("/service-onthi/testGetAPI")
-                        .permitAll() //backList
-                        .requestMatchers("/service-onthi/getConfigSFTP")
-                        .permitAll() //backList
-                        .requestMatchers("/actuator/**").permitAll()
-                        .anyRequest().authenticated())
+//        http.cors(Customizer.withDefaults())
+//                .csrf()
+//                .disable()
+//                .authorizeRequests(authorize -> authorize
+//                        .requestMatchers("/service-onthi/testGetAPI")
+//                        .permitAll() //backList
+//                        .requestMatchers("/service-onthi/getConfigSFTP")
+//                        .permitAll() //backList
+//                        .requestMatchers("/service-auth/**").permitAll()
+//                        .anyRequest().authenticated())
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .exceptionHandling()
+//                .authenticationEntryPoint((request, response, authException) -> handleAuthenticationException(response, authException)); // handle Authentication
+
+        http
+                .csrf().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(authEntryPoint)
+                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .exceptionHandling()
-                .authenticationEntryPoint((request, response, authException) -> handleAuthenticationException(response, authException)); // handle Authentication
+                .authorizeRequests()
+                .requestMatchers("/service-onthi/testGetAPI")
+                        .permitAll() //backList
+                        .requestMatchers("/service-onthi/getConfigSFTP")
+                        .permitAll() //backList
+                        .requestMatchers("/service-auth/**").permitAll()
+                .requestMatchers("/testchat/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .httpBasic();
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         //Add Filter for security
-        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+//        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    private void handleAuthenticationException(HttpServletResponse response, AuthenticationException authException) throws IOException {
+    @Bean
+    public  JWTAuthenticationFilter jwtAuthenticationFilter() {
+        return new JWTAuthenticationFilter();
+    }
+
+    private void handleAuthenticationException(HttpServletResponse response,
+                                               AuthenticationException authException) throws IOException {
         String responseBody = objectMapper.writeValueAsString(new ResponseDTO(false, "Authorization header is missing in request", null));
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType("application/json");

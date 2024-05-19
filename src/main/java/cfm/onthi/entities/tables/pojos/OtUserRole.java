@@ -32,43 +32,43 @@ public class OtUserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private Long idUserRole;
     private Long idUser;
     private Long idRole;
 
     public OtUserRole() {}
 
     public OtUserRole(OtUserRole value) {
-        this.id = value.id;
+        this.idUserRole = value.idUserRole;
         this.idUser = value.idUser;
         this.idRole = value.idRole;
     }
 
     public OtUserRole(
-        Long id,
+        Long idUserRole,
         Long idUser,
         Long idRole
     ) {
-        this.id = id;
+        this.idUserRole = idUserRole;
         this.idUser = idUser;
         this.idRole = idRole;
     }
 
     /**
-     * Getter for <code>s_onthi.ot_user_role.ID</code>.
+     * Getter for <code>s_onthi.ot_user_role.ID_USER_ROLE</code>.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false)
-    public Long getId() {
-        return this.id;
+    @Column(name = "ID_USER_ROLE", nullable = false)
+    public Long getIdUserRole() {
+        return this.idUserRole;
     }
 
     /**
-     * Setter for <code>s_onthi.ot_user_role.ID</code>.
+     * Setter for <code>s_onthi.ot_user_role.ID_USER_ROLE</code>.
      */
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdUserRole(Long idUserRole) {
+        this.idUserRole = idUserRole;
     }
 
     /**
@@ -110,11 +110,11 @@ public class OtUserRole implements Serializable {
         if (getClass() != obj.getClass())
             return false;
         final OtUserRole other = (OtUserRole) obj;
-        if (this.id == null) {
-            if (other.id != null)
+        if (this.idUserRole == null) {
+            if (other.idUserRole != null)
                 return false;
         }
-        else if (!this.id.equals(other.id))
+        else if (!this.idUserRole.equals(other.idUserRole))
             return false;
         if (this.idUser == null) {
             if (other.idUser != null)
@@ -135,7 +135,7 @@ public class OtUserRole implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.idUserRole == null) ? 0 : this.idUserRole.hashCode());
         result = prime * result + ((this.idUser == null) ? 0 : this.idUser.hashCode());
         result = prime * result + ((this.idRole == null) ? 0 : this.idRole.hashCode());
         return result;
@@ -145,7 +145,7 @@ public class OtUserRole implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder("OtUserRole (");
 
-        sb.append(id);
+        sb.append(idUserRole);
         sb.append(", ").append(idUser);
         sb.append(", ").append(idRole);
 

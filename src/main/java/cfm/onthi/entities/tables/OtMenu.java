@@ -59,17 +59,17 @@ public class OtMenu extends TableImpl<OtMenuRecord> {
     /**
      * The column <code>s_onthi.ot_menu.MENU_BADGE</code>.
      */
-    public final TableField<OtMenuRecord, String> MENU_BADGE = createField(DSL.name("MENU_BADGE"), SQLDataType.VARCHAR(255).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtMenuRecord, String> MENU_BADGE = createField(DSL.name("MENU_BADGE"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>s_onthi.ot_menu.MENU_BADGE_CLASS</code>.
      */
-    public final TableField<OtMenuRecord, String> MENU_BADGE_CLASS = createField(DSL.name("MENU_BADGE_CLASS"), SQLDataType.VARCHAR(255).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtMenuRecord, String> MENU_BADGE_CLASS = createField(DSL.name("MENU_BADGE_CLASS"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>s_onthi.ot_menu.MENU_ICON</code>.
      */
-    public final TableField<OtMenuRecord, String> MENU_ICON = createField(DSL.name("MENU_ICON"), SQLDataType.VARCHAR(255).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtMenuRecord, String> MENU_ICON = createField(DSL.name("MENU_ICON"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>s_onthi.ot_menu.MENU_NAME</code>.
@@ -84,12 +84,12 @@ public class OtMenu extends TableImpl<OtMenuRecord> {
     /**
      * The column <code>s_onthi.ot_menu.MENU_PARENT</code>.
      */
-    public final TableField<OtMenuRecord, Long> MENU_PARENT = createField(DSL.name("MENU_PARENT"), SQLDataType.BIGINT.defaultValue(DSL.field("NULL", SQLDataType.BIGINT)), this, "");
+    public final TableField<OtMenuRecord, Long> MENU_PARENT = createField(DSL.name("MENU_PARENT"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>s_onthi.ot_menu.MENU_PRJ_NAME</code>.
      */
-    public final TableField<OtMenuRecord, String> MENU_PRJ_NAME = createField(DSL.name("MENU_PRJ_NAME"), SQLDataType.VARCHAR(255).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtMenuRecord, String> MENU_PRJ_NAME = createField(DSL.name("MENU_PRJ_NAME"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>s_onthi.ot_menu.MENU_ROUTER_LINK</code>.
@@ -99,12 +99,12 @@ public class OtMenu extends TableImpl<OtMenuRecord> {
     /**
      * The column <code>s_onthi.ot_menu.MENU_TARGET</code>.
      */
-    public final TableField<OtMenuRecord, String> MENU_TARGET = createField(DSL.name("MENU_TARGET"), SQLDataType.VARCHAR(255).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtMenuRecord, String> MENU_TARGET = createField(DSL.name("MENU_TARGET"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>s_onthi.ot_menu.MENU_URL</code>.
      */
-    public final TableField<OtMenuRecord, String> MENU_URL = createField(DSL.name("MENU_URL"), SQLDataType.VARCHAR(255).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtMenuRecord, String> MENU_URL = createField(DSL.name("MENU_URL"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>s_onthi.ot_menu.ACTIVE</code>.
@@ -114,17 +114,17 @@ public class OtMenu extends TableImpl<OtMenuRecord> {
     /**
      * The column <code>s_onthi.ot_menu.CREATED_DATE</code>.
      */
-    public final TableField<OtMenuRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtMenuRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>s_onthi.ot_menu.LAST_MODIFIED_BY</code>.
      */
-    public final TableField<OtMenuRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtMenuRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>s_onthi.ot_menu.LAST_MODIFIED_DATE</code>.
      */
-    public final TableField<OtMenuRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtMenuRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private OtMenu(Name alias, Table<OtMenuRecord> aliased) {
         this(alias, aliased, null);

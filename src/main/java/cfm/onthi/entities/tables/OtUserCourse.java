@@ -121,6 +121,23 @@ public class OtUserCourse extends TableImpl<OtUserCourseRecord> {
     }
 
     @Override
+    public List<ForeignKey<OtUserCourseRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.OT_USER_COURSE_IBFK_1);
+    }
+
+    private transient OtUser _otUser;
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_user</code> table.
+     */
+    public OtUser otUser() {
+        if (_otUser == null)
+            _otUser = new OtUser(this, Keys.OT_USER_COURSE_IBFK_1);
+
+        return _otUser;
+    }
+
+    @Override
     public OtUserCourse as(String alias) {
         return new OtUserCourse(DSL.name(alias), this);
     }

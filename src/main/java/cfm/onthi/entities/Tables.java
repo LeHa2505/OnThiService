@@ -6,8 +6,11 @@ package cfm.onthi.entities;
 
 import cfm.onthi.entities.tables.OtCourse;
 import cfm.onthi.entities.tables.OtDocument;
+import cfm.onthi.entities.tables.OtGroup;
 import cfm.onthi.entities.tables.OtLesson;
 import cfm.onthi.entities.tables.OtMenu;
+import cfm.onthi.entities.tables.OtMessage;
+import cfm.onthi.entities.tables.OtMessageRecipient;
 import cfm.onthi.entities.tables.OtNote;
 import cfm.onthi.entities.tables.OtProvince;
 import cfm.onthi.entities.tables.OtQuiz;
@@ -17,6 +20,7 @@ import cfm.onthi.entities.tables.OtRoleMenu;
 import cfm.onthi.entities.tables.OtSchool;
 import cfm.onthi.entities.tables.OtUser;
 import cfm.onthi.entities.tables.OtUserCourse;
+import cfm.onthi.entities.tables.OtUserGroup;
 import cfm.onthi.entities.tables.OtUserRole;
 
 
@@ -37,6 +41,11 @@ public class Tables {
     public static final OtDocument OT_DOCUMENT = OtDocument.OT_DOCUMENT;
 
     /**
+     * The table <code>s_onthi.ot_group</code>.
+     */
+    public static final OtGroup OT_GROUP = OtGroup.OT_GROUP;
+
+    /**
      * The table <code>s_onthi.ot_lesson</code>.
      */
     public static final OtLesson OT_LESSON = OtLesson.OT_LESSON;
@@ -45,6 +54,16 @@ public class Tables {
      * The table <code>s_onthi.ot_menu</code>.
      */
     public static final OtMenu OT_MENU = OtMenu.OT_MENU;
+
+    /**
+     * The table <code>s_onthi.ot_message</code>.
+     */
+    public static final OtMessage OT_MESSAGE = OtMessage.OT_MESSAGE;
+
+    /**
+     * The table <code>s_onthi.ot_message_recipient</code>.
+     */
+    public static final OtMessageRecipient OT_MESSAGE_RECIPIENT = OtMessageRecipient.OT_MESSAGE_RECIPIENT;
 
     /**
      * The table <code>s_onthi.ot_note</code>.
@@ -90,6 +109,11 @@ public class Tables {
      * The table <code>s_onthi.ot_user_course</code>.
      */
     public static final OtUserCourse OT_USER_COURSE = OtUserCourse.OT_USER_COURSE;
+
+    /**
+     * The table <code>s_onthi.ot_user_group</code>.
+     */
+    public static final OtUserGroup OT_USER_GROUP = OtUserGroup.OT_USER_GROUP;
 
     /**
      * The table <code>s_onthi.ot_user_role</code>.
