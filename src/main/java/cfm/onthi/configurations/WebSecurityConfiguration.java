@@ -65,12 +65,14 @@ class WebSecurityConfiguration extends GlobalMethodSecurityConfiguration {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .requestMatchers("/service-onthi/testGetAPI")
+                .requestMatchers("/service-onthi/api/**")
                         .permitAll() //backList
                         .requestMatchers("/service-onthi/getConfigSFTP")
                         .permitAll() //backList
-                        .requestMatchers("/service-auth/**").permitAll()
-                .requestMatchers("/testchat/**").permitAll()
+                        .requestMatchers("/chat/**")
+                        .permitAll() //backList
+                        .requestMatchers("/service-auth/**")
+                        .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

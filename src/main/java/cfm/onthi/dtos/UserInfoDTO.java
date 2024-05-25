@@ -45,6 +45,9 @@ public class UserInfoDTO {
     @JsonProperty(value = "ADDRESS")
     public String address;
 
+    @JsonProperty(value = "AVATAR")
+    public String avatar;
+
     @JsonProperty(value = "DESCRIPTION")
     public String description;
 

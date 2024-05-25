@@ -57,7 +57,7 @@ class AuthServiceImpl extends BaseService implements AuthService {
         inputCondition.PASSWORD = loginDTO.password;
         UserInfoDTO userInfo = userRepository.getByInputCondition(inputCondition);
         if (userInfo == null || !passwordEncoder.matches(loginDTO.password, userInfo.getPassword())) {
-            throw new CustomException("Sai email hoặc mật khẩu! Vui lòng nhập lại!", HttpStatus.UNAUTHORIZED);
+            return new ResponseDTO(false, "Sai email hoặc mật khẩu! Vui lòng nhập lại!", null);
         }
         AuthResponseDTO authResponseDTO = new AuthResponseDTO();
         userInfo.password = "";
@@ -80,9 +80,10 @@ class AuthServiceImpl extends BaseService implements AuthService {
         userInfoDTO.setEmail(registerDTO.getEmail());
         userInfoDTO.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
 
-        userRepository.save(userInfoDTO);
+        if (userRepository.save(userInfoDTO)) {
+            return new ResponseDTO(true, "Đăng ký tài khoản thành công", null);
+        }
 
-        ResponseDTO responseDTO = new ResponseDTO(true, "Đăng ký tài khoản thành công", null);
-        return responseDTO;
+        return new ResponseDTO(false, "Đăng ký tài khoản không thành công. Có lỗi xảy ra!", null);
     }
 }

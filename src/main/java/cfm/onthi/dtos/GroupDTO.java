@@ -14,4 +14,7 @@ public class GroupDTO {
 
     @JsonProperty(value = "GROUP_NAME")
     public String groupName;
+
+    @JsonProperty(value = "AVATAR_GROUP")
+    public String avatarGroup;
 }

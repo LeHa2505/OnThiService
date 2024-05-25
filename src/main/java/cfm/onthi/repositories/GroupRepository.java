@@ -4,6 +4,8 @@ import cfm.onthi.dtos.CourseDTO;
 import cfm.onthi.dtos.GroupDTO;
 import cfm.onthi.dtos.base.InputCondition;
 import cfm.onthi.entities.tables.OtGroup;
+import cfm.onthi.entities.tables.OtUser;
+import cfm.onthi.entities.tables.OtUserGroup;
 import cfm.onthi.utils.DefineProperties;
 import jakarta.persistence.EntityManager;
 import org.jetbrains.annotations.NotNull;
@@ -24,7 +26,8 @@ import java.util.stream.Collectors;
 
 import static org.jooq.impl.DSL.trueCondition;
 
-public interface GroupRepository extends BaseRepository<GroupDTO>{
+public interface GroupRepository extends BaseRepository<GroupDTO> {
+    List<GroupDTO> getGroupsByUserId(Long userId);
 }
 
 @Lazy
@@ -32,6 +35,8 @@ public interface GroupRepository extends BaseRepository<GroupDTO>{
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 class GroupRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<GroupDTO>, GroupRepository {
     OtGroup group = OtGroup.OT_GROUP.as("OtGroup");
+    OtUser user = OtUser.OT_USER.as("OtUser");
+    OtUserGroup userGroup = OtUserGroup.OT_USER_GROUP.as("OtUserGroup");
 
     public GroupRepositoryImpl(@Qualifier(DefineProperties.DSLContextOnThi) DSLContext dslContext,
                                @Qualifier(DefineProperties.entityManagerOnThi) EntityManager entityManager,
@@ -62,11 +67,30 @@ class GroupRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<G
 
                     groupDTO.idGroup = entry.getKey().getIdGroup();
                     groupDTO.groupName = entry.getKey().getGroupName();
+                    groupDTO.avatarGroup = entry.getKey().getAvatarGroup();
 
                     return groupDTO;
                 }).collect(Collectors.toList());
 
         return groupDTOList;
+    }
+
+    @Override
+    public List<GroupDTO> getGroupsByUserId(Long userId) {
+        try {
+            return dslContext.select(
+                            group.ID_GROUP.as("idGroup"),
+                            group.GROUP_NAME.as("groupName"),
+                            group.AVATAR_GROUP.as("avatarGroup")
+                    )
+                    .from(group)
+                    .join(userGroup).on(group.ID_GROUP.eq(userGroup.ID_GROUP))
+                    .where(userGroup.ID_USER.eq(userId))
+                    .fetchInto(GroupDTO.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -108,6 +132,7 @@ class GroupRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<G
         try {
             dslContext.insertInto(group)
                     .set(group.GROUP_NAME, item.groupName)
+                    .set(group.AVATAR_GROUP, item.avatarGroup)
                     .set(group.CREATED_DATE, LocalDateTime.now())
                     .execute();
             return true;
@@ -152,6 +177,7 @@ class GroupRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<G
         try {
             int result = dslContext.update(group)
                     .set(group.GROUP_NAME, item.groupName)
+                    .set(group.AVATAR_GROUP, item.avatarGroup)
                     .set(group.LAST_MODIFIED_DATE, LocalDateTime.now())
                     .where(group.ID_GROUP.eq(item.getIdGroup()))
                     .execute();

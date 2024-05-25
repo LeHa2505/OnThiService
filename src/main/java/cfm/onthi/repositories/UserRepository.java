@@ -54,6 +54,7 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
         this.schoolRepository = schoolRepository;
     }
 
+    @Override
     public Boolean existsByEmail(String email) {
         if (user != null) {
             return dslContext.selectCount()
@@ -105,6 +106,7 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
                     userInfoDTO.description = entry.getKey().getDescription();
                     userInfoDTO.facebook = entry.getKey().getFacebook();
                     userInfoDTO.instagram = entry.getKey().getInstagram();
+                    userInfoDTO.avatar = entry.getKey().getAvatar();
                     userInfoDTO.active = entry.getKey().getActive();
 
                     userInfoDTO.schoolInfo = schoolRepository.getByID(userInfoDTO.idSchool);
@@ -138,6 +140,7 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
         return result != null && !result.isEmpty() ? result.get(0) : null;
     }
 
+    @Override
     public UserInfoDTO getByEmail(@NotNull InputCondition inputCondition) {
         Condition condition = trueCondition();
         condition = condition.and(user.EMAIL.in(inputCondition.EMAIL));
@@ -186,6 +189,7 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
                     .set(user.DESCRIPTION, item.getDescription())
                     .set(user.FACEBOOK, item.getFacebook())
                     .set(user.INSTAGRAM, item.getInstagram())
+                    .set(user.AVATAR, item.getAvatar())
                     .set(user.ACTIVE, activeStatus.ACTIVE.getCode())
                     .set(user.CREATED_DATE, LocalDateTime.now())
                     .set(user.LAST_MODIFIED_BY, item.getUsername())
@@ -242,6 +246,7 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
                     .set(user.DESCRIPTION, item.getDescription())
                     .set(user.FACEBOOK, item.getFacebook())
                     .set(user.INSTAGRAM, item.getInstagram())
+                    .set(user.AVATAR, item.getAvatar())
                     .set(user.ACTIVE, item.getActive())
                     .set(user.LAST_MODIFIED_BY, item.getUsername())
                     .set(user.LAST_MODIFIED_DATE, LocalDateTime.now())

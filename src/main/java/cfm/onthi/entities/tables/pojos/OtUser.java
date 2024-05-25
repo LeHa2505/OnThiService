@@ -44,6 +44,7 @@ public class OtUser implements Serializable {
     private Long gender;
     private LocalDate bod;
     private String address;
+    private String avatar;
     private String description;
     private String facebook;
     private String instagram;
@@ -66,6 +67,7 @@ public class OtUser implements Serializable {
         this.gender = value.gender;
         this.bod = value.bod;
         this.address = value.address;
+        this.avatar = value.avatar;
         this.description = value.description;
         this.facebook = value.facebook;
         this.instagram = value.instagram;
@@ -87,6 +89,7 @@ public class OtUser implements Serializable {
         Long gender,
         LocalDate bod,
         String address,
+        String avatar,
         String description,
         String facebook,
         String instagram,
@@ -106,6 +109,7 @@ public class OtUser implements Serializable {
         this.gender = gender;
         this.bod = bod;
         this.address = address;
+        this.avatar = avatar;
         this.description = description;
         this.facebook = facebook;
         this.instagram = instagram;
@@ -180,7 +184,7 @@ public class OtUser implements Serializable {
     /**
      * Getter for <code>s_onthi.ot_user.PASSWORD</code>.
      */
-    @Column(name = "PASSWORD", nullable = false, length = 50)
+    @Column(name = "PASSWORD", nullable = false, length = 5000)
     public String getPassword() {
         return this.password;
     }
@@ -280,6 +284,21 @@ public class OtUser implements Serializable {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_user.AVATAR</code>.
+     */
+    @Column(name = "AVATAR", length = 5000)
+    public String getAvatar() {
+        return this.avatar;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_user.AVATAR</code>.
+     */
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     /**
@@ -462,6 +481,12 @@ public class OtUser implements Serializable {
         }
         else if (!this.address.equals(other.address))
             return false;
+        if (this.avatar == null) {
+            if (other.avatar != null)
+                return false;
+        }
+        else if (!this.avatar.equals(other.avatar))
+            return false;
         if (this.description == null) {
             if (other.description != null)
                 return false;
@@ -522,6 +547,7 @@ public class OtUser implements Serializable {
         result = prime * result + ((this.gender == null) ? 0 : this.gender.hashCode());
         result = prime * result + ((this.bod == null) ? 0 : this.bod.hashCode());
         result = prime * result + ((this.address == null) ? 0 : this.address.hashCode());
+        result = prime * result + ((this.avatar == null) ? 0 : this.avatar.hashCode());
         result = prime * result + ((this.description == null) ? 0 : this.description.hashCode());
         result = prime * result + ((this.facebook == null) ? 0 : this.facebook.hashCode());
         result = prime * result + ((this.instagram == null) ? 0 : this.instagram.hashCode());
@@ -547,6 +573,7 @@ public class OtUser implements Serializable {
         sb.append(", ").append(gender);
         sb.append(", ").append(bod);
         sb.append(", ").append(address);
+        sb.append(", ").append(avatar);
         sb.append(", ").append(description);
         sb.append(", ").append(facebook);
         sb.append(", ").append(instagram);

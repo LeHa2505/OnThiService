@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface MessageRecipientRepository extends BaseRepository<MessageRecipientDTO> {
@@ -59,7 +60,17 @@ class MessageRecipientRepositoryImpl extends BaseRepositoryImpl implements BaseR
 
     @Override
     public Boolean save(@NotNull MessageRecipientDTO item) {
-        return null;
+        try {
+            dslContext.insertInto(messageRecipient)
+                    .set(messageRecipient.ID_MESSAGE, item.idMessage)
+                    .set(messageRecipient.ID_RECIPIENT_GROUP, item.idRecipientGroup)
+                    .set(messageRecipient.CREATED_DATE, LocalDateTime.now())
+                    .execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

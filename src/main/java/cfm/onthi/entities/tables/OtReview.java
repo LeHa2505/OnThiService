@@ -16,13 +16,13 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function7;
+import org.jooq.Function8;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row7;
+import org.jooq.Row8;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -74,6 +74,11 @@ public class OtReview extends TableImpl<OtReviewRecord> {
      * The column <code>s_onthi.ot_review.CONTENT</code>.
      */
     public final TableField<OtReviewRecord, String> CONTENT = createField(DSL.name("CONTENT"), SQLDataType.VARCHAR(2000).nullable(false), this, "");
+
+    /**
+     * The column <code>s_onthi.ot_review.RATING</code>.
+     */
+    public final TableField<OtReviewRecord, Integer> RATING = createField(DSL.name("RATING"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>s_onthi.ot_review.CREATED_DATE</code>.
@@ -200,18 +205,18 @@ public class OtReview extends TableImpl<OtReviewRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Long, Long, Long, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row8<Long, Long, Long, String, Integer, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function7<? super Long, ? super Long, ? super Long, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function8<? super Long, ? super Long, ? super Long, ? super String, ? super Integer, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -219,7 +224,7 @@ public class OtReview extends TableImpl<OtReviewRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function7<? super Long, ? super Long, ? super Long, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function8<? super Long, ? super Long, ? super Long, ? super String, ? super Integer, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

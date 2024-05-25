@@ -19,4 +19,13 @@ public class MessageDTO {
 
     @JsonProperty(value = "MESSAGE_BODY")
     public String messageBody;
+
+    @JsonProperty(value = "USERNAME")
+    public String username;
+
+    @JsonProperty(value = "ID_GROUP")
+    public Long idGroup;
+
+    @JsonProperty(value = "AVATAR")
+    public String avatar;
 }

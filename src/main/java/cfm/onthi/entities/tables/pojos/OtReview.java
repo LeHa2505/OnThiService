@@ -36,6 +36,7 @@ public class OtReview implements Serializable {
     private Long idCourse;
     private Long idUser;
     private String content;
+    private Integer rating;
     private LocalDateTime createdDate;
     private String lastModifiedBy;
     private LocalDateTime lastModifiedDate;
@@ -47,6 +48,7 @@ public class OtReview implements Serializable {
         this.idCourse = value.idCourse;
         this.idUser = value.idUser;
         this.content = value.content;
+        this.rating = value.rating;
         this.createdDate = value.createdDate;
         this.lastModifiedBy = value.lastModifiedBy;
         this.lastModifiedDate = value.lastModifiedDate;
@@ -57,6 +59,7 @@ public class OtReview implements Serializable {
         Long idCourse,
         Long idUser,
         String content,
+        Integer rating,
         LocalDateTime createdDate,
         String lastModifiedBy,
         LocalDateTime lastModifiedDate
@@ -65,6 +68,7 @@ public class OtReview implements Serializable {
         this.idCourse = idCourse;
         this.idUser = idUser;
         this.content = content;
+        this.rating = rating;
         this.createdDate = createdDate;
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
@@ -130,6 +134,21 @@ public class OtReview implements Serializable {
      */
     public void setContent(String content) {
         this.content = content;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_review.RATING</code>.
+     */
+    @Column(name = "RATING", nullable = false)
+    public Integer getRating() {
+        return this.rating;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_review.RATING</code>.
+     */
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
     /**
@@ -210,6 +229,12 @@ public class OtReview implements Serializable {
         }
         else if (!this.content.equals(other.content))
             return false;
+        if (this.rating == null) {
+            if (other.rating != null)
+                return false;
+        }
+        else if (!this.rating.equals(other.rating))
+            return false;
         if (this.createdDate == null) {
             if (other.createdDate != null)
                 return false;
@@ -239,6 +264,7 @@ public class OtReview implements Serializable {
         result = prime * result + ((this.idCourse == null) ? 0 : this.idCourse.hashCode());
         result = prime * result + ((this.idUser == null) ? 0 : this.idUser.hashCode());
         result = prime * result + ((this.content == null) ? 0 : this.content.hashCode());
+        result = prime * result + ((this.rating == null) ? 0 : this.rating.hashCode());
         result = prime * result + ((this.createdDate == null) ? 0 : this.createdDate.hashCode());
         result = prime * result + ((this.lastModifiedBy == null) ? 0 : this.lastModifiedBy.hashCode());
         result = prime * result + ((this.lastModifiedDate == null) ? 0 : this.lastModifiedDate.hashCode());
@@ -253,6 +279,7 @@ public class OtReview implements Serializable {
         sb.append(", ").append(idCourse);
         sb.append(", ").append(idUser);
         sb.append(", ").append(content);
+        sb.append(", ").append(rating);
         sb.append(", ").append(createdDate);
         sb.append(", ").append(lastModifiedBy);
         sb.append(", ").append(lastModifiedDate);

@@ -17,13 +17,13 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function18;
+import org.jooq.Function19;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row18;
+import org.jooq.Row19;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -79,7 +79,7 @@ public class OtUser extends TableImpl<OtUserRecord> {
     /**
      * The column <code>s_onthi.ot_user.PASSWORD</code>.
      */
-    public final TableField<OtUserRecord, String> PASSWORD = createField(DSL.name("PASSWORD"), SQLDataType.VARCHAR(50).nullable(false), this, "");
+    public final TableField<OtUserRecord, String> PASSWORD = createField(DSL.name("PASSWORD"), SQLDataType.VARCHAR(5000).nullable(false), this, "");
 
     /**
      * The column <code>s_onthi.ot_user.EMAIL</code>.
@@ -110,6 +110,11 @@ public class OtUser extends TableImpl<OtUserRecord> {
      * The column <code>s_onthi.ot_user.ADDRESS</code>.
      */
     public final TableField<OtUserRecord, String> ADDRESS = createField(DSL.name("ADDRESS"), SQLDataType.VARCHAR(500), this, "");
+
+    /**
+     * The column <code>s_onthi.ot_user.AVATAR</code>.
+     */
+    public final TableField<OtUserRecord, String> AVATAR = createField(DSL.name("AVATAR"), SQLDataType.VARCHAR(5000), this, "");
 
     /**
      * The column <code>s_onthi.ot_user.DESCRIPTION</code>.
@@ -256,18 +261,18 @@ public class OtUser extends TableImpl<OtUserRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row18 type methods
+    // Row19 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row18<Long, Long, Long, String, String, String, String, Long, Long, LocalDate, String, String, String, String, Boolean, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row18) super.fieldsRow();
+    public Row19<Long, Long, Long, String, String, String, String, Long, Long, LocalDate, String, String, String, String, String, Boolean, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row19) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function18<? super Long, ? super Long, ? super Long, ? super String, ? super String, ? super String, ? super String, ? super Long, ? super Long, ? super LocalDate, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function19<? super Long, ? super Long, ? super Long, ? super String, ? super String, ? super String, ? super String, ? super Long, ? super Long, ? super LocalDate, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -275,7 +280,7 @@ public class OtUser extends TableImpl<OtUserRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function18<? super Long, ? super Long, ? super Long, ? super String, ? super String, ? super String, ? super String, ? super Long, ? super Long, ? super LocalDate, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function19<? super Long, ? super Long, ? super Long, ? super String, ? super String, ? super String, ? super String, ? super Long, ? super Long, ? super LocalDate, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }
