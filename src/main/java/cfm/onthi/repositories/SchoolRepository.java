@@ -63,6 +63,7 @@ class SchoolRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     schoolDTO.idSchool = entry.getKey().getIdSchool();
                     schoolDTO.schoolName = entry.getKey().getSchoolName();
                     schoolDTO.typeSchool = entry.getKey().getTypeSchool();
+                    schoolDTO.idProvince = entry.getKey().getIdProvince();
 
                     //Province info
                     schoolDTO.provinceInfo = provinceRepository.getByID(schoolDTO.idProvince);
@@ -75,7 +76,10 @@ class SchoolRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
     @Override
     public SchoolDTO getByInputCondition(@NotNull InputCondition inputCondition) {
         Condition condition = trueCondition();
-        condition = condition.and(otSchool.ID_SCHOOL.eq(inputCondition.ID_SCHOOL));
+
+        if (inputCondition.ID_SCHOOL != null) {
+            condition = condition.and(otSchool.ID_SCHOOL.eq(inputCondition.ID_SCHOOL));
+        }
 
         List<SchoolDTO> schoolDTOS = dslContext.select()
                 .from(otSchool).where(condition)

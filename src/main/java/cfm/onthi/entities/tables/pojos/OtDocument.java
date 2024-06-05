@@ -35,8 +35,9 @@ public class OtDocument implements Serializable {
     private Long idDocument;
     private Long idLesson;
     private String documentLink;
+    private Double size;
     private String documentName;
-    private Long typeDocument;
+    private String typeDocument;
     private Long downloadStatus;
     private LocalDateTime createdDate;
     private String lastModifiedBy;
@@ -48,6 +49,7 @@ public class OtDocument implements Serializable {
         this.idDocument = value.idDocument;
         this.idLesson = value.idLesson;
         this.documentLink = value.documentLink;
+        this.size = value.size;
         this.documentName = value.documentName;
         this.typeDocument = value.typeDocument;
         this.downloadStatus = value.downloadStatus;
@@ -60,8 +62,9 @@ public class OtDocument implements Serializable {
         Long idDocument,
         Long idLesson,
         String documentLink,
+        Double size,
         String documentName,
-        Long typeDocument,
+        String typeDocument,
         Long downloadStatus,
         LocalDateTime createdDate,
         String lastModifiedBy,
@@ -70,6 +73,7 @@ public class OtDocument implements Serializable {
         this.idDocument = idDocument;
         this.idLesson = idLesson;
         this.documentLink = documentLink;
+        this.size = size;
         this.documentName = documentName;
         this.typeDocument = typeDocument;
         this.downloadStatus = downloadStatus;
@@ -126,6 +130,21 @@ public class OtDocument implements Serializable {
     }
 
     /**
+     * Getter for <code>s_onthi.ot_document.SIZE</code>.
+     */
+    @Column(name = "SIZE")
+    public Double getSize() {
+        return this.size;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_document.SIZE</code>.
+     */
+    public void setSize(Double size) {
+        this.size = size;
+    }
+
+    /**
      * Getter for <code>s_onthi.ot_document.DOCUMENT_NAME</code>.
      */
     @Column(name = "DOCUMENT_NAME", nullable = false, length = 500)
@@ -143,15 +162,15 @@ public class OtDocument implements Serializable {
     /**
      * Getter for <code>s_onthi.ot_document.TYPE_DOCUMENT</code>.
      */
-    @Column(name = "TYPE_DOCUMENT")
-    public Long getTypeDocument() {
+    @Column(name = "TYPE_DOCUMENT", length = 10)
+    public String getTypeDocument() {
         return this.typeDocument;
     }
 
     /**
      * Setter for <code>s_onthi.ot_document.TYPE_DOCUMENT</code>.
      */
-    public void setTypeDocument(Long typeDocument) {
+    public void setTypeDocument(String typeDocument) {
         this.typeDocument = typeDocument;
     }
 
@@ -242,6 +261,12 @@ public class OtDocument implements Serializable {
         }
         else if (!this.documentLink.equals(other.documentLink))
             return false;
+        if (this.size == null) {
+            if (other.size != null)
+                return false;
+        }
+        else if (!this.size.equals(other.size))
+            return false;
         if (this.documentName == null) {
             if (other.documentName != null)
                 return false;
@@ -288,6 +313,7 @@ public class OtDocument implements Serializable {
         result = prime * result + ((this.idDocument == null) ? 0 : this.idDocument.hashCode());
         result = prime * result + ((this.idLesson == null) ? 0 : this.idLesson.hashCode());
         result = prime * result + ((this.documentLink == null) ? 0 : this.documentLink.hashCode());
+        result = prime * result + ((this.size == null) ? 0 : this.size.hashCode());
         result = prime * result + ((this.documentName == null) ? 0 : this.documentName.hashCode());
         result = prime * result + ((this.typeDocument == null) ? 0 : this.typeDocument.hashCode());
         result = prime * result + ((this.downloadStatus == null) ? 0 : this.downloadStatus.hashCode());
@@ -304,6 +330,7 @@ public class OtDocument implements Serializable {
         sb.append(idDocument);
         sb.append(", ").append(idLesson);
         sb.append(", ").append(documentLink);
+        sb.append(", ").append(size);
         sb.append(", ").append(documentName);
         sb.append(", ").append(typeDocument);
         sb.append(", ").append(downloadStatus);

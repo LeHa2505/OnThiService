@@ -66,6 +66,7 @@ class DocumentRepositoryImpl extends BaseRepositoryImpl implements BaseRepositor
                     documentDTO.documentLink = entry.getKey().getDocumentLink();
                     documentDTO.typeDocument = entry.getKey().getTypeDocument();
                     documentDTO.downloadStatus = entry.getKey().getDownloadStatus();
+                    documentDTO.size = entry.getKey().getSize();
 
                     return documentDTO;
                 }).collect(Collectors.toList());
@@ -115,6 +116,7 @@ class DocumentRepositoryImpl extends BaseRepositoryImpl implements BaseRepositor
                     .set(document.DOCUMENT_LINK, item.documentLink)
                     .set(document.DOCUMENT_NAME, item.documentName)
                     .set(document.TYPE_DOCUMENT, item.typeDocument)
+                    .set(document.SIZE, item.size)
                     .set(document.DOWNLOAD_STATUS, item.downloadStatus)
                     .set(document.CREATED_DATE, LocalDateTime.now())
                     .set(document.LAST_MODIFIED_BY, item.idLesson.toString())
@@ -163,6 +165,7 @@ class DocumentRepositoryImpl extends BaseRepositoryImpl implements BaseRepositor
                     .set(document.ID_LESSON, item.idLesson)
                     .set(document.DOCUMENT_LINK, item.documentLink)
                     .set(document.DOCUMENT_NAME, item.documentName)
+                    .set(document.SIZE, item.size)
                     .set(document.TYPE_DOCUMENT, item.typeDocument)
                     .set(document.DOWNLOAD_STATUS, item.downloadStatus)
                     .set(document.LAST_MODIFIED_DATE, LocalDateTime.now())

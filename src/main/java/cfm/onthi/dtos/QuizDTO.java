@@ -1,6 +1,7 @@
 package cfm.onthi.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Lob;
 import lombok.*;
 
 @Data
@@ -17,4 +18,17 @@ public class QuizDTO {
 
     @JsonProperty(value = "CONTENT_QUIZ")
     public String contentQuiz;
+
+    @JsonProperty(value = "QUIZ_TYPE")
+    public Long quizType;
+
+    @JsonProperty(value = "ANSWER")
+    @Lob
+    public String answer;
+
+    @JsonProperty(value = "QUIZ_STATUS")
+    public Long quizStatus;
+
+    @JsonProperty(value = "ORDER")
+    public Integer order;
 }

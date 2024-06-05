@@ -16,13 +16,13 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function8;
+import org.jooq.Function11;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row8;
+import org.jooq.Row11;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -66,6 +66,11 @@ public class OtReview extends TableImpl<OtReviewRecord> {
     public final TableField<OtReviewRecord, Long> ID_COURSE = createField(DSL.name("ID_COURSE"), SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
+     * The column <code>s_onthi.ot_review.ID_LESSON</code>.
+     */
+    public final TableField<OtReviewRecord, Long> ID_LESSON = createField(DSL.name("ID_LESSON"), SQLDataType.BIGINT, this, "");
+
+    /**
      * The column <code>s_onthi.ot_review.ID_USER</code>.
      */
     public final TableField<OtReviewRecord, Long> ID_USER = createField(DSL.name("ID_USER"), SQLDataType.BIGINT.nullable(false), this, "");
@@ -78,7 +83,17 @@ public class OtReview extends TableImpl<OtReviewRecord> {
     /**
      * The column <code>s_onthi.ot_review.RATING</code>.
      */
-    public final TableField<OtReviewRecord, Integer> RATING = createField(DSL.name("RATING"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<OtReviewRecord, Integer> RATING = createField(DSL.name("RATING"), SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>s_onthi.ot_review.LIKE</code>.
+     */
+    public final TableField<OtReviewRecord, Integer> LIKE = createField(DSL.name("LIKE"), SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>s_onthi.ot_review.DISLIKE</code>.
+     */
+    public final TableField<OtReviewRecord, Integer> DISLIKE = createField(DSL.name("DISLIKE"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>s_onthi.ot_review.CREATED_DATE</code>.
@@ -205,18 +220,18 @@ public class OtReview extends TableImpl<OtReviewRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row8 type methods
+    // Row11 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row8<Long, Long, Long, String, Integer, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row8) super.fieldsRow();
+    public Row11<Long, Long, Long, Long, String, Integer, Integer, Integer, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row11) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function8<? super Long, ? super Long, ? super Long, ? super String, ? super Integer, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function11<? super Long, ? super Long, ? super Long, ? super Long, ? super String, ? super Integer, ? super Integer, ? super Integer, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -224,7 +239,7 @@ public class OtReview extends TableImpl<OtReviewRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function8<? super Long, ? super Long, ? super Long, ? super String, ? super Integer, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function11<? super Long, ? super Long, ? super Long, ? super Long, ? super String, ? super Integer, ? super Integer, ? super Integer, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

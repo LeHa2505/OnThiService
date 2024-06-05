@@ -1,15 +1,14 @@
 package cfm.onthi.constant;
 
-public enum Role {
-    ADMIN(Long.valueOf(0), "admin"),
-    STUDENT(Long.valueOf(1), "student"),
-    TEACHER(Long.valueOf(2), "teacher"),
-    GUEST(Long.valueOf(3), "guest");
+public enum TypeCourse {
+    BASIC_COURSE(Long.valueOf(0), "basic"),
+    ADVANCED_COURSE(Long.valueOf(1), "advanced"),
+    PROVINCE_COURSE(Long.valueOf(2), "province");
 
     private final Long code;
     private final String description;
 
-    Role(Long code, String description) {
+    TypeCourse(Long code, String description) {
         this.code = code;
         this.description = description;
     }
@@ -21,4 +20,5 @@ public enum Role {
     public String getDescription() {
         return description;
     }
+
 }

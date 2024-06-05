@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Setter
@@ -17,6 +18,9 @@ public class CourseDTO {
 
     @JsonProperty(value = "ID_TEACHER")
     public Long id_teacher;
+
+    @JsonProperty(value = "AVATAR_COURSE")
+    public String avatar_course;
 
     @JsonProperty(value = "CATEGORY_NAME")
     public String category_name;
@@ -36,9 +40,6 @@ public class CourseDTO {
     @JsonProperty(value = "END_DATE")
     public LocalDate end_date;
 
-    @JsonProperty(value = "DURATION")
-    public Double duration;
-
     @JsonProperty(value = "PRICE")
     public Double price;
 
@@ -47,4 +48,19 @@ public class CourseDTO {
 
     @JsonProperty(value = "DESCRIPTION")
     public String description;
+
+    @JsonProperty(value = "TEACHER_INFO")
+    public UserInfoDTO teacher_info;
+
+    @JsonProperty(value = "QUIZ_QUANTITY")
+    public Integer quiz_quantity;
+
+    @JsonProperty(value = "LESSON_QUANTITY")
+    public Integer lesson_quantity;
+
+    @JsonProperty(value = "LESSON_INFO")
+    public List<LessonDTO> lesson_info;
+
+    @JsonProperty(value = "REVIEW")
+    public List<ReviewDTO> review;
 }

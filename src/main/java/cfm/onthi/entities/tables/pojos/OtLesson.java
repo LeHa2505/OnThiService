@@ -36,6 +36,7 @@ public class OtLesson implements Serializable {
     private Long idCourse;
     private Long lessonParent;
     private String lessonName;
+    private String linkVideo;
     private Double duration;
     private String subject;
     private Long order;
@@ -53,6 +54,7 @@ public class OtLesson implements Serializable {
         this.idCourse = value.idCourse;
         this.lessonParent = value.lessonParent;
         this.lessonName = value.lessonName;
+        this.linkVideo = value.linkVideo;
         this.duration = value.duration;
         this.subject = value.subject;
         this.order = value.order;
@@ -69,6 +71,7 @@ public class OtLesson implements Serializable {
         Long idCourse,
         Long lessonParent,
         String lessonName,
+        String linkVideo,
         Double duration,
         String subject,
         Long order,
@@ -83,6 +86,7 @@ public class OtLesson implements Serializable {
         this.idCourse = idCourse;
         this.lessonParent = lessonParent;
         this.lessonName = lessonName;
+        this.linkVideo = linkVideo;
         this.duration = duration;
         this.subject = subject;
         this.order = order;
@@ -144,7 +148,7 @@ public class OtLesson implements Serializable {
     /**
      * Getter for <code>s_onthi.ot_lesson.LESSON_NAME</code>.
      */
-    @Column(name = "LESSON_NAME", nullable = false, length = 50)
+    @Column(name = "LESSON_NAME", nullable = false, length = 500)
     public String getLessonName() {
         return this.lessonName;
     }
@@ -154,6 +158,21 @@ public class OtLesson implements Serializable {
      */
     public void setLessonName(String lessonName) {
         this.lessonName = lessonName;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_lesson.LINK_VIDEO</code>.
+     */
+    @Column(name = "LINK_VIDEO", length = 5000)
+    public String getLinkVideo() {
+        return this.linkVideo;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_lesson.LINK_VIDEO</code>.
+     */
+    public void setLinkVideo(String linkVideo) {
+        this.linkVideo = linkVideo;
     }
 
     /**
@@ -324,6 +343,12 @@ public class OtLesson implements Serializable {
         }
         else if (!this.lessonName.equals(other.lessonName))
             return false;
+        if (this.linkVideo == null) {
+            if (other.linkVideo != null)
+                return false;
+        }
+        else if (!this.linkVideo.equals(other.linkVideo))
+            return false;
         if (this.duration == null) {
             if (other.duration != null)
                 return false;
@@ -389,6 +414,7 @@ public class OtLesson implements Serializable {
         result = prime * result + ((this.idCourse == null) ? 0 : this.idCourse.hashCode());
         result = prime * result + ((this.lessonParent == null) ? 0 : this.lessonParent.hashCode());
         result = prime * result + ((this.lessonName == null) ? 0 : this.lessonName.hashCode());
+        result = prime * result + ((this.linkVideo == null) ? 0 : this.linkVideo.hashCode());
         result = prime * result + ((this.duration == null) ? 0 : this.duration.hashCode());
         result = prime * result + ((this.subject == null) ? 0 : this.subject.hashCode());
         result = prime * result + ((this.order == null) ? 0 : this.order.hashCode());
@@ -409,6 +435,7 @@ public class OtLesson implements Serializable {
         sb.append(", ").append(idCourse);
         sb.append(", ").append(lessonParent);
         sb.append(", ").append(lessonName);
+        sb.append(", ").append(linkVideo);
         sb.append(", ").append(duration);
         sb.append(", ").append(subject);
         sb.append(", ").append(order);

@@ -1,6 +1,7 @@
 package cfm.onthi.repositories;
 
 import cfm.onthi.dtos.CourseDTO;
+import cfm.onthi.dtos.LessonDTO;
 import cfm.onthi.dtos.UserInfoDTO;
 import cfm.onthi.dtos.base.InputCondition;
 import cfm.onthi.entities.tables.OtCourse;
@@ -18,13 +19,15 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.jooq.impl.DSL.trueCondition;
 
-public interface CourseRepository extends BaseRepository<CourseDTO>{
+public interface CourseRepository extends BaseRepository<CourseDTO> {
+    CourseDTO guestGetByID(@NotNull Long id);
 }
 
 @Lazy
@@ -32,11 +35,24 @@ public interface CourseRepository extends BaseRepository<CourseDTO>{
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<CourseDTO>, CourseRepository {
     OtCourse course = OtCourse.OT_COURSE.as("OtCourse");
+    UserRepository userRepository;
+    LessonRepository lessonRepository;
+    QuizRepository quizRepository;
+    ReviewRepository reviewRepository;
 
     public CourseRepositoryImpl(@Qualifier(DefineProperties.DSLContextOnThi) DSLContext dslContext,
                                 @Qualifier(DefineProperties.entityManagerOnThi) EntityManager entityManager,
-                                @Qualifier(DefineProperties.connectionProviderOnThi) DataSourceConnectionProvider connectionProvider) {
+                                @Qualifier(DefineProperties.connectionProviderOnThi) DataSourceConnectionProvider connectionProvider,
+                                UserRepository userRepository,
+                                LessonRepository lessonRepository,
+                                QuizRepository quizRepository,
+                                ReviewRepository reviewRepository
+    ) {
         super(dslContext, entityManager);
+        this.userRepository = userRepository;
+        this.lessonRepository = lessonRepository;
+        this.quizRepository = quizRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     @Override
@@ -49,16 +65,18 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                         CourseDTO courseDTO = new CourseDTO();
                         courseDTO.id_course = record.getValue(course.ID_COURSE);
                         courseDTO.id_teacher = record.getValue(course.ID_TEACHER);
+                        courseDTO.avatar_course = record.getValue(course.AVATAR_COURSE);
                         courseDTO.category_name = record.getValue(course.CATEGORY_NAME);
                         courseDTO.schedule = record.getValue(course.SCHEDULE);
                         courseDTO.course_name = record.getValue(course.COURSE_NAME);
                         courseDTO.type_course = record.getValue(course.TYPE_COURSE);
                         courseDTO.start_date = record.getValue(course.START_DATE);
                         courseDTO.end_date = record.getValue(course.END_DATE);
-                        courseDTO.duration = record.getValue(course.DURATION);
                         courseDTO.description = record.getValue(course.DESCRIPTION);
                         courseDTO.price = record.getValue(course.PRICE);
                         courseDTO.discount = record.getValue(course.DISCOUNT);
+                        courseDTO.teacher_info = this.userRepository.getByID(record.getValue(course.ID_TEACHER));
+
                         return courseDTO;
                     })
                     .collect(Collectors.toList());
@@ -72,8 +90,18 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
     public List<CourseDTO> getListByInputCondition(@NotNull InputCondition inputCondition) {
         Condition condition = trueCondition();
 
-        if (inputCondition.CATEGORY_NAME != null && !inputCondition.CATEGORY_NAME.isBlank() && !inputCondition.CATEGORY_NAME.isEmpty()) {
-            condition = condition.and(course.CATEGORY_NAME.likeIgnoreCase("%" + inputCondition.CATEGORY_NAME + "%"));
+//        if (inputCondition.CATEGORY_NAME != null && !inputCondition.CATEGORY_NAME.isBlank() && !inputCondition.CATEGORY_NAME.isEmpty()) {
+//            condition = condition.and(course.CATEGORY_NAME.likeIgnoreCase("%" + inputCondition.CATEGORY_NAME + "%"));
+//        }
+
+        if (inputCondition.LIST_CATEGORY_NAME != null && !inputCondition.LIST_CATEGORY_NAME.isEmpty()) {
+            // Convert each CATEGORY_NAME in LIST_CATEGORY_NAME to lowercase
+            List<String> lowerCaseCategoryNames = inputCondition.LIST_CATEGORY_NAME.stream()
+                    .map(String::toLowerCase)
+                    .collect(Collectors.toList());
+
+            // Add condition to compare lowercased CATEGORY_NAME
+            condition = condition.and(course.CATEGORY_NAME.in(lowerCaseCategoryNames));
         }
 
         if (inputCondition.COURSE_NAME != null && !inputCondition.COURSE_NAME.isBlank() && !inputCondition.COURSE_NAME.isEmpty()) {
@@ -82,6 +110,20 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
 
         if (inputCondition.TYPE_COURSE != null) {
             condition = condition.and(course.TYPE_COURSE.eq(inputCondition.TYPE_COURSE));
+        }
+
+        List<Long> teacherIds = new ArrayList<>();
+        if (inputCondition.USERNAME != null && !inputCondition.USERNAME.isBlank() && !inputCondition.USERNAME.isEmpty()) {
+            InputCondition inputConditionFindUserIds = new InputCondition();
+            inputConditionFindUserIds.USERNAME = inputCondition.USERNAME;
+            List<UserInfoDTO> teachers = userRepository.getListByInputCondition(inputConditionFindUserIds);
+
+            teacherIds = teachers.stream().map(UserInfoDTO::getIdUser).collect(Collectors.toList());
+
+            // Add condition to filter courses by teacher IDs
+            if (!teacherIds.isEmpty()) {
+                condition = condition.and(course.ID_TEACHER.in(teacherIds));
+            }
         }
 
         List<CourseDTO> courseDTOList = dslContext.select()
@@ -94,16 +136,30 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
 
                     courseDTO.id_course = entry.getKey().getIdCourse();
                     courseDTO.id_teacher = entry.getKey().getIdTeacher();
+                    courseDTO.avatar_course = entry.getKey().getAvatarCourse();
                     courseDTO.category_name = entry.getKey().getCategoryName();
                     courseDTO.schedule = entry.getKey().getSchedule();
                     courseDTO.course_name = entry.getKey().getCourseName();
                     courseDTO.type_course = entry.getKey().getTypeCourse();
                     courseDTO.start_date = entry.getKey().getStartDate();
                     courseDTO.end_date = entry.getKey().getEndDate();
-                    courseDTO.duration = entry.getKey().getDuration();
                     courseDTO.description = entry.getKey().getDescription();
                     courseDTO.price = entry.getKey().getPrice();
                     courseDTO.discount = entry.getKey().getDiscount();
+                    courseDTO.teacher_info = this.userRepository.getByID(entry.getKey().getIdTeacher());
+
+                    InputCondition inputConditionIDCourse = new InputCondition();
+                    inputConditionIDCourse.ID_COURSE = entry.getKey().getIdCourse();
+
+                    List<LessonDTO> lessons = lessonRepository.getListByInputCondition(inputConditionIDCourse);
+                    courseDTO.lesson_quantity = lessons.size();
+                    courseDTO.quiz_quantity = 0;
+
+                    for (LessonDTO lesson : lessons) {
+                        InputCondition inputConditionIDLesson = new InputCondition();
+                        inputConditionIDLesson.ID_LESSON = lesson.getIdLesson();
+                        courseDTO.quiz_quantity += quizRepository.getListByInputCondition(inputConditionIDLesson).size();
+                    }
 
                     return courseDTO;
                 }).collect(Collectors.toList());
@@ -113,14 +169,53 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
 
     @Override
     public CourseDTO getByID(@NotNull Long id) {
-        try {
-            return dslContext.selectFrom(course)
-                    .where(course.ID_COURSE.eq(id))
-                    .fetchOneInto(CourseDTO.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        Condition condition = trueCondition();
+
+        InputCondition inputCondition = new InputCondition();
+        inputCondition.ID_COURSE = id;
+        condition = condition.and(course.ID_COURSE.eq(inputCondition.ID_COURSE));
+
+        List<CourseDTO> courseDTOList = dslContext.select()
+                .from(course).where(condition).fetch()
+                .stream()
+                .collect(Collectors.groupingBy(record -> record.into(course), LinkedHashMap::new, Collectors.toList()))
+                .entrySet().stream()
+                .map(entry -> {
+                    CourseDTO courseDTO = new CourseDTO();
+
+                    courseDTO.id_course = entry.getKey().getIdCourse();
+                    courseDTO.id_teacher = entry.getKey().getIdTeacher();
+                    courseDTO.avatar_course = entry.getKey().getAvatarCourse();
+                    courseDTO.category_name = entry.getKey().getCategoryName();
+                    courseDTO.schedule = entry.getKey().getSchedule();
+                    courseDTO.course_name = entry.getKey().getCourseName();
+                    courseDTO.type_course = entry.getKey().getTypeCourse();
+                    courseDTO.start_date = entry.getKey().getStartDate();
+                    courseDTO.end_date = entry.getKey().getEndDate();
+                    courseDTO.description = entry.getKey().getDescription();
+                    courseDTO.price = entry.getKey().getPrice();
+                    courseDTO.discount = entry.getKey().getDiscount();
+                    courseDTO.teacher_info = this.userRepository.getByID(entry.getKey().getIdTeacher());
+
+                    InputCondition inputConditionIDCourse = new InputCondition();
+                    inputConditionIDCourse.ID_COURSE = entry.getKey().getIdCourse();
+
+                    List<LessonDTO> lessons = lessonRepository.getListByInputCondition(inputConditionIDCourse);
+                    courseDTO.lesson_quantity = lessons.size();
+                    courseDTO.lesson_info = lessons;
+
+                    courseDTO.quiz_quantity = 0;
+
+                    for (LessonDTO lesson : lessons) {
+                        InputCondition inputConditionIDLesson = new InputCondition();
+                        inputConditionIDLesson.ID_LESSON = lesson.getIdLesson();
+                        courseDTO.quiz_quantity += quizRepository.getListByInputCondition(inputConditionIDLesson).size();
+                    }
+
+                    return courseDTO;
+                }).collect(Collectors.toList());
+
+        return courseDTOList != null && !courseDTOList.isEmpty() ? courseDTOList.get(0) : null;
     }
 
     @Override
@@ -150,13 +245,13 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
         try {
             dslContext.insertInto(course)
                     .set(course.ID_TEACHER, item.id_teacher)
+                    .set(course.AVATAR_COURSE, item.avatar_course)
                     .set(course.CATEGORY_NAME, item.category_name)
                     .set(course.SCHEDULE, item.schedule)
                     .set(course.COURSE_NAME, item.course_name)
                     .set(course.TYPE_COURSE, item.type_course)
                     .set(course.START_DATE, item.start_date)
                     .set(course.END_DATE, item.end_date)
-                    .set(course.DURATION, item.duration)
                     .set(course.DESCRIPTION, item.description)
                     .set(course.PRICE, item.price)
                     .set(course.DISCOUNT, item.discount)
@@ -205,13 +300,13 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
         try {
             int result = dslContext.update(course)
                     .set(course.ID_TEACHER, item.id_teacher)
+                    .set(course.AVATAR_COURSE, item.avatar_course)
                     .set(course.CATEGORY_NAME, item.category_name)
                     .set(course.SCHEDULE, item.schedule)
                     .set(course.COURSE_NAME, item.course_name)
                     .set(course.TYPE_COURSE, item.type_course)
                     .set(course.START_DATE, item.start_date)
                     .set(course.END_DATE, item.end_date)
-                    .set(course.DURATION, item.duration)
                     .set(course.DESCRIPTION, item.description)
                     .set(course.PRICE, item.price)
                     .set(course.DISCOUNT, item.discount)
@@ -299,5 +394,56 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public CourseDTO guestGetByID(@NotNull Long id) {
+        Condition condition = trueCondition();
+
+        InputCondition inputCondition = new InputCondition();
+        inputCondition.ID_COURSE = id;
+        condition = condition.and(course.ID_COURSE.eq(inputCondition.ID_COURSE));
+
+        List<CourseDTO> courseDTOList = dslContext.select()
+                .from(course).where(condition).fetch()
+                .stream()
+                .collect(Collectors.groupingBy(record -> record.into(course), LinkedHashMap::new, Collectors.toList()))
+                .entrySet().stream()
+                .map(entry -> {
+                    CourseDTO courseDTO = new CourseDTO();
+
+                    courseDTO.id_course = entry.getKey().getIdCourse();
+                    courseDTO.id_teacher = entry.getKey().getIdTeacher();
+                    courseDTO.avatar_course = entry.getKey().getAvatarCourse();
+                    courseDTO.category_name = entry.getKey().getCategoryName();
+                    courseDTO.schedule = entry.getKey().getSchedule();
+                    courseDTO.course_name = entry.getKey().getCourseName();
+                    courseDTO.type_course = entry.getKey().getTypeCourse();
+                    courseDTO.start_date = entry.getKey().getStartDate();
+                    courseDTO.end_date = entry.getKey().getEndDate();
+                    courseDTO.description = entry.getKey().getDescription();
+                    courseDTO.price = entry.getKey().getPrice();
+                    courseDTO.discount = entry.getKey().getDiscount();
+                    courseDTO.teacher_info = this.userRepository.getByID(entry.getKey().getIdTeacher());
+
+                    InputCondition inputConditionIDCourse = new InputCondition();
+                    inputConditionIDCourse.ID_COURSE = entry.getKey().getIdCourse();
+
+                    List<LessonDTO> lessons = lessonRepository.guestGetListByInputCondition(inputConditionIDCourse);
+                    courseDTO.lesson_quantity = lessons.size();
+                    courseDTO.lesson_info = lessons;
+
+                    courseDTO.quiz_quantity = 0;
+
+                    for (LessonDTO lesson : lessons) {
+                        InputCondition inputConditionIDLesson = new InputCondition();
+                        inputConditionIDLesson.ID_LESSON = lesson.getIdLesson();
+                        courseDTO.quiz_quantity += quizRepository.getListByInputCondition(inputConditionIDLesson).size();
+                    }
+
+                    return courseDTO;
+                }).collect(Collectors.toList());
+
+        return courseDTOList != null && !courseDTOList.isEmpty() ? courseDTOList.get(0) : null;
     }
 }

@@ -15,6 +15,7 @@ import cfm.onthi.entities.tables.OtNote;
 import cfm.onthi.entities.tables.OtProvince;
 import cfm.onthi.entities.tables.OtQuiz;
 import cfm.onthi.entities.tables.OtReview;
+import cfm.onthi.entities.tables.OtReviewUser;
 import cfm.onthi.entities.tables.OtRole;
 import cfm.onthi.entities.tables.OtRoleMenu;
 import cfm.onthi.entities.tables.OtSchool;
@@ -84,6 +85,11 @@ public class Tables {
      * The table <code>s_onthi.ot_review</code>.
      */
     public static final OtReview OT_REVIEW = OtReview.OT_REVIEW;
+
+    /**
+     * The table <code>s_onthi.ot_review_user</code>.
+     */
+    public static final OtReviewUser OT_REVIEW_USER = OtReviewUser.OT_REVIEW_USER;
 
     /**
      * The table <code>s_onthi.ot_role</code>.

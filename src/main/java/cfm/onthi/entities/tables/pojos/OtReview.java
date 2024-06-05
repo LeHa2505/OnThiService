@@ -34,9 +34,12 @@ public class OtReview implements Serializable {
 
     private Long idReview;
     private Long idCourse;
+    private Long idLesson;
     private Long idUser;
     private String content;
     private Integer rating;
+    private Integer like;
+    private Integer dislike;
     private LocalDateTime createdDate;
     private String lastModifiedBy;
     private LocalDateTime lastModifiedDate;
@@ -46,9 +49,12 @@ public class OtReview implements Serializable {
     public OtReview(OtReview value) {
         this.idReview = value.idReview;
         this.idCourse = value.idCourse;
+        this.idLesson = value.idLesson;
         this.idUser = value.idUser;
         this.content = value.content;
         this.rating = value.rating;
+        this.like = value.like;
+        this.dislike = value.dislike;
         this.createdDate = value.createdDate;
         this.lastModifiedBy = value.lastModifiedBy;
         this.lastModifiedDate = value.lastModifiedDate;
@@ -57,18 +63,24 @@ public class OtReview implements Serializable {
     public OtReview(
         Long idReview,
         Long idCourse,
+        Long idLesson,
         Long idUser,
         String content,
         Integer rating,
+        Integer like,
+        Integer dislike,
         LocalDateTime createdDate,
         String lastModifiedBy,
         LocalDateTime lastModifiedDate
     ) {
         this.idReview = idReview;
         this.idCourse = idCourse;
+        this.idLesson = idLesson;
         this.idUser = idUser;
         this.content = content;
         this.rating = rating;
+        this.like = like;
+        this.dislike = dislike;
         this.createdDate = createdDate;
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
@@ -107,6 +119,21 @@ public class OtReview implements Serializable {
     }
 
     /**
+     * Getter for <code>s_onthi.ot_review.ID_LESSON</code>.
+     */
+    @Column(name = "ID_LESSON")
+    public Long getIdLesson() {
+        return this.idLesson;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_review.ID_LESSON</code>.
+     */
+    public void setIdLesson(Long idLesson) {
+        this.idLesson = idLesson;
+    }
+
+    /**
      * Getter for <code>s_onthi.ot_review.ID_USER</code>.
      */
     @Column(name = "ID_USER", nullable = false)
@@ -139,7 +166,7 @@ public class OtReview implements Serializable {
     /**
      * Getter for <code>s_onthi.ot_review.RATING</code>.
      */
-    @Column(name = "RATING", nullable = false)
+    @Column(name = "RATING")
     public Integer getRating() {
         return this.rating;
     }
@@ -149,6 +176,36 @@ public class OtReview implements Serializable {
      */
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_review.LIKE</code>.
+     */
+    @Column(name = "LIKE")
+    public Integer getLike() {
+        return this.like;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_review.LIKE</code>.
+     */
+    public void setLike(Integer like) {
+        this.like = like;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_review.DISLIKE</code>.
+     */
+    @Column(name = "DISLIKE")
+    public Integer getDislike() {
+        return this.dislike;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_review.DISLIKE</code>.
+     */
+    public void setDislike(Integer dislike) {
+        this.dislike = dislike;
     }
 
     /**
@@ -217,6 +274,12 @@ public class OtReview implements Serializable {
         }
         else if (!this.idCourse.equals(other.idCourse))
             return false;
+        if (this.idLesson == null) {
+            if (other.idLesson != null)
+                return false;
+        }
+        else if (!this.idLesson.equals(other.idLesson))
+            return false;
         if (this.idUser == null) {
             if (other.idUser != null)
                 return false;
@@ -234,6 +297,18 @@ public class OtReview implements Serializable {
                 return false;
         }
         else if (!this.rating.equals(other.rating))
+            return false;
+        if (this.like == null) {
+            if (other.like != null)
+                return false;
+        }
+        else if (!this.like.equals(other.like))
+            return false;
+        if (this.dislike == null) {
+            if (other.dislike != null)
+                return false;
+        }
+        else if (!this.dislike.equals(other.dislike))
             return false;
         if (this.createdDate == null) {
             if (other.createdDate != null)
@@ -262,9 +337,12 @@ public class OtReview implements Serializable {
         int result = 1;
         result = prime * result + ((this.idReview == null) ? 0 : this.idReview.hashCode());
         result = prime * result + ((this.idCourse == null) ? 0 : this.idCourse.hashCode());
+        result = prime * result + ((this.idLesson == null) ? 0 : this.idLesson.hashCode());
         result = prime * result + ((this.idUser == null) ? 0 : this.idUser.hashCode());
         result = prime * result + ((this.content == null) ? 0 : this.content.hashCode());
         result = prime * result + ((this.rating == null) ? 0 : this.rating.hashCode());
+        result = prime * result + ((this.like == null) ? 0 : this.like.hashCode());
+        result = prime * result + ((this.dislike == null) ? 0 : this.dislike.hashCode());
         result = prime * result + ((this.createdDate == null) ? 0 : this.createdDate.hashCode());
         result = prime * result + ((this.lastModifiedBy == null) ? 0 : this.lastModifiedBy.hashCode());
         result = prime * result + ((this.lastModifiedDate == null) ? 0 : this.lastModifiedDate.hashCode());
@@ -277,9 +355,12 @@ public class OtReview implements Serializable {
 
         sb.append(idReview);
         sb.append(", ").append(idCourse);
+        sb.append(", ").append(idLesson);
         sb.append(", ").append(idUser);
         sb.append(", ").append(content);
         sb.append(", ").append(rating);
+        sb.append(", ").append(like);
+        sb.append(", ").append(dislike);
         sb.append(", ").append(createdDate);
         sb.append(", ").append(lastModifiedBy);
         sb.append(", ").append(lastModifiedDate);

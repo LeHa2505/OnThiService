@@ -81,7 +81,7 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
         }
 
         if (inputCondition.USERNAME != null && !inputCondition.USERNAME.isBlank() && !inputCondition.USERNAME.isEmpty()) {
-            condition = condition.and(user.USERNAME.eq(inputCondition.USERNAME));
+            condition = condition.and(user.USERNAME.likeIgnoreCase("%" + inputCondition.USERNAME + "%"));
         }
 
         if (inputCondition.ID_SCHOOL != null) {
@@ -96,6 +96,8 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
                 .map(entry -> {
                     UserInfoDTO userInfoDTO = new UserInfoDTO();
 
+                    userInfoDTO.idUser = entry.getKey().getIdUser();
+                    userInfoDTO.idSchool = entry.getKey().getIdSchool();
                     userInfoDTO.username = entry.getKey().getUsername();
                     userInfoDTO.email = entry.getKey().getEmail();
                     userInfoDTO.phone = entry.getKey().getPhone();
@@ -119,14 +121,44 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
 
     @Override
     public UserInfoDTO getByID(@NotNull Long id) {
-        try {
-            return dslContext.selectFrom(user)
-                    .where(user.ID_USER.eq(id))
-                    .fetchOneInto(UserInfoDTO.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        Condition condition = trueCondition();
+
+        InputCondition inputCondition = new InputCondition();
+        inputCondition.ID_USER = id;
+
+        if (inputCondition.ID_USER != null) {
+            condition = condition.and(user.ID_USER.eq(inputCondition.ID_USER));
         }
+
+        List<UserInfoDTO> userInfoDTOList = dslContext.select()
+                .from(user).where(condition).fetch()
+                .stream()
+                .collect(Collectors.groupingBy(record -> record.into(user), LinkedHashMap::new, Collectors.toList()))
+                .entrySet().stream()
+                .map(entry -> {
+                    UserInfoDTO userInfoDTO = new UserInfoDTO();
+
+                    userInfoDTO.idUser = entry.getKey().getIdUser();
+                    userInfoDTO.idSchool = entry.getKey().getIdSchool();
+                    userInfoDTO.username = entry.getKey().getUsername();
+                    userInfoDTO.email = entry.getKey().getEmail();
+                    userInfoDTO.phone = entry.getKey().getPhone();
+                    userInfoDTO.grade = entry.getKey().getGrade();
+                    userInfoDTO.gender = entry.getKey().getGender();
+                    userInfoDTO.bod =  entry.getKey().getBod();
+                    userInfoDTO.address = entry.getKey().getAddress();
+                    userInfoDTO.description = entry.getKey().getDescription();
+                    userInfoDTO.facebook = entry.getKey().getFacebook();
+                    userInfoDTO.instagram = entry.getKey().getInstagram();
+                    userInfoDTO.avatar = entry.getKey().getAvatar();
+                    userInfoDTO.active = entry.getKey().getActive();
+
+                    userInfoDTO.schoolInfo = schoolRepository.getByID(userInfoDTO.idSchool);
+
+                    return userInfoDTO;
+                }).collect(Collectors.toList());
+
+        return userInfoDTOList != null && !userInfoDTOList.isEmpty() ? userInfoDTOList.get(0) : null;
     }
 
     @Override

@@ -2,6 +2,7 @@ package cfm.onthi.repositories;
 
 
 import cfm.onthi.dtos.CourseDTO;
+import cfm.onthi.dtos.DocumentDTO;
 import cfm.onthi.dtos.LessonDTO;
 import cfm.onthi.dtos.base.InputCondition;
 import cfm.onthi.entities.tables.OtLesson;
@@ -12,6 +13,10 @@ import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.impl.DataSourceConnectionProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -21,16 +26,26 @@ import java.util.stream.Collectors;
 
 import static org.jooq.impl.DSL.trueCondition;
 
-public interface LessonRepository extends BaseRepository<LessonDTO>{
+public interface LessonRepository extends BaseRepository<LessonDTO> {
+    List<LessonDTO> guestGetListByInputCondition(@NotNull InputCondition inputCondition);
 }
 
+@Lazy
+@Repository
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<LessonDTO>, LessonRepository {
     OtLesson lesson = OtLesson.OT_LESSON.as("OtLesson");
+    QuizRepository quizRepository;
+    DocumentRepository documentRepository;
 
     public LessonRepositoryImpl(@Qualifier(DefineProperties.DSLContextOnThi) DSLContext dslContext,
                                 @Qualifier(DefineProperties.entityManagerOnThi) EntityManager entityManager,
-                                @Qualifier(DefineProperties.connectionProviderOnThi) DataSourceConnectionProvider connectionProvider) {
+                                @Qualifier(DefineProperties.connectionProviderOnThi) DataSourceConnectionProvider connectionProvider,
+                                QuizRepository quizRepository,
+                                DocumentRepository documentRepository) {
         super(dslContext, entityManager);
+        this.quizRepository = quizRepository;
+        this.documentRepository = documentRepository;
     }
 
     @Override
@@ -58,12 +73,17 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     lessonDTO.idCourse = entry.getKey().getIdCourse();
                     lessonDTO.lessonParent = entry.getKey().getLessonParent();
                     lessonDTO.lessonName = entry.getKey().getLessonName();
+                    lessonDTO.linkVideo = entry.getKey().getLinkVideo();
                     lessonDTO.duration = entry.getKey().getDuration();
                     lessonDTO.subject = entry.getKey().getSubject();
                     lessonDTO.order = entry.getKey().getOrder();
                     lessonDTO.continueTime = entry.getKey().getContinueTime();
                     lessonDTO.view = entry.getKey().getView();
                     lessonDTO.description = entry.getKey().getDescription();
+
+                    InputCondition inputConditionIDCourse = new InputCondition();
+                    inputConditionIDCourse.ID_LESSON = lessonDTO.idLesson;
+                    lessonDTO.documentsInfo = documentRepository.getListByInputCondition(inputConditionIDCourse);
 
                     return lessonDTO;
                 }).collect(Collectors.toList());
@@ -73,14 +93,42 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
 
     @Override
     public LessonDTO getByID(@NotNull Long id) {
-        try {
-            return dslContext.selectFrom(lesson)
-                    .where(lesson.ID_LESSON.eq(id))
-                    .fetchOneInto(LessonDTO.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        Condition condition = trueCondition();
+        InputCondition inputCondition = new InputCondition();
+        inputCondition.ID_LESSON = id;
+
+        if (inputCondition.ID_LESSON != null) {
+            condition = condition.and(lesson.ID_LESSON.eq(inputCondition.ID_LESSON));
         }
+
+        List<LessonDTO> courseDTOList = dslContext.select()
+                .from(lesson).where(condition).fetch()
+                .stream()
+                .collect(Collectors.groupingBy(record -> record.into(lesson), LinkedHashMap::new, Collectors.toList()))
+                .entrySet().stream()
+                .map(entry -> {
+                    LessonDTO lessonDTO = new LessonDTO();
+
+                    lessonDTO.idLesson = entry.getKey().getIdLesson();
+                    lessonDTO.idCourse = entry.getKey().getIdCourse();
+                    lessonDTO.lessonParent = entry.getKey().getLessonParent();
+                    lessonDTO.lessonName = entry.getKey().getLessonName();
+                    lessonDTO.linkVideo = entry.getKey().getLinkVideo();
+                    lessonDTO.duration = entry.getKey().getDuration();
+                    lessonDTO.subject = entry.getKey().getSubject();
+                    lessonDTO.order = entry.getKey().getOrder();
+                    lessonDTO.continueTime = entry.getKey().getContinueTime();
+                    lessonDTO.view = entry.getKey().getView();
+                    lessonDTO.description = entry.getKey().getDescription();
+
+                    InputCondition inputConditionIDCourse = new InputCondition();
+                    inputConditionIDCourse.ID_LESSON = lessonDTO.idLesson;
+                    lessonDTO.documentsInfo = documentRepository.getListByInputCondition(inputConditionIDCourse);
+
+                    return lessonDTO;
+                }).collect(Collectors.toList());
+
+        return courseDTOList != null && !courseDTOList.isEmpty() ? courseDTOList.get(0) : null;
     }
 
     @Override
@@ -112,6 +160,7 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     .set(lesson.ID_COURSE, item.idCourse)
                     .set(lesson.LESSON_PARENT, item.lessonParent)
                     .set(lesson.LESSON_NAME, item.lessonName)
+                    .set(lesson.LINK_VIDEO, item.linkVideo)
                     .set(lesson.DURATION, item.duration)
                     .set(lesson.SUBJECT, item.subject)
                     .set(lesson.ORDER, item.order)
@@ -165,6 +214,7 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     .set(lesson.ID_COURSE, item.idCourse)
                     .set(lesson.LESSON_PARENT, item.lessonParent)
                     .set(lesson.LESSON_NAME, item.lessonName)
+                    .set(lesson.LINK_VIDEO, item.linkVideo)
                     .set(lesson.DURATION, item.duration)
                     .set(lesson.SUBJECT, item.subject)
                     .set(lesson.ORDER, item.order)
@@ -256,4 +306,50 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
             return false;
         }
     }
+
+    @Override
+    public List<LessonDTO> guestGetListByInputCondition(@NotNull InputCondition inputCondition) {
+        Condition condition = trueCondition();
+
+        if (inputCondition.ID_COURSE != null) {
+            condition = condition.and(lesson.ID_COURSE.eq(inputCondition.ID_COURSE));
+        }
+
+        List<LessonDTO> lessonDTOList = dslContext.select()
+                .from(lesson).where(condition).fetch()
+                .stream()
+                .collect(Collectors.groupingBy(record -> record.into(lesson), LinkedHashMap::new, Collectors.toList()))
+                .entrySet().stream()
+                .map(entry -> {
+                    LessonDTO lessonDTO = new LessonDTO();
+
+                    lessonDTO.idLesson = entry.getKey().getIdLesson();
+                    lessonDTO.idCourse = entry.getKey().getIdCourse();
+                    lessonDTO.lessonParent = entry.getKey().getLessonParent();
+                    lessonDTO.lessonName = entry.getKey().getLessonName();
+                    lessonDTO.linkVideo = entry.getKey().getLinkVideo();
+                    lessonDTO.duration = entry.getKey().getDuration();
+                    lessonDTO.subject = entry.getKey().getSubject();
+                    lessonDTO.order = entry.getKey().getOrder();
+                    lessonDTO.continueTime = entry.getKey().getContinueTime();
+                    lessonDTO.view = entry.getKey().getView();
+                    lessonDTO.description = entry.getKey().getDescription();
+
+                    InputCondition quizInputCondition = new InputCondition();
+                    quizInputCondition.ID_LESSON = lessonDTO.idLesson;
+                    lessonDTO.quizInfo = quizRepository.getListByInputCondition(quizInputCondition);
+                    lessonDTO.documentsInfo = documentRepository.getListByInputCondition(quizInputCondition);
+
+                    return lessonDTO;
+                }).collect(Collectors.toList());
+
+        // Only keep linkVideo for the first 5 items
+        for (int i = 5; i < lessonDTOList.size(); i++) {
+            lessonDTOList.get(i).setLinkVideo(null);
+            lessonDTOList.get(i).setView(null);
+        }
+
+        return lessonDTOList;
+    }
+
 }

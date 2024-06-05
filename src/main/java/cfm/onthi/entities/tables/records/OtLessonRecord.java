@@ -18,8 +18,8 @@ import java.time.LocalDateTime;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record13;
-import org.jooq.Row13;
+import org.jooq.Record14;
+import org.jooq.Row14;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
@@ -35,7 +35,7 @@ import org.jooq.impl.UpdatableRecordImpl;
         @Index(name = "ID_COURSE", columnList = "ID_COURSE ASC")
     }
 )
-public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implements Record13<Long, Long, Long, String, Double, String, Long, Double, Long, String, LocalDateTime, String, LocalDateTime> {
+public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implements Record14<Long, Long, Long, String, String, Double, String, Long, Double, Long, String, LocalDateTime, String, LocalDateTime> {
 
     private static final long serialVersionUID = 1L;
 
@@ -96,16 +96,31 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
     /**
      * Getter for <code>s_onthi.ot_lesson.LESSON_NAME</code>.
      */
-    @Column(name = "LESSON_NAME", nullable = false, length = 50)
+    @Column(name = "LESSON_NAME", nullable = false, length = 500)
     public String getLessonName() {
         return (String) get(3);
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_lesson.LINK_VIDEO</code>.
+     */
+    public void setLinkVideo(String value) {
+        set(4, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_lesson.LINK_VIDEO</code>.
+     */
+    @Column(name = "LINK_VIDEO", length = 5000)
+    public String getLinkVideo() {
+        return (String) get(4);
     }
 
     /**
      * Setter for <code>s_onthi.ot_lesson.DURATION</code>.
      */
     public void setDuration(Double value) {
-        set(4, value);
+        set(5, value);
     }
 
     /**
@@ -113,14 +128,14 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
      */
     @Column(name = "DURATION")
     public Double getDuration() {
-        return (Double) get(4);
+        return (Double) get(5);
     }
 
     /**
      * Setter for <code>s_onthi.ot_lesson.SUBJECT</code>.
      */
     public void setSubject(String value) {
-        set(5, value);
+        set(6, value);
     }
 
     /**
@@ -128,14 +143,14 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
      */
     @Column(name = "SUBJECT", length = 100)
     public String getSubject() {
-        return (String) get(5);
+        return (String) get(6);
     }
 
     /**
      * Setter for <code>s_onthi.ot_lesson.ORDER</code>.
      */
     public void setOrder(Long value) {
-        set(6, value);
+        set(7, value);
     }
 
     /**
@@ -143,14 +158,14 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
      */
     @Column(name = "ORDER")
     public Long getOrder() {
-        return (Long) get(6);
+        return (Long) get(7);
     }
 
     /**
      * Setter for <code>s_onthi.ot_lesson.CONTINUE_TIME</code>.
      */
     public void setContinueTime(Double value) {
-        set(7, value);
+        set(8, value);
     }
 
     /**
@@ -158,14 +173,14 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
      */
     @Column(name = "CONTINUE_TIME")
     public Double getContinueTime() {
-        return (Double) get(7);
+        return (Double) get(8);
     }
 
     /**
      * Setter for <code>s_onthi.ot_lesson.VIEW</code>.
      */
     public void setView(Long value) {
-        set(8, value);
+        set(9, value);
     }
 
     /**
@@ -173,14 +188,14 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
      */
     @Column(name = "VIEW", nullable = false)
     public Long getView() {
-        return (Long) get(8);
+        return (Long) get(9);
     }
 
     /**
      * Setter for <code>s_onthi.ot_lesson.DESCRIPTION</code>.
      */
     public void setDescription(String value) {
-        set(9, value);
+        set(10, value);
     }
 
     /**
@@ -188,14 +203,14 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
      */
     @Column(name = "DESCRIPTION", length = 1000)
     public String getDescription() {
-        return (String) get(9);
+        return (String) get(10);
     }
 
     /**
      * Setter for <code>s_onthi.ot_lesson.CREATED_DATE</code>.
      */
     public void setCreatedDate(LocalDateTime value) {
-        set(10, value);
+        set(11, value);
     }
 
     /**
@@ -203,14 +218,14 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
      */
     @Column(name = "CREATED_DATE", precision = 6)
     public LocalDateTime getCreatedDate() {
-        return (LocalDateTime) get(10);
+        return (LocalDateTime) get(11);
     }
 
     /**
      * Setter for <code>s_onthi.ot_lesson.LAST_MODIFIED_BY</code>.
      */
     public void setLastModifiedBy(String value) {
-        set(11, value);
+        set(12, value);
     }
 
     /**
@@ -218,14 +233,14 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
      */
     @Column(name = "LAST_MODIFIED_BY", length = 50)
     public String getLastModifiedBy() {
-        return (String) get(11);
+        return (String) get(12);
     }
 
     /**
      * Setter for <code>s_onthi.ot_lesson.LAST_MODIFIED_DATE</code>.
      */
     public void setLastModifiedDate(LocalDateTime value) {
-        set(12, value);
+        set(13, value);
     }
 
     /**
@@ -233,7 +248,7 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
      */
     @Column(name = "LAST_MODIFIED_DATE", precision = 6)
     public LocalDateTime getLastModifiedDate() {
-        return (LocalDateTime) get(12);
+        return (LocalDateTime) get(13);
     }
 
     // -------------------------------------------------------------------------
@@ -246,17 +261,17 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
     }
 
     // -------------------------------------------------------------------------
-    // Record13 type implementation
+    // Record14 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row13<Long, Long, Long, String, Double, String, Long, Double, Long, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row13) super.fieldsRow();
+    public Row14<Long, Long, Long, String, String, Double, String, Long, Double, Long, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row14) super.fieldsRow();
     }
 
     @Override
-    public Row13<Long, Long, Long, String, Double, String, Long, Double, Long, String, LocalDateTime, String, LocalDateTime> valuesRow() {
-        return (Row13) super.valuesRow();
+    public Row14<Long, Long, Long, String, String, Double, String, Long, Double, Long, String, LocalDateTime, String, LocalDateTime> valuesRow() {
+        return (Row14) super.valuesRow();
     }
 
     @Override
@@ -280,47 +295,52 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
     }
 
     @Override
-    public Field<Double> field5() {
+    public Field<String> field5() {
+        return OtLesson.OT_LESSON.LINK_VIDEO;
+    }
+
+    @Override
+    public Field<Double> field6() {
         return OtLesson.OT_LESSON.DURATION;
     }
 
     @Override
-    public Field<String> field6() {
+    public Field<String> field7() {
         return OtLesson.OT_LESSON.SUBJECT;
     }
 
     @Override
-    public Field<Long> field7() {
+    public Field<Long> field8() {
         return OtLesson.OT_LESSON.ORDER;
     }
 
     @Override
-    public Field<Double> field8() {
+    public Field<Double> field9() {
         return OtLesson.OT_LESSON.CONTINUE_TIME;
     }
 
     @Override
-    public Field<Long> field9() {
+    public Field<Long> field10() {
         return OtLesson.OT_LESSON.VIEW;
     }
 
     @Override
-    public Field<String> field10() {
+    public Field<String> field11() {
         return OtLesson.OT_LESSON.DESCRIPTION;
     }
 
     @Override
-    public Field<LocalDateTime> field11() {
+    public Field<LocalDateTime> field12() {
         return OtLesson.OT_LESSON.CREATED_DATE;
     }
 
     @Override
-    public Field<String> field12() {
+    public Field<String> field13() {
         return OtLesson.OT_LESSON.LAST_MODIFIED_BY;
     }
 
     @Override
-    public Field<LocalDateTime> field13() {
+    public Field<LocalDateTime> field14() {
         return OtLesson.OT_LESSON.LAST_MODIFIED_DATE;
     }
 
@@ -345,47 +365,52 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
     }
 
     @Override
-    public Double component5() {
+    public String component5() {
+        return getLinkVideo();
+    }
+
+    @Override
+    public Double component6() {
         return getDuration();
     }
 
     @Override
-    public String component6() {
+    public String component7() {
         return getSubject();
     }
 
     @Override
-    public Long component7() {
+    public Long component8() {
         return getOrder();
     }
 
     @Override
-    public Double component8() {
+    public Double component9() {
         return getContinueTime();
     }
 
     @Override
-    public Long component9() {
+    public Long component10() {
         return getView();
     }
 
     @Override
-    public String component10() {
+    public String component11() {
         return getDescription();
     }
 
     @Override
-    public LocalDateTime component11() {
+    public LocalDateTime component12() {
         return getCreatedDate();
     }
 
     @Override
-    public String component12() {
+    public String component13() {
         return getLastModifiedBy();
     }
 
     @Override
-    public LocalDateTime component13() {
+    public LocalDateTime component14() {
         return getLastModifiedDate();
     }
 
@@ -410,47 +435,52 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
     }
 
     @Override
-    public Double value5() {
+    public String value5() {
+        return getLinkVideo();
+    }
+
+    @Override
+    public Double value6() {
         return getDuration();
     }
 
     @Override
-    public String value6() {
+    public String value7() {
         return getSubject();
     }
 
     @Override
-    public Long value7() {
+    public Long value8() {
         return getOrder();
     }
 
     @Override
-    public Double value8() {
+    public Double value9() {
         return getContinueTime();
     }
 
     @Override
-    public Long value9() {
+    public Long value10() {
         return getView();
     }
 
     @Override
-    public String value10() {
+    public String value11() {
         return getDescription();
     }
 
     @Override
-    public LocalDateTime value11() {
+    public LocalDateTime value12() {
         return getCreatedDate();
     }
 
     @Override
-    public String value12() {
+    public String value13() {
         return getLastModifiedBy();
     }
 
     @Override
-    public LocalDateTime value13() {
+    public LocalDateTime value14() {
         return getLastModifiedDate();
     }
 
@@ -479,61 +509,67 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
     }
 
     @Override
-    public OtLessonRecord value5(Double value) {
+    public OtLessonRecord value5(String value) {
+        setLinkVideo(value);
+        return this;
+    }
+
+    @Override
+    public OtLessonRecord value6(Double value) {
         setDuration(value);
         return this;
     }
 
     @Override
-    public OtLessonRecord value6(String value) {
+    public OtLessonRecord value7(String value) {
         setSubject(value);
         return this;
     }
 
     @Override
-    public OtLessonRecord value7(Long value) {
+    public OtLessonRecord value8(Long value) {
         setOrder(value);
         return this;
     }
 
     @Override
-    public OtLessonRecord value8(Double value) {
+    public OtLessonRecord value9(Double value) {
         setContinueTime(value);
         return this;
     }
 
     @Override
-    public OtLessonRecord value9(Long value) {
+    public OtLessonRecord value10(Long value) {
         setView(value);
         return this;
     }
 
     @Override
-    public OtLessonRecord value10(String value) {
+    public OtLessonRecord value11(String value) {
         setDescription(value);
         return this;
     }
 
     @Override
-    public OtLessonRecord value11(LocalDateTime value) {
+    public OtLessonRecord value12(LocalDateTime value) {
         setCreatedDate(value);
         return this;
     }
 
     @Override
-    public OtLessonRecord value12(String value) {
+    public OtLessonRecord value13(String value) {
         setLastModifiedBy(value);
         return this;
     }
 
     @Override
-    public OtLessonRecord value13(LocalDateTime value) {
+    public OtLessonRecord value14(LocalDateTime value) {
         setLastModifiedDate(value);
         return this;
     }
 
     @Override
-    public OtLessonRecord values(Long value1, Long value2, Long value3, String value4, Double value5, String value6, Long value7, Double value8, Long value9, String value10, LocalDateTime value11, String value12, LocalDateTime value13) {
+    public OtLessonRecord values(Long value1, Long value2, Long value3, String value4, String value5, Double value6, String value7, Long value8, Double value9, Long value10, String value11, LocalDateTime value12, String value13, LocalDateTime value14) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -547,6 +583,7 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
         value11(value11);
         value12(value12);
         value13(value13);
+        value14(value14);
         return this;
     }
 
@@ -564,13 +601,14 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
     /**
      * Create a detached, initialised OtLessonRecord
      */
-    public OtLessonRecord(Long idLesson, Long idCourse, Long lessonParent, String lessonName, Double duration, String subject, Long order, Double continueTime, Long view, String description, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
+    public OtLessonRecord(Long idLesson, Long idCourse, Long lessonParent, String lessonName, String linkVideo, Double duration, String subject, Long order, Double continueTime, Long view, String description, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
         super(OtLesson.OT_LESSON);
 
         setIdLesson(idLesson);
         setIdCourse(idCourse);
         setLessonParent(lessonParent);
         setLessonName(lessonName);
+        setLinkVideo(linkVideo);
         setDuration(duration);
         setSubject(subject);
         setOrder(order);
@@ -593,6 +631,7 @@ public class OtLessonRecord extends UpdatableRecordImpl<OtLessonRecord> implemen
             setIdCourse(value.getIdCourse());
             setLessonParent(value.getLessonParent());
             setLessonName(value.getLessonName());
+            setLinkVideo(value.getLinkVideo());
             setDuration(value.getDuration());
             setSubject(value.getSubject());
             setOrder(value.getOrder());

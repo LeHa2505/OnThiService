@@ -35,13 +35,13 @@ public class OtCourse implements Serializable {
 
     private Long idCourse;
     private Long idTeacher;
+    private String avatarCourse;
     private String categoryName;
     private Double schedule;
     private String courseName;
     private Long typeCourse;
     private LocalDate startDate;
     private LocalDate endDate;
-    private Double duration;
     private Double price;
     private Double discount;
     private String description;
@@ -54,13 +54,13 @@ public class OtCourse implements Serializable {
     public OtCourse(OtCourse value) {
         this.idCourse = value.idCourse;
         this.idTeacher = value.idTeacher;
+        this.avatarCourse = value.avatarCourse;
         this.categoryName = value.categoryName;
         this.schedule = value.schedule;
         this.courseName = value.courseName;
         this.typeCourse = value.typeCourse;
         this.startDate = value.startDate;
         this.endDate = value.endDate;
-        this.duration = value.duration;
         this.price = value.price;
         this.discount = value.discount;
         this.description = value.description;
@@ -72,13 +72,13 @@ public class OtCourse implements Serializable {
     public OtCourse(
         Long idCourse,
         Long idTeacher,
+        String avatarCourse,
         String categoryName,
         Double schedule,
         String courseName,
         Long typeCourse,
         LocalDate startDate,
         LocalDate endDate,
-        Double duration,
         Double price,
         Double discount,
         String description,
@@ -88,13 +88,13 @@ public class OtCourse implements Serializable {
     ) {
         this.idCourse = idCourse;
         this.idTeacher = idTeacher;
+        this.avatarCourse = avatarCourse;
         this.categoryName = categoryName;
         this.schedule = schedule;
         this.courseName = courseName;
         this.typeCourse = typeCourse;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.duration = duration;
         this.price = price;
         this.discount = discount;
         this.description = description;
@@ -136,9 +136,24 @@ public class OtCourse implements Serializable {
     }
 
     /**
+     * Getter for <code>s_onthi.ot_course.AVATAR_COURSE</code>.
+     */
+    @Column(name = "AVATAR_COURSE", length = 5000)
+    public String getAvatarCourse() {
+        return this.avatarCourse;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_course.AVATAR_COURSE</code>.
+     */
+    public void setAvatarCourse(String avatarCourse) {
+        this.avatarCourse = avatarCourse;
+    }
+
+    /**
      * Getter for <code>s_onthi.ot_course.CATEGORY_NAME</code>.
      */
-    @Column(name = "CATEGORY_NAME", length = 10)
+    @Column(name = "CATEGORY_NAME", length = 100)
     public String getCategoryName() {
         return this.categoryName;
     }
@@ -226,21 +241,6 @@ public class OtCourse implements Serializable {
     }
 
     /**
-     * Getter for <code>s_onthi.ot_course.DURATION</code>.
-     */
-    @Column(name = "DURATION")
-    public Double getDuration() {
-        return this.duration;
-    }
-
-    /**
-     * Setter for <code>s_onthi.ot_course.DURATION</code>.
-     */
-    public void setDuration(Double duration) {
-        this.duration = duration;
-    }
-
-    /**
      * Getter for <code>s_onthi.ot_course.PRICE</code>.
      */
     @Column(name = "PRICE", nullable = false)
@@ -273,7 +273,7 @@ public class OtCourse implements Serializable {
     /**
      * Getter for <code>s_onthi.ot_course.DESCRIPTION</code>.
      */
-    @Column(name = "DESCRIPTION", length = 2000)
+    @Column(name = "DESCRIPTION")
     public String getDescription() {
         return this.description;
     }
@@ -351,6 +351,12 @@ public class OtCourse implements Serializable {
         }
         else if (!this.idTeacher.equals(other.idTeacher))
             return false;
+        if (this.avatarCourse == null) {
+            if (other.avatarCourse != null)
+                return false;
+        }
+        else if (!this.avatarCourse.equals(other.avatarCourse))
+            return false;
         if (this.categoryName == null) {
             if (other.categoryName != null)
                 return false;
@@ -386,12 +392,6 @@ public class OtCourse implements Serializable {
                 return false;
         }
         else if (!this.endDate.equals(other.endDate))
-            return false;
-        if (this.duration == null) {
-            if (other.duration != null)
-                return false;
-        }
-        else if (!this.duration.equals(other.duration))
             return false;
         if (this.price == null) {
             if (other.price != null)
@@ -438,13 +438,13 @@ public class OtCourse implements Serializable {
         int result = 1;
         result = prime * result + ((this.idCourse == null) ? 0 : this.idCourse.hashCode());
         result = prime * result + ((this.idTeacher == null) ? 0 : this.idTeacher.hashCode());
+        result = prime * result + ((this.avatarCourse == null) ? 0 : this.avatarCourse.hashCode());
         result = prime * result + ((this.categoryName == null) ? 0 : this.categoryName.hashCode());
         result = prime * result + ((this.schedule == null) ? 0 : this.schedule.hashCode());
         result = prime * result + ((this.courseName == null) ? 0 : this.courseName.hashCode());
         result = prime * result + ((this.typeCourse == null) ? 0 : this.typeCourse.hashCode());
         result = prime * result + ((this.startDate == null) ? 0 : this.startDate.hashCode());
         result = prime * result + ((this.endDate == null) ? 0 : this.endDate.hashCode());
-        result = prime * result + ((this.duration == null) ? 0 : this.duration.hashCode());
         result = prime * result + ((this.price == null) ? 0 : this.price.hashCode());
         result = prime * result + ((this.discount == null) ? 0 : this.discount.hashCode());
         result = prime * result + ((this.description == null) ? 0 : this.description.hashCode());
@@ -460,13 +460,13 @@ public class OtCourse implements Serializable {
 
         sb.append(idCourse);
         sb.append(", ").append(idTeacher);
+        sb.append(", ").append(avatarCourse);
         sb.append(", ").append(categoryName);
         sb.append(", ").append(schedule);
         sb.append(", ").append(courseName);
         sb.append(", ").append(typeCourse);
         sb.append(", ").append(startDate);
         sb.append(", ").append(endDate);
-        sb.append(", ").append(duration);
         sb.append(", ").append(price);
         sb.append(", ").append(discount);
         sb.append(", ").append(description);

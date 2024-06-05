@@ -9,8 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 
 import java.io.Serializable;
 
@@ -23,9 +23,9 @@ import java.io.Serializable;
 @Table(
     name = "ot_user_course",
     schema = "s_onthi",
-    uniqueConstraints = {
-        @UniqueConstraint(name = "KEY_ot_user_course_ID_USER", columnNames = { "ID_USER" }),
-        @UniqueConstraint(name = "KEY_ot_user_course_ID_COURSE", columnNames = { "ID_COURSE" })
+    indexes = {
+        @Index(name = "ID_COURSE", columnList = "ID_COURSE ASC"),
+        @Index(name = "ID_USER", columnList = "ID_USER ASC")
     }
 )
 public class OtUserCourse implements Serializable {

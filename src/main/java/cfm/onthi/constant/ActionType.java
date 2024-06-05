@@ -1,15 +1,13 @@
 package cfm.onthi.constant;
 
-public enum Role {
-    ADMIN(Long.valueOf(0), "admin"),
-    STUDENT(Long.valueOf(1), "student"),
-    TEACHER(Long.valueOf(2), "teacher"),
-    GUEST(Long.valueOf(3), "guest");
+public enum ActionType {
+    LIKE(Long.valueOf(1), "like"),
+    DISLIKE(Long.valueOf(0), "dislike");
 
     private final Long code;
     private final String description;
 
-    Role(Long code, String description) {
+    ActionType(Long code, String description) {
         this.code = code;
         this.description = description;
     }

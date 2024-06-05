@@ -3,6 +3,8 @@ package cfm.onthi.dtos;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @Setter
 @Getter
@@ -21,6 +23,9 @@ public class LessonDTO {
     @JsonProperty(value = "LESSON_NAME")
     public String lessonName;
 
+    @JsonProperty(value = "LINK_VIDEO")
+    public String linkVideo;
+
     @JsonProperty(value = "DURATION")
     public Double duration;
 
@@ -38,4 +43,10 @@ public class LessonDTO {
 
     @JsonProperty(value = "DESCRIPTION")
     public String description;
+
+    @JsonProperty(value = "QUIZ_INFO")
+    public List<QuizDTO> quizInfo;
+
+    @JsonProperty(value = "DOCUMENTS_INFO")
+    public List<DocumentDTO> documentsInfo;
 }

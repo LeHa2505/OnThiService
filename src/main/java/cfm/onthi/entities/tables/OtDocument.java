@@ -16,13 +16,13 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function9;
+import org.jooq.Function10;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row9;
+import org.jooq.Row10;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -71,6 +71,11 @@ public class OtDocument extends TableImpl<OtDocumentRecord> {
     public final TableField<OtDocumentRecord, String> DOCUMENT_LINK = createField(DSL.name("DOCUMENT_LINK"), SQLDataType.VARCHAR(2000).nullable(false), this, "");
 
     /**
+     * The column <code>s_onthi.ot_document.SIZE</code>.
+     */
+    public final TableField<OtDocumentRecord, Double> SIZE = createField(DSL.name("SIZE"), SQLDataType.FLOAT, this, "");
+
+    /**
      * The column <code>s_onthi.ot_document.DOCUMENT_NAME</code>.
      */
     public final TableField<OtDocumentRecord, String> DOCUMENT_NAME = createField(DSL.name("DOCUMENT_NAME"), SQLDataType.VARCHAR(500).nullable(false), this, "");
@@ -78,7 +83,7 @@ public class OtDocument extends TableImpl<OtDocumentRecord> {
     /**
      * The column <code>s_onthi.ot_document.TYPE_DOCUMENT</code>.
      */
-    public final TableField<OtDocumentRecord, Long> TYPE_DOCUMENT = createField(DSL.name("TYPE_DOCUMENT"), SQLDataType.BIGINT, this, "");
+    public final TableField<OtDocumentRecord, String> TYPE_DOCUMENT = createField(DSL.name("TYPE_DOCUMENT"), SQLDataType.VARCHAR(10), this, "");
 
     /**
      * The column <code>s_onthi.ot_document.DOWNLOAD_STATUS</code>.
@@ -210,18 +215,18 @@ public class OtDocument extends TableImpl<OtDocumentRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row9 type methods
+    // Row10 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row9<Long, Long, String, String, Long, Long, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row9) super.fieldsRow();
+    public Row10<Long, Long, String, Double, String, String, Long, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row10) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function9<? super Long, ? super Long, ? super String, ? super String, ? super Long, ? super Long, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function10<? super Long, ? super Long, ? super String, ? super Double, ? super String, ? super String, ? super Long, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -229,7 +234,7 @@ public class OtDocument extends TableImpl<OtDocumentRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function9<? super Long, ? super Long, ? super String, ? super String, ? super Long, ? super Long, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function10<? super Long, ? super Long, ? super String, ? super Double, ? super String, ? super String, ? super Long, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

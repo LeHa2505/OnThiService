@@ -5,12 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class InputCondition {
     @JsonProperty(value = "USERNAME")
     public String USERNAME;
+
+    @JsonProperty(value = "ID_USER")
+    public Long ID_USER;
 
     @JsonProperty(value = "EMAIL")
     public String EMAIL;
@@ -33,6 +38,9 @@ public class InputCondition {
     @JsonProperty(value = "CATEGORY_NAME")
     public String CATEGORY_NAME;
 
+    @JsonProperty(value = "LIST_CATEGORY_NAME")
+    public List<String> LIST_CATEGORY_NAME;
+
     @JsonProperty(value = "TYPE_COURSE")
     public Long TYPE_COURSE;
 
@@ -47,4 +55,7 @@ public class InputCondition {
 
     @JsonProperty(value = "ID_LESSON")
     public Long ID_LESSON;
+
+    @JsonProperty(value = "ID_REVIEW")
+    public Long ID_REVIEW;
 }

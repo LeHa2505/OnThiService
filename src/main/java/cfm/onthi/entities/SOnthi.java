@@ -15,6 +15,7 @@ import cfm.onthi.entities.tables.OtNote;
 import cfm.onthi.entities.tables.OtProvince;
 import cfm.onthi.entities.tables.OtQuiz;
 import cfm.onthi.entities.tables.OtReview;
+import cfm.onthi.entities.tables.OtReviewUser;
 import cfm.onthi.entities.tables.OtRole;
 import cfm.onthi.entities.tables.OtRoleMenu;
 import cfm.onthi.entities.tables.OtSchool;
@@ -100,6 +101,11 @@ public class SOnthi extends SchemaImpl {
     public final OtReview OT_REVIEW = OtReview.OT_REVIEW;
 
     /**
+     * The table <code>s_onthi.ot_review_user</code>.
+     */
+    public final OtReviewUser OT_REVIEW_USER = OtReviewUser.OT_REVIEW_USER;
+
+    /**
      * The table <code>s_onthi.ot_role</code>.
      */
     public final OtRole OT_ROLE = OtRole.OT_ROLE;
@@ -161,6 +167,7 @@ public class SOnthi extends SchemaImpl {
             OtProvince.OT_PROVINCE,
             OtQuiz.OT_QUIZ,
             OtReview.OT_REVIEW,
+            OtReviewUser.OT_REVIEW_USER,
             OtRole.OT_ROLE,
             OtRoleMenu.OT_ROLE_MENU,
             OtSchool.OT_SCHOOL,

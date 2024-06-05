@@ -18,8 +18,8 @@ import java.time.LocalDateTime;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record9;
-import org.jooq.Row9;
+import org.jooq.Record10;
+import org.jooq.Row10;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
@@ -35,7 +35,7 @@ import org.jooq.impl.UpdatableRecordImpl;
         @Index(name = "ID_LESSON", columnList = "ID_LESSON ASC")
     }
 )
-public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> implements Record9<Long, Long, String, String, Long, Long, LocalDateTime, String, LocalDateTime> {
+public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> implements Record10<Long, Long, String, Double, String, String, Long, LocalDateTime, String, LocalDateTime> {
 
     private static final long serialVersionUID = 1L;
 
@@ -87,10 +87,25 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
     }
 
     /**
+     * Setter for <code>s_onthi.ot_document.SIZE</code>.
+     */
+    public void setSize(Double value) {
+        set(3, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_document.SIZE</code>.
+     */
+    @Column(name = "SIZE")
+    public Double getSize() {
+        return (Double) get(3);
+    }
+
+    /**
      * Setter for <code>s_onthi.ot_document.DOCUMENT_NAME</code>.
      */
     public void setDocumentName(String value) {
-        set(3, value);
+        set(4, value);
     }
 
     /**
@@ -98,29 +113,29 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
      */
     @Column(name = "DOCUMENT_NAME", nullable = false, length = 500)
     public String getDocumentName() {
-        return (String) get(3);
+        return (String) get(4);
     }
 
     /**
      * Setter for <code>s_onthi.ot_document.TYPE_DOCUMENT</code>.
      */
-    public void setTypeDocument(Long value) {
-        set(4, value);
+    public void setTypeDocument(String value) {
+        set(5, value);
     }
 
     /**
      * Getter for <code>s_onthi.ot_document.TYPE_DOCUMENT</code>.
      */
-    @Column(name = "TYPE_DOCUMENT")
-    public Long getTypeDocument() {
-        return (Long) get(4);
+    @Column(name = "TYPE_DOCUMENT", length = 10)
+    public String getTypeDocument() {
+        return (String) get(5);
     }
 
     /**
      * Setter for <code>s_onthi.ot_document.DOWNLOAD_STATUS</code>.
      */
     public void setDownloadStatus(Long value) {
-        set(5, value);
+        set(6, value);
     }
 
     /**
@@ -128,14 +143,14 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
      */
     @Column(name = "DOWNLOAD_STATUS", nullable = false)
     public Long getDownloadStatus() {
-        return (Long) get(5);
+        return (Long) get(6);
     }
 
     /**
      * Setter for <code>s_onthi.ot_document.CREATED_DATE</code>.
      */
     public void setCreatedDate(LocalDateTime value) {
-        set(6, value);
+        set(7, value);
     }
 
     /**
@@ -143,14 +158,14 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
      */
     @Column(name = "CREATED_DATE", precision = 6)
     public LocalDateTime getCreatedDate() {
-        return (LocalDateTime) get(6);
+        return (LocalDateTime) get(7);
     }
 
     /**
      * Setter for <code>s_onthi.ot_document.LAST_MODIFIED_BY</code>.
      */
     public void setLastModifiedBy(String value) {
-        set(7, value);
+        set(8, value);
     }
 
     /**
@@ -158,14 +173,14 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
      */
     @Column(name = "LAST_MODIFIED_BY", length = 50)
     public String getLastModifiedBy() {
-        return (String) get(7);
+        return (String) get(8);
     }
 
     /**
      * Setter for <code>s_onthi.ot_document.LAST_MODIFIED_DATE</code>.
      */
     public void setLastModifiedDate(LocalDateTime value) {
-        set(8, value);
+        set(9, value);
     }
 
     /**
@@ -173,7 +188,7 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
      */
     @Column(name = "LAST_MODIFIED_DATE", precision = 6)
     public LocalDateTime getLastModifiedDate() {
-        return (LocalDateTime) get(8);
+        return (LocalDateTime) get(9);
     }
 
     // -------------------------------------------------------------------------
@@ -186,17 +201,17 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
     }
 
     // -------------------------------------------------------------------------
-    // Record9 type implementation
+    // Record10 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row9<Long, Long, String, String, Long, Long, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row9) super.fieldsRow();
+    public Row10<Long, Long, String, Double, String, String, Long, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row10) super.fieldsRow();
     }
 
     @Override
-    public Row9<Long, Long, String, String, Long, Long, LocalDateTime, String, LocalDateTime> valuesRow() {
-        return (Row9) super.valuesRow();
+    public Row10<Long, Long, String, Double, String, String, Long, LocalDateTime, String, LocalDateTime> valuesRow() {
+        return (Row10) super.valuesRow();
     }
 
     @Override
@@ -215,32 +230,37 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
     }
 
     @Override
-    public Field<String> field4() {
+    public Field<Double> field4() {
+        return OtDocument.OT_DOCUMENT.SIZE;
+    }
+
+    @Override
+    public Field<String> field5() {
         return OtDocument.OT_DOCUMENT.DOCUMENT_NAME;
     }
 
     @Override
-    public Field<Long> field5() {
+    public Field<String> field6() {
         return OtDocument.OT_DOCUMENT.TYPE_DOCUMENT;
     }
 
     @Override
-    public Field<Long> field6() {
+    public Field<Long> field7() {
         return OtDocument.OT_DOCUMENT.DOWNLOAD_STATUS;
     }
 
     @Override
-    public Field<LocalDateTime> field7() {
+    public Field<LocalDateTime> field8() {
         return OtDocument.OT_DOCUMENT.CREATED_DATE;
     }
 
     @Override
-    public Field<String> field8() {
+    public Field<String> field9() {
         return OtDocument.OT_DOCUMENT.LAST_MODIFIED_BY;
     }
 
     @Override
-    public Field<LocalDateTime> field9() {
+    public Field<LocalDateTime> field10() {
         return OtDocument.OT_DOCUMENT.LAST_MODIFIED_DATE;
     }
 
@@ -260,32 +280,37 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
     }
 
     @Override
-    public String component4() {
+    public Double component4() {
+        return getSize();
+    }
+
+    @Override
+    public String component5() {
         return getDocumentName();
     }
 
     @Override
-    public Long component5() {
+    public String component6() {
         return getTypeDocument();
     }
 
     @Override
-    public Long component6() {
+    public Long component7() {
         return getDownloadStatus();
     }
 
     @Override
-    public LocalDateTime component7() {
+    public LocalDateTime component8() {
         return getCreatedDate();
     }
 
     @Override
-    public String component8() {
+    public String component9() {
         return getLastModifiedBy();
     }
 
     @Override
-    public LocalDateTime component9() {
+    public LocalDateTime component10() {
         return getLastModifiedDate();
     }
 
@@ -305,32 +330,37 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
     }
 
     @Override
-    public String value4() {
+    public Double value4() {
+        return getSize();
+    }
+
+    @Override
+    public String value5() {
         return getDocumentName();
     }
 
     @Override
-    public Long value5() {
+    public String value6() {
         return getTypeDocument();
     }
 
     @Override
-    public Long value6() {
+    public Long value7() {
         return getDownloadStatus();
     }
 
     @Override
-    public LocalDateTime value7() {
+    public LocalDateTime value8() {
         return getCreatedDate();
     }
 
     @Override
-    public String value8() {
+    public String value9() {
         return getLastModifiedBy();
     }
 
     @Override
-    public LocalDateTime value9() {
+    public LocalDateTime value10() {
         return getLastModifiedDate();
     }
 
@@ -353,43 +383,49 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
     }
 
     @Override
-    public OtDocumentRecord value4(String value) {
+    public OtDocumentRecord value4(Double value) {
+        setSize(value);
+        return this;
+    }
+
+    @Override
+    public OtDocumentRecord value5(String value) {
         setDocumentName(value);
         return this;
     }
 
     @Override
-    public OtDocumentRecord value5(Long value) {
+    public OtDocumentRecord value6(String value) {
         setTypeDocument(value);
         return this;
     }
 
     @Override
-    public OtDocumentRecord value6(Long value) {
+    public OtDocumentRecord value7(Long value) {
         setDownloadStatus(value);
         return this;
     }
 
     @Override
-    public OtDocumentRecord value7(LocalDateTime value) {
+    public OtDocumentRecord value8(LocalDateTime value) {
         setCreatedDate(value);
         return this;
     }
 
     @Override
-    public OtDocumentRecord value8(String value) {
+    public OtDocumentRecord value9(String value) {
         setLastModifiedBy(value);
         return this;
     }
 
     @Override
-    public OtDocumentRecord value9(LocalDateTime value) {
+    public OtDocumentRecord value10(LocalDateTime value) {
         setLastModifiedDate(value);
         return this;
     }
 
     @Override
-    public OtDocumentRecord values(Long value1, Long value2, String value3, String value4, Long value5, Long value6, LocalDateTime value7, String value8, LocalDateTime value9) {
+    public OtDocumentRecord values(Long value1, Long value2, String value3, Double value4, String value5, String value6, Long value7, LocalDateTime value8, String value9, LocalDateTime value10) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -399,6 +435,7 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
         value7(value7);
         value8(value8);
         value9(value9);
+        value10(value10);
         return this;
     }
 
@@ -416,12 +453,13 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
     /**
      * Create a detached, initialised OtDocumentRecord
      */
-    public OtDocumentRecord(Long idDocument, Long idLesson, String documentLink, String documentName, Long typeDocument, Long downloadStatus, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
+    public OtDocumentRecord(Long idDocument, Long idLesson, String documentLink, Double size, String documentName, String typeDocument, Long downloadStatus, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
         super(OtDocument.OT_DOCUMENT);
 
         setIdDocument(idDocument);
         setIdLesson(idLesson);
         setDocumentLink(documentLink);
+        setSize(size);
         setDocumentName(documentName);
         setTypeDocument(typeDocument);
         setDownloadStatus(downloadStatus);
@@ -440,6 +478,7 @@ public class OtDocumentRecord extends UpdatableRecordImpl<OtDocumentRecord> impl
             setIdDocument(value.getIdDocument());
             setIdLesson(value.getIdLesson());
             setDocumentLink(value.getDocumentLink());
+            setSize(value.getSize());
             setDocumentName(value.getDocumentName());
             setTypeDocument(value.getTypeDocument());
             setDownloadStatus(value.getDownloadStatus());
