@@ -4,6 +4,7 @@
 package cfm.onthi.entities.tables;
 
 
+import cfm.onthi.entities.Indexes;
 import cfm.onthi.entities.Keys;
 import cfm.onthi.entities.SOnthi;
 import cfm.onthi.entities.tables.records.OtUserCourseRecord;
@@ -16,6 +17,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function3;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
@@ -106,6 +108,11 @@ public class OtUserCourse extends TableImpl<OtUserCourseRecord> {
     }
 
     @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.OT_USER_COURSE_ID_COURSE, Indexes.OT_USER_COURSE_ID_USER);
+    }
+
+    @Override
     public Identity<OtUserCourseRecord, Long> getIdentity() {
         return (Identity<OtUserCourseRecord, Long>) super.getIdentity();
     }
@@ -116,8 +123,31 @@ public class OtUserCourse extends TableImpl<OtUserCourseRecord> {
     }
 
     @Override
-    public List<UniqueKey<OtUserCourseRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.KEY_OT_USER_COURSE_ID_USER, Keys.KEY_OT_USER_COURSE_ID_COURSE);
+    public List<ForeignKey<OtUserCourseRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.OT_USER_COURSE_OT_USER_ID_USER_FK, Keys.OT_USER_COURSE_OT_COURSE_ID_COURSE_FK);
+    }
+
+    private transient OtUser _otUser;
+    private transient OtCourse _otCourse;
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_user</code> table.
+     */
+    public OtUser otUser() {
+        if (_otUser == null)
+            _otUser = new OtUser(this, Keys.OT_USER_COURSE_OT_USER_ID_USER_FK);
+
+        return _otUser;
+    }
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_course</code> table.
+     */
+    public OtCourse otCourse() {
+        if (_otCourse == null)
+            _otCourse = new OtCourse(this, Keys.OT_USER_COURSE_OT_COURSE_ID_COURSE_FK);
+
+        return _otCourse;
     }
 
     @Override

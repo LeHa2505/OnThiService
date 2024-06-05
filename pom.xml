@@ -22,6 +22,11 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
@@ -91,10 +96,17 @@
             <systemPath>${project.basedir}/lib/jooq-codegen-maven-3.17.15.jar</systemPath>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>org.mariadb.jdbc</groupId>-->
+<!--            <artifactId>mariadb-java-client</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-            <scope>runtime</scope>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
         </dependency>
 
         <dependency>
@@ -168,8 +180,30 @@
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.9.1</version>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.cloudinary</groupId>
+            <artifactId>cloudinary-http45</artifactId>
+            <version>1.34.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-storage</artifactId>
+            <version>2.39.0</version>
         </dependency>
     </dependencies>
 
@@ -198,15 +232,15 @@
                         </goals>
                         <configuration>
                             <jdbc>
-                                <driver>org.mariadb.jdbc.Driver</driver>
-                                <url>jdbc:mariadb://10.1.117.181:3307/s_onthi</url>
+                                <driver>com.mysql.cj.jdbc.Driver</driver>
+                                <url>jdbc:mysql://localhost:3306/s_onthi</url>
                                 <user>root</user>
-                                <password>cmis1234</password>
+                                <password>123456</password>
                             </jdbc>
                             <generator>
                                 <name>org.jooq.codegen.DefaultGenerator</name>
                                 <database>
-                                    <name>org.jooq.meta.mariadb.MariaDBDatabase</name>
+                                    <name>org.jooq.meta.mysql.MySQLDatabase</name>
                                     <includes>.*</includes>
                                     <excludes></excludes>
                                     <inputSchema>s_onthi</inputSchema>

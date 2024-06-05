@@ -20,15 +20,20 @@ spring:
     max-idle: 20
     min-idle: 15
   hibernate:
-    dialect: org.hibernate.dialect.MariaDB103Dialect
+    dialect: org.hibernate.dialect.MySQL8Dialect
     show_sql: true
     format_sql: true
   datasource-onthi:
-    driver-class-name: org.mariadb.jdbc.Driver
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    type: com.zaxxer.hikari.HikariDataSource
+#    jdbc-url: jdbc:mariadb://10.1.117.181:3307/s_onthi?useLegacyDatetimeCode=false&serverTimezone=UTC
+#    username: root
+#    password: cmis1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
-    jdbc-url: jdbc:mariadb://10.1.117.181:3307/s_onthi?useLegacyDatetimeCode=false&serverTimezone=UTC
+    jdbc-url: jdbc:mysql://localhost:3306/s_onthi
     username: root
-    password: cmis1234
+    password: 123456
     hikari:
       idle-timeout: 30000
       maximum-pool-size: 500

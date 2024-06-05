@@ -4,17 +4,21 @@
 package cfm.onthi.entities.tables;
 
 
+import cfm.onthi.entities.Indexes;
 import cfm.onthi.entities.Keys;
 import cfm.onthi.entities.SOnthi;
 import cfm.onthi.entities.tables.records.OtSchoolRecord;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function7;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
@@ -59,7 +63,7 @@ public class OtSchool extends TableImpl<OtSchoolRecord> {
     /**
      * The column <code>s_onthi.ot_school.ID_PROVINCE</code>.
      */
-    public final TableField<OtSchoolRecord, Long> ID_PROVINCE = createField(DSL.name("ID_PROVINCE"), SQLDataType.BIGINT.defaultValue(DSL.field("NULL", SQLDataType.BIGINT)), this, "");
+    public final TableField<OtSchoolRecord, Long> ID_PROVINCE = createField(DSL.name("ID_PROVINCE"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>s_onthi.ot_school.SCHOOL_NAME</code>.
@@ -69,22 +73,22 @@ public class OtSchool extends TableImpl<OtSchoolRecord> {
     /**
      * The column <code>s_onthi.ot_school.TYPE_SCHOOL</code>.
      */
-    public final TableField<OtSchoolRecord, Long> TYPE_SCHOOL = createField(DSL.name("TYPE_SCHOOL"), SQLDataType.BIGINT.defaultValue(DSL.field("NULL", SQLDataType.BIGINT)), this, "");
+    public final TableField<OtSchoolRecord, Long> TYPE_SCHOOL = createField(DSL.name("TYPE_SCHOOL"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>s_onthi.ot_school.CREATED_DATE</code>.
      */
-    public final TableField<OtSchoolRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtSchoolRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>s_onthi.ot_school.LAST_MODIFIED_BY</code>.
      */
-    public final TableField<OtSchoolRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtSchoolRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>s_onthi.ot_school.LAST_MODIFIED_DATE</code>.
      */
-    public final TableField<OtSchoolRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtSchoolRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private OtSchool(Name alias, Table<OtSchoolRecord> aliased) {
         this(alias, aliased, null);
@@ -125,6 +129,11 @@ public class OtSchool extends TableImpl<OtSchoolRecord> {
     }
 
     @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.OT_SCHOOL_ID_PROVINCE);
+    }
+
+    @Override
     public Identity<OtSchoolRecord, Long> getIdentity() {
         return (Identity<OtSchoolRecord, Long>) super.getIdentity();
     }
@@ -132,6 +141,23 @@ public class OtSchool extends TableImpl<OtSchoolRecord> {
     @Override
     public UniqueKey<OtSchoolRecord> getPrimaryKey() {
         return Keys.KEY_OT_SCHOOL_PRIMARY;
+    }
+
+    @Override
+    public List<ForeignKey<OtSchoolRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.OT_SCHOOL_IBFK_1);
+    }
+
+    private transient OtProvince _otProvince;
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_province</code> table.
+     */
+    public OtProvince otProvince() {
+        if (_otProvince == null)
+            _otProvince = new OtProvince(this, Keys.OT_SCHOOL_IBFK_1);
+
+        return _otProvince;
     }
 
     @Override

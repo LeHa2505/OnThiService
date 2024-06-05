@@ -4,21 +4,25 @@
 package cfm.onthi.entities.tables;
 
 
+import cfm.onthi.entities.Indexes;
 import cfm.onthi.entities.Keys;
 import cfm.onthi.entities.SOnthi;
 import cfm.onthi.entities.tables.records.OtQuizRecord;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function6;
+import org.jooq.Function10;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row6;
+import org.jooq.Row10;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -67,19 +71,39 @@ public class OtQuiz extends TableImpl<OtQuizRecord> {
     public final TableField<OtQuizRecord, String> CONTENT_QUIZ = createField(DSL.name("CONTENT_QUIZ"), SQLDataType.VARCHAR(2000).nullable(false), this, "");
 
     /**
+     * The column <code>s_onthi.ot_quiz.QUIZ_TYPE</code>.
+     */
+    public final TableField<OtQuizRecord, Long> QUIZ_TYPE = createField(DSL.name("QUIZ_TYPE"), SQLDataType.BIGINT, this, "");
+
+    /**
+     * The column <code>s_onthi.ot_quiz.ANSWER</code>.
+     */
+    public final TableField<OtQuizRecord, String> ANSWER = createField(DSL.name("ANSWER"), SQLDataType.CLOB, this, "");
+
+    /**
+     * The column <code>s_onthi.ot_quiz.QUIZ_STATUS</code>.
+     */
+    public final TableField<OtQuizRecord, Long> QUIZ_STATUS = createField(DSL.name("QUIZ_STATUS"), SQLDataType.BIGINT, this, "");
+
+    /**
+     * The column <code>s_onthi.ot_quiz.ORDER</code>.
+     */
+    public final TableField<OtQuizRecord, Integer> ORDER = createField(DSL.name("ORDER"), SQLDataType.INTEGER, this, "");
+
+    /**
      * The column <code>s_onthi.ot_quiz.CREATED_DATE</code>.
      */
-    public final TableField<OtQuizRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtQuizRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>s_onthi.ot_quiz.LAST_MODIFIED_BY</code>.
      */
-    public final TableField<OtQuizRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtQuizRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>s_onthi.ot_quiz.LAST_MODIFIED_DATE</code>.
      */
-    public final TableField<OtQuizRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtQuizRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private OtQuiz(Name alias, Table<OtQuizRecord> aliased) {
         this(alias, aliased, null);
@@ -120,6 +144,11 @@ public class OtQuiz extends TableImpl<OtQuizRecord> {
     }
 
     @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.OT_QUIZ_ID_LESSON);
+    }
+
+    @Override
     public Identity<OtQuizRecord, Long> getIdentity() {
         return (Identity<OtQuizRecord, Long>) super.getIdentity();
     }
@@ -127,6 +156,23 @@ public class OtQuiz extends TableImpl<OtQuizRecord> {
     @Override
     public UniqueKey<OtQuizRecord> getPrimaryKey() {
         return Keys.KEY_OT_QUIZ_PRIMARY;
+    }
+
+    @Override
+    public List<ForeignKey<OtQuizRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.OT_QUIZ_IBFK_1);
+    }
+
+    private transient OtLesson _otLesson;
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_lesson</code> table.
+     */
+    public OtLesson otLesson() {
+        if (_otLesson == null)
+            _otLesson = new OtLesson(this, Keys.OT_QUIZ_IBFK_1);
+
+        return _otLesson;
     }
 
     @Override
@@ -169,18 +215,18 @@ public class OtQuiz extends TableImpl<OtQuizRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row6 type methods
+    // Row10 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row6<Long, Long, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row6) super.fieldsRow();
+    public Row10<Long, Long, String, Long, String, Long, Integer, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row10) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function6<? super Long, ? super Long, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function10<? super Long, ? super Long, ? super String, ? super Long, ? super String, ? super Long, ? super Integer, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -188,7 +234,7 @@ public class OtQuiz extends TableImpl<OtQuizRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function6<? super Long, ? super Long, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function10<? super Long, ? super Long, ? super String, ? super Long, ? super String, ? super Long, ? super Integer, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

@@ -11,14 +11,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record7;
-import org.jooq.Row7;
+import org.jooq.Record11;
+import org.jooq.Row11;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
@@ -29,9 +30,12 @@ import org.jooq.impl.UpdatableRecordImpl;
 @Entity
 @Table(
     name = "ot_review",
-    schema = "s_onthi"
+    schema = "s_onthi",
+    indexes = {
+        @Index(name = "ID_COURSE", columnList = "ID_COURSE ASC")
+    }
 )
-public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implements Record7<Long, Long, Long, String, LocalDateTime, String, LocalDateTime> {
+public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implements Record11<Long, Long, Long, Long, String, Integer, Integer, Integer, LocalDateTime, String, LocalDateTime> {
 
     private static final long serialVersionUID = 1L;
 
@@ -68,10 +72,25 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
     }
 
     /**
+     * Setter for <code>s_onthi.ot_review.ID_LESSON</code>.
+     */
+    public void setIdLesson(Long value) {
+        set(2, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_review.ID_LESSON</code>.
+     */
+    @Column(name = "ID_LESSON")
+    public Long getIdLesson() {
+        return (Long) get(2);
+    }
+
+    /**
      * Setter for <code>s_onthi.ot_review.ID_USER</code>.
      */
     public void setIdUser(Long value) {
-        set(2, value);
+        set(3, value);
     }
 
     /**
@@ -79,14 +98,14 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
      */
     @Column(name = "ID_USER", nullable = false)
     public Long getIdUser() {
-        return (Long) get(2);
+        return (Long) get(3);
     }
 
     /**
      * Setter for <code>s_onthi.ot_review.CONTENT</code>.
      */
     public void setContent(String value) {
-        set(3, value);
+        set(4, value);
     }
 
     /**
@@ -94,14 +113,59 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
      */
     @Column(name = "CONTENT", nullable = false, length = 2000)
     public String getContent() {
-        return (String) get(3);
+        return (String) get(4);
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_review.RATING</code>.
+     */
+    public void setRating(Integer value) {
+        set(5, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_review.RATING</code>.
+     */
+    @Column(name = "RATING")
+    public Integer getRating() {
+        return (Integer) get(5);
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_review.LIKE</code>.
+     */
+    public void setLike(Integer value) {
+        set(6, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_review.LIKE</code>.
+     */
+    @Column(name = "LIKE")
+    public Integer getLike() {
+        return (Integer) get(6);
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_review.DISLIKE</code>.
+     */
+    public void setDislike(Integer value) {
+        set(7, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_review.DISLIKE</code>.
+     */
+    @Column(name = "DISLIKE")
+    public Integer getDislike() {
+        return (Integer) get(7);
     }
 
     /**
      * Setter for <code>s_onthi.ot_review.CREATED_DATE</code>.
      */
     public void setCreatedDate(LocalDateTime value) {
-        set(4, value);
+        set(8, value);
     }
 
     /**
@@ -109,14 +173,14 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
      */
     @Column(name = "CREATED_DATE", precision = 6)
     public LocalDateTime getCreatedDate() {
-        return (LocalDateTime) get(4);
+        return (LocalDateTime) get(8);
     }
 
     /**
      * Setter for <code>s_onthi.ot_review.LAST_MODIFIED_BY</code>.
      */
     public void setLastModifiedBy(String value) {
-        set(5, value);
+        set(9, value);
     }
 
     /**
@@ -124,14 +188,14 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
      */
     @Column(name = "LAST_MODIFIED_BY", length = 50)
     public String getLastModifiedBy() {
-        return (String) get(5);
+        return (String) get(9);
     }
 
     /**
      * Setter for <code>s_onthi.ot_review.LAST_MODIFIED_DATE</code>.
      */
     public void setLastModifiedDate(LocalDateTime value) {
-        set(6, value);
+        set(10, value);
     }
 
     /**
@@ -139,7 +203,7 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
      */
     @Column(name = "LAST_MODIFIED_DATE", precision = 6)
     public LocalDateTime getLastModifiedDate() {
-        return (LocalDateTime) get(6);
+        return (LocalDateTime) get(10);
     }
 
     // -------------------------------------------------------------------------
@@ -152,17 +216,17 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
     }
 
     // -------------------------------------------------------------------------
-    // Record7 type implementation
+    // Record11 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Long, Long, Long, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row11<Long, Long, Long, Long, String, Integer, Integer, Integer, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row11) super.fieldsRow();
     }
 
     @Override
-    public Row7<Long, Long, Long, String, LocalDateTime, String, LocalDateTime> valuesRow() {
-        return (Row7) super.valuesRow();
+    public Row11<Long, Long, Long, Long, String, Integer, Integer, Integer, LocalDateTime, String, LocalDateTime> valuesRow() {
+        return (Row11) super.valuesRow();
     }
 
     @Override
@@ -177,26 +241,46 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
 
     @Override
     public Field<Long> field3() {
+        return OtReview.OT_REVIEW.ID_LESSON;
+    }
+
+    @Override
+    public Field<Long> field4() {
         return OtReview.OT_REVIEW.ID_USER;
     }
 
     @Override
-    public Field<String> field4() {
+    public Field<String> field5() {
         return OtReview.OT_REVIEW.CONTENT;
     }
 
     @Override
-    public Field<LocalDateTime> field5() {
+    public Field<Integer> field6() {
+        return OtReview.OT_REVIEW.RATING;
+    }
+
+    @Override
+    public Field<Integer> field7() {
+        return OtReview.OT_REVIEW.LIKE;
+    }
+
+    @Override
+    public Field<Integer> field8() {
+        return OtReview.OT_REVIEW.DISLIKE;
+    }
+
+    @Override
+    public Field<LocalDateTime> field9() {
         return OtReview.OT_REVIEW.CREATED_DATE;
     }
 
     @Override
-    public Field<String> field6() {
+    public Field<String> field10() {
         return OtReview.OT_REVIEW.LAST_MODIFIED_BY;
     }
 
     @Override
-    public Field<LocalDateTime> field7() {
+    public Field<LocalDateTime> field11() {
         return OtReview.OT_REVIEW.LAST_MODIFIED_DATE;
     }
 
@@ -212,26 +296,46 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
 
     @Override
     public Long component3() {
+        return getIdLesson();
+    }
+
+    @Override
+    public Long component4() {
         return getIdUser();
     }
 
     @Override
-    public String component4() {
+    public String component5() {
         return getContent();
     }
 
     @Override
-    public LocalDateTime component5() {
+    public Integer component6() {
+        return getRating();
+    }
+
+    @Override
+    public Integer component7() {
+        return getLike();
+    }
+
+    @Override
+    public Integer component8() {
+        return getDislike();
+    }
+
+    @Override
+    public LocalDateTime component9() {
         return getCreatedDate();
     }
 
     @Override
-    public String component6() {
+    public String component10() {
         return getLastModifiedBy();
     }
 
     @Override
-    public LocalDateTime component7() {
+    public LocalDateTime component11() {
         return getLastModifiedDate();
     }
 
@@ -247,26 +351,46 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
 
     @Override
     public Long value3() {
+        return getIdLesson();
+    }
+
+    @Override
+    public Long value4() {
         return getIdUser();
     }
 
     @Override
-    public String value4() {
+    public String value5() {
         return getContent();
     }
 
     @Override
-    public LocalDateTime value5() {
+    public Integer value6() {
+        return getRating();
+    }
+
+    @Override
+    public Integer value7() {
+        return getLike();
+    }
+
+    @Override
+    public Integer value8() {
+        return getDislike();
+    }
+
+    @Override
+    public LocalDateTime value9() {
         return getCreatedDate();
     }
 
     @Override
-    public String value6() {
+    public String value10() {
         return getLastModifiedBy();
     }
 
     @Override
-    public LocalDateTime value7() {
+    public LocalDateTime value11() {
         return getLastModifiedDate();
     }
 
@@ -284,36 +408,60 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
 
     @Override
     public OtReviewRecord value3(Long value) {
+        setIdLesson(value);
+        return this;
+    }
+
+    @Override
+    public OtReviewRecord value4(Long value) {
         setIdUser(value);
         return this;
     }
 
     @Override
-    public OtReviewRecord value4(String value) {
+    public OtReviewRecord value5(String value) {
         setContent(value);
         return this;
     }
 
     @Override
-    public OtReviewRecord value5(LocalDateTime value) {
+    public OtReviewRecord value6(Integer value) {
+        setRating(value);
+        return this;
+    }
+
+    @Override
+    public OtReviewRecord value7(Integer value) {
+        setLike(value);
+        return this;
+    }
+
+    @Override
+    public OtReviewRecord value8(Integer value) {
+        setDislike(value);
+        return this;
+    }
+
+    @Override
+    public OtReviewRecord value9(LocalDateTime value) {
         setCreatedDate(value);
         return this;
     }
 
     @Override
-    public OtReviewRecord value6(String value) {
+    public OtReviewRecord value10(String value) {
         setLastModifiedBy(value);
         return this;
     }
 
     @Override
-    public OtReviewRecord value7(LocalDateTime value) {
+    public OtReviewRecord value11(LocalDateTime value) {
         setLastModifiedDate(value);
         return this;
     }
 
     @Override
-    public OtReviewRecord values(Long value1, Long value2, Long value3, String value4, LocalDateTime value5, String value6, LocalDateTime value7) {
+    public OtReviewRecord values(Long value1, Long value2, Long value3, Long value4, String value5, Integer value6, Integer value7, Integer value8, LocalDateTime value9, String value10, LocalDateTime value11) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -321,6 +469,10 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
         value5(value5);
         value6(value6);
         value7(value7);
+        value8(value8);
+        value9(value9);
+        value10(value10);
+        value11(value11);
         return this;
     }
 
@@ -338,13 +490,17 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
     /**
      * Create a detached, initialised OtReviewRecord
      */
-    public OtReviewRecord(Long idReview, Long idCourse, Long idUser, String content, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
+    public OtReviewRecord(Long idReview, Long idCourse, Long idLesson, Long idUser, String content, Integer rating, Integer like, Integer dislike, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
         super(OtReview.OT_REVIEW);
 
         setIdReview(idReview);
         setIdCourse(idCourse);
+        setIdLesson(idLesson);
         setIdUser(idUser);
         setContent(content);
+        setRating(rating);
+        setLike(like);
+        setDislike(dislike);
         setCreatedDate(createdDate);
         setLastModifiedBy(lastModifiedBy);
         setLastModifiedDate(lastModifiedDate);
@@ -359,8 +515,12 @@ public class OtReviewRecord extends UpdatableRecordImpl<OtReviewRecord> implemen
         if (value != null) {
             setIdReview(value.getIdReview());
             setIdCourse(value.getIdCourse());
+            setIdLesson(value.getIdLesson());
             setIdUser(value.getIdUser());
             setContent(value.getContent());
+            setRating(value.getRating());
+            setLike(value.getLike());
+            setDislike(value.getDislike());
             setCreatedDate(value.getCreatedDate());
             setLastModifiedBy(value.getLastModifiedBy());
             setLastModifiedDate(value.getLastModifiedDate());

@@ -121,6 +121,34 @@ public class OtRoleMenu extends TableImpl<OtRoleMenuRecord> {
     }
 
     @Override
+    public List<ForeignKey<OtRoleMenuRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.OT_ROLE_MENU_IBFK_1, Keys.OT_ROLE_MENU_IBFK_2);
+    }
+
+    private transient OtRole _otRole;
+    private transient OtMenu _otMenu;
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_role</code> table.
+     */
+    public OtRole otRole() {
+        if (_otRole == null)
+            _otRole = new OtRole(this, Keys.OT_ROLE_MENU_IBFK_1);
+
+        return _otRole;
+    }
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_menu</code> table.
+     */
+    public OtMenu otMenu() {
+        if (_otMenu == null)
+            _otMenu = new OtMenu(this, Keys.OT_ROLE_MENU_IBFK_2);
+
+        return _otMenu;
+    }
+
+    @Override
     public OtRoleMenu as(String alias) {
         return new OtRoleMenu(DSL.name(alias), this);
     }

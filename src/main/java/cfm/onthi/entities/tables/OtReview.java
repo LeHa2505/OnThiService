@@ -4,21 +4,25 @@
 package cfm.onthi.entities.tables;
 
 
+import cfm.onthi.entities.Indexes;
 import cfm.onthi.entities.Keys;
 import cfm.onthi.entities.SOnthi;
 import cfm.onthi.entities.tables.records.OtReviewRecord;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function7;
+import org.jooq.Function11;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row7;
+import org.jooq.Row11;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -62,6 +66,11 @@ public class OtReview extends TableImpl<OtReviewRecord> {
     public final TableField<OtReviewRecord, Long> ID_COURSE = createField(DSL.name("ID_COURSE"), SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
+     * The column <code>s_onthi.ot_review.ID_LESSON</code>.
+     */
+    public final TableField<OtReviewRecord, Long> ID_LESSON = createField(DSL.name("ID_LESSON"), SQLDataType.BIGINT, this, "");
+
+    /**
      * The column <code>s_onthi.ot_review.ID_USER</code>.
      */
     public final TableField<OtReviewRecord, Long> ID_USER = createField(DSL.name("ID_USER"), SQLDataType.BIGINT.nullable(false), this, "");
@@ -72,19 +81,34 @@ public class OtReview extends TableImpl<OtReviewRecord> {
     public final TableField<OtReviewRecord, String> CONTENT = createField(DSL.name("CONTENT"), SQLDataType.VARCHAR(2000).nullable(false), this, "");
 
     /**
+     * The column <code>s_onthi.ot_review.RATING</code>.
+     */
+    public final TableField<OtReviewRecord, Integer> RATING = createField(DSL.name("RATING"), SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>s_onthi.ot_review.LIKE</code>.
+     */
+    public final TableField<OtReviewRecord, Integer> LIKE = createField(DSL.name("LIKE"), SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>s_onthi.ot_review.DISLIKE</code>.
+     */
+    public final TableField<OtReviewRecord, Integer> DISLIKE = createField(DSL.name("DISLIKE"), SQLDataType.INTEGER, this, "");
+
+    /**
      * The column <code>s_onthi.ot_review.CREATED_DATE</code>.
      */
-    public final TableField<OtReviewRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtReviewRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>s_onthi.ot_review.LAST_MODIFIED_BY</code>.
      */
-    public final TableField<OtReviewRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtReviewRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>s_onthi.ot_review.LAST_MODIFIED_DATE</code>.
      */
-    public final TableField<OtReviewRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtReviewRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private OtReview(Name alias, Table<OtReviewRecord> aliased) {
         this(alias, aliased, null);
@@ -125,6 +149,11 @@ public class OtReview extends TableImpl<OtReviewRecord> {
     }
 
     @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.OT_REVIEW_ID_COURSE);
+    }
+
+    @Override
     public Identity<OtReviewRecord, Long> getIdentity() {
         return (Identity<OtReviewRecord, Long>) super.getIdentity();
     }
@@ -132,6 +161,23 @@ public class OtReview extends TableImpl<OtReviewRecord> {
     @Override
     public UniqueKey<OtReviewRecord> getPrimaryKey() {
         return Keys.KEY_OT_REVIEW_PRIMARY;
+    }
+
+    @Override
+    public List<ForeignKey<OtReviewRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.OT_REVIEW_IBFK_1);
+    }
+
+    private transient OtCourse _otCourse;
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_course</code> table.
+     */
+    public OtCourse otCourse() {
+        if (_otCourse == null)
+            _otCourse = new OtCourse(this, Keys.OT_REVIEW_IBFK_1);
+
+        return _otCourse;
     }
 
     @Override
@@ -174,18 +220,18 @@ public class OtReview extends TableImpl<OtReviewRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row11 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Long, Long, Long, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row11<Long, Long, Long, Long, String, Integer, Integer, Integer, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row11) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function7<? super Long, ? super Long, ? super Long, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function11<? super Long, ? super Long, ? super Long, ? super Long, ? super String, ? super Integer, ? super Integer, ? super Integer, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -193,7 +239,7 @@ public class OtReview extends TableImpl<OtReviewRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function7<? super Long, ? super Long, ? super Long, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function11<? super Long, ? super Long, ? super Long, ? super Long, ? super String, ? super Integer, ? super Integer, ? super Integer, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

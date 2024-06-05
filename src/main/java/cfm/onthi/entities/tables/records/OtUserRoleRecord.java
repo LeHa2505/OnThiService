@@ -39,19 +39,19 @@ public class OtUserRoleRecord extends UpdatableRecordImpl<OtUserRoleRecord> impl
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>s_onthi.ot_user_role.ID</code>.
+     * Setter for <code>s_onthi.ot_user_role.ID_USER_ROLE</code>.
      */
-    public void setId(Long value) {
+    public void setIdUserRole(Long value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>s_onthi.ot_user_role.ID</code>.
+     * Getter for <code>s_onthi.ot_user_role.ID_USER_ROLE</code>.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false)
-    public Long getId() {
+    @Column(name = "ID_USER_ROLE", nullable = false)
+    public Long getIdUserRole() {
         return (Long) get(0);
     }
 
@@ -110,7 +110,7 @@ public class OtUserRoleRecord extends UpdatableRecordImpl<OtUserRoleRecord> impl
 
     @Override
     public Field<Long> field1() {
-        return OtUserRole.OT_USER_ROLE.ID;
+        return OtUserRole.OT_USER_ROLE.ID_USER_ROLE;
     }
 
     @Override
@@ -125,7 +125,7 @@ public class OtUserRoleRecord extends UpdatableRecordImpl<OtUserRoleRecord> impl
 
     @Override
     public Long component1() {
-        return getId();
+        return getIdUserRole();
     }
 
     @Override
@@ -140,7 +140,7 @@ public class OtUserRoleRecord extends UpdatableRecordImpl<OtUserRoleRecord> impl
 
     @Override
     public Long value1() {
-        return getId();
+        return getIdUserRole();
     }
 
     @Override
@@ -155,7 +155,7 @@ public class OtUserRoleRecord extends UpdatableRecordImpl<OtUserRoleRecord> impl
 
     @Override
     public OtUserRoleRecord value1(Long value) {
-        setId(value);
+        setIdUserRole(value);
         return this;
     }
 
@@ -193,10 +193,10 @@ public class OtUserRoleRecord extends UpdatableRecordImpl<OtUserRoleRecord> impl
     /**
      * Create a detached, initialised OtUserRoleRecord
      */
-    public OtUserRoleRecord(Long id, Long idUser, Long idRole) {
+    public OtUserRoleRecord(Long idUserRole, Long idUser, Long idRole) {
         super(OtUserRole.OT_USER_ROLE);
 
-        setId(id);
+        setIdUserRole(idUserRole);
         setIdUser(idUser);
         setIdRole(idRole);
     }
@@ -208,7 +208,7 @@ public class OtUserRoleRecord extends UpdatableRecordImpl<OtUserRoleRecord> impl
         super(OtUserRole.OT_USER_ROLE);
 
         if (value != null) {
-            setId(value.getId());
+            setIdUserRole(value.getIdUserRole());
             setIdUser(value.getIdUser());
             setIdRole(value.getIdRole());
         }

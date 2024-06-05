@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
@@ -22,7 +23,10 @@ import java.time.LocalDateTime;
 @Entity
 @Table(
     name = "ot_school",
-    schema = "s_onthi"
+    schema = "s_onthi",
+    indexes = {
+        @Index(name = "ID_PROVINCE", columnList = "ID_PROVINCE ASC")
+    }
 )
 public class OtSchool implements Serializable {
 

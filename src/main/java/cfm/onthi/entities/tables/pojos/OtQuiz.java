@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
@@ -22,7 +23,10 @@ import java.time.LocalDateTime;
 @Entity
 @Table(
     name = "ot_quiz",
-    schema = "s_onthi"
+    schema = "s_onthi",
+    indexes = {
+        @Index(name = "ID_LESSON", columnList = "ID_LESSON ASC")
+    }
 )
 public class OtQuiz implements Serializable {
 
@@ -31,6 +35,10 @@ public class OtQuiz implements Serializable {
     private Long idQuiz;
     private Long idLesson;
     private String contentQuiz;
+    private Long quizType;
+    private String answer;
+    private Long quizStatus;
+    private Integer order;
     private LocalDateTime createdDate;
     private String lastModifiedBy;
     private LocalDateTime lastModifiedDate;
@@ -41,6 +49,10 @@ public class OtQuiz implements Serializable {
         this.idQuiz = value.idQuiz;
         this.idLesson = value.idLesson;
         this.contentQuiz = value.contentQuiz;
+        this.quizType = value.quizType;
+        this.answer = value.answer;
+        this.quizStatus = value.quizStatus;
+        this.order = value.order;
         this.createdDate = value.createdDate;
         this.lastModifiedBy = value.lastModifiedBy;
         this.lastModifiedDate = value.lastModifiedDate;
@@ -50,6 +62,10 @@ public class OtQuiz implements Serializable {
         Long idQuiz,
         Long idLesson,
         String contentQuiz,
+        Long quizType,
+        String answer,
+        Long quizStatus,
+        Integer order,
         LocalDateTime createdDate,
         String lastModifiedBy,
         LocalDateTime lastModifiedDate
@@ -57,6 +73,10 @@ public class OtQuiz implements Serializable {
         this.idQuiz = idQuiz;
         this.idLesson = idLesson;
         this.contentQuiz = contentQuiz;
+        this.quizType = quizType;
+        this.answer = answer;
+        this.quizStatus = quizStatus;
+        this.order = order;
         this.createdDate = createdDate;
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
@@ -107,6 +127,66 @@ public class OtQuiz implements Serializable {
      */
     public void setContentQuiz(String contentQuiz) {
         this.contentQuiz = contentQuiz;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_quiz.QUIZ_TYPE</code>.
+     */
+    @Column(name = "QUIZ_TYPE")
+    public Long getQuizType() {
+        return this.quizType;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_quiz.QUIZ_TYPE</code>.
+     */
+    public void setQuizType(Long quizType) {
+        this.quizType = quizType;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_quiz.ANSWER</code>.
+     */
+    @Column(name = "ANSWER")
+    public String getAnswer() {
+        return this.answer;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_quiz.ANSWER</code>.
+     */
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_quiz.QUIZ_STATUS</code>.
+     */
+    @Column(name = "QUIZ_STATUS")
+    public Long getQuizStatus() {
+        return this.quizStatus;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_quiz.QUIZ_STATUS</code>.
+     */
+    public void setQuizStatus(Long quizStatus) {
+        this.quizStatus = quizStatus;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_quiz.ORDER</code>.
+     */
+    @Column(name = "ORDER")
+    public Integer getOrder() {
+        return this.order;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_quiz.ORDER</code>.
+     */
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 
     /**
@@ -181,6 +261,30 @@ public class OtQuiz implements Serializable {
         }
         else if (!this.contentQuiz.equals(other.contentQuiz))
             return false;
+        if (this.quizType == null) {
+            if (other.quizType != null)
+                return false;
+        }
+        else if (!this.quizType.equals(other.quizType))
+            return false;
+        if (this.answer == null) {
+            if (other.answer != null)
+                return false;
+        }
+        else if (!this.answer.equals(other.answer))
+            return false;
+        if (this.quizStatus == null) {
+            if (other.quizStatus != null)
+                return false;
+        }
+        else if (!this.quizStatus.equals(other.quizStatus))
+            return false;
+        if (this.order == null) {
+            if (other.order != null)
+                return false;
+        }
+        else if (!this.order.equals(other.order))
+            return false;
         if (this.createdDate == null) {
             if (other.createdDate != null)
                 return false;
@@ -209,6 +313,10 @@ public class OtQuiz implements Serializable {
         result = prime * result + ((this.idQuiz == null) ? 0 : this.idQuiz.hashCode());
         result = prime * result + ((this.idLesson == null) ? 0 : this.idLesson.hashCode());
         result = prime * result + ((this.contentQuiz == null) ? 0 : this.contentQuiz.hashCode());
+        result = prime * result + ((this.quizType == null) ? 0 : this.quizType.hashCode());
+        result = prime * result + ((this.answer == null) ? 0 : this.answer.hashCode());
+        result = prime * result + ((this.quizStatus == null) ? 0 : this.quizStatus.hashCode());
+        result = prime * result + ((this.order == null) ? 0 : this.order.hashCode());
         result = prime * result + ((this.createdDate == null) ? 0 : this.createdDate.hashCode());
         result = prime * result + ((this.lastModifiedBy == null) ? 0 : this.lastModifiedBy.hashCode());
         result = prime * result + ((this.lastModifiedDate == null) ? 0 : this.lastModifiedDate.hashCode());
@@ -222,6 +330,10 @@ public class OtQuiz implements Serializable {
         sb.append(idQuiz);
         sb.append(", ").append(idLesson);
         sb.append(", ").append(contentQuiz);
+        sb.append(", ").append(quizType);
+        sb.append(", ").append(answer);
+        sb.append(", ").append(quizStatus);
+        sb.append(", ").append(order);
         sb.append(", ").append(createdDate);
         sb.append(", ").append(lastModifiedBy);
         sb.append(", ").append(lastModifiedDate);

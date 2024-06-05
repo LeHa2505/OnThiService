@@ -4,22 +4,26 @@
 package cfm.onthi.entities.tables;
 
 
+import cfm.onthi.entities.Indexes;
 import cfm.onthi.entities.Keys;
 import cfm.onthi.entities.SOnthi;
 import cfm.onthi.entities.tables.records.OtCourseRecord;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function14;
+import org.jooq.Function15;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row14;
+import org.jooq.Row15;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -63,14 +67,19 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
     public final TableField<OtCourseRecord, Long> ID_TEACHER = createField(DSL.name("ID_TEACHER"), SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
+     * The column <code>s_onthi.ot_course.AVATAR_COURSE</code>.
+     */
+    public final TableField<OtCourseRecord, String> AVATAR_COURSE = createField(DSL.name("AVATAR_COURSE"), SQLDataType.VARCHAR(5000), this, "");
+
+    /**
      * The column <code>s_onthi.ot_course.CATEGORY_NAME</code>.
      */
-    public final TableField<OtCourseRecord, String> CATEGORY_NAME = createField(DSL.name("CATEGORY_NAME"), SQLDataType.VARCHAR(10).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtCourseRecord, String> CATEGORY_NAME = createField(DSL.name("CATEGORY_NAME"), SQLDataType.VARCHAR(100), this, "");
 
     /**
      * The column <code>s_onthi.ot_course.SCHEDULE</code>.
      */
-    public final TableField<OtCourseRecord, Double> SCHEDULE = createField(DSL.name("SCHEDULE"), SQLDataType.FLOAT.defaultValue(DSL.field("NULL", SQLDataType.FLOAT)), this, "");
+    public final TableField<OtCourseRecord, Double> SCHEDULE = createField(DSL.name("SCHEDULE"), SQLDataType.FLOAT, this, "");
 
     /**
      * The column <code>s_onthi.ot_course.COURSE_NAME</code>.
@@ -78,19 +87,19 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
     public final TableField<OtCourseRecord, String> COURSE_NAME = createField(DSL.name("COURSE_NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
+     * The column <code>s_onthi.ot_course.TYPE_COURSE</code>.
+     */
+    public final TableField<OtCourseRecord, Long> TYPE_COURSE = createField(DSL.name("TYPE_COURSE"), SQLDataType.BIGINT, this, "");
+
+    /**
      * The column <code>s_onthi.ot_course.START_DATE</code>.
      */
-    public final TableField<OtCourseRecord, LocalDate> START_DATE = createField(DSL.name("START_DATE"), SQLDataType.LOCALDATE.defaultValue(DSL.field("NULL", SQLDataType.LOCALDATE)), this, "");
+    public final TableField<OtCourseRecord, LocalDate> START_DATE = createField(DSL.name("START_DATE"), SQLDataType.LOCALDATE, this, "");
 
     /**
      * The column <code>s_onthi.ot_course.END_DATE</code>.
      */
-    public final TableField<OtCourseRecord, LocalDate> END_DATE = createField(DSL.name("END_DATE"), SQLDataType.LOCALDATE.defaultValue(DSL.field("NULL", SQLDataType.LOCALDATE)), this, "");
-
-    /**
-     * The column <code>s_onthi.ot_course.DURATION</code>.
-     */
-    public final TableField<OtCourseRecord, Double> DURATION = createField(DSL.name("DURATION"), SQLDataType.FLOAT.defaultValue(DSL.field("NULL", SQLDataType.FLOAT)), this, "");
+    public final TableField<OtCourseRecord, LocalDate> END_DATE = createField(DSL.name("END_DATE"), SQLDataType.LOCALDATE, this, "");
 
     /**
      * The column <code>s_onthi.ot_course.PRICE</code>.
@@ -100,27 +109,27 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
     /**
      * The column <code>s_onthi.ot_course.DISCOUNT</code>.
      */
-    public final TableField<OtCourseRecord, Double> DISCOUNT = createField(DSL.name("DISCOUNT"), SQLDataType.FLOAT.defaultValue(DSL.field("NULL", SQLDataType.FLOAT)), this, "");
+    public final TableField<OtCourseRecord, Double> DISCOUNT = createField(DSL.name("DISCOUNT"), SQLDataType.FLOAT, this, "");
 
     /**
      * The column <code>s_onthi.ot_course.DESCRIPTION</code>.
      */
-    public final TableField<OtCourseRecord, String> DESCRIPTION = createField(DSL.name("DESCRIPTION"), SQLDataType.VARCHAR(2000).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtCourseRecord, String> DESCRIPTION = createField(DSL.name("DESCRIPTION"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>s_onthi.ot_course.CREATED_DATE</code>.
      */
-    public final TableField<OtCourseRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtCourseRecord, LocalDateTime> CREATED_DATE = createField(DSL.name("CREATED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>s_onthi.ot_course.LAST_MODIFIED_BY</code>.
      */
-    public final TableField<OtCourseRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50).defaultValue(DSL.field("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OtCourseRecord, String> LAST_MODIFIED_BY = createField(DSL.name("LAST_MODIFIED_BY"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>s_onthi.ot_course.LAST_MODIFIED_DATE</code>.
      */
-    public final TableField<OtCourseRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6).defaultValue(DSL.field("NULL", SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<OtCourseRecord, LocalDateTime> LAST_MODIFIED_DATE = createField(DSL.name("LAST_MODIFIED_DATE"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private OtCourse(Name alias, Table<OtCourseRecord> aliased) {
         this(alias, aliased, null);
@@ -158,6 +167,11 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
     @Override
     public Schema getSchema() {
         return aliased() ? null : SOnthi.S_ONTHI;
+    }
+
+    @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.OT_COURSE_ID_TEACHER);
     }
 
     @Override
@@ -210,18 +224,18 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row14 type methods
+    // Row15 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row14<Long, Long, String, Double, String, LocalDate, LocalDate, Double, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row14) super.fieldsRow();
+    public Row15<Long, Long, String, String, Double, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row15) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function14<? super Long, ? super Long, ? super String, ? super Double, ? super String, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function15<? super Long, ? super Long, ? super String, ? super String, ? super Double, ? super String, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -229,7 +243,7 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function14<? super Long, ? super Long, ? super String, ? super Double, ? super String, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function15<? super Long, ? super Long, ? super String, ? super String, ? super Double, ? super String, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

@@ -53,9 +53,9 @@ public class OtUserRole extends TableImpl<OtUserRoleRecord> {
     }
 
     /**
-     * The column <code>s_onthi.ot_user_role.ID</code>.
+     * The column <code>s_onthi.ot_user_role.ID_USER_ROLE</code>.
      */
-    public final TableField<OtUserRoleRecord, Long> ID = createField(DSL.name("ID"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
+    public final TableField<OtUserRoleRecord, Long> ID_USER_ROLE = createField(DSL.name("ID_USER_ROLE"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>s_onthi.ot_user_role.ID_USER</code>.
@@ -118,6 +118,23 @@ public class OtUserRole extends TableImpl<OtUserRoleRecord> {
     @Override
     public List<UniqueKey<OtUserRoleRecord>> getUniqueKeys() {
         return Arrays.asList(Keys.KEY_OT_USER_ROLE_ID_USER, Keys.KEY_OT_USER_ROLE_ID_ROLE);
+    }
+
+    @Override
+    public List<ForeignKey<OtUserRoleRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.OT_USER_ROLE_IBFK_1);
+    }
+
+    private transient OtUser _otUser;
+
+    /**
+     * Get the implicit join path to the <code>s_onthi.ot_user</code> table.
+     */
+    public OtUser otUser() {
+        if (_otUser == null)
+            _otUser = new OtUser(this, Keys.OT_USER_ROLE_IBFK_1);
+
+        return _otUser;
     }
 
     @Override
