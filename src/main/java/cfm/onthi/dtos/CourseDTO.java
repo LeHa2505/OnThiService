@@ -26,7 +26,7 @@ public class CourseDTO {
     public String category_name;
 
     @JsonProperty(value = "SCHEDULE")
-    public Double schedule;
+    public String schedule;
 
     @JsonProperty(value = "COURSE_NAME")
     public String course_name;

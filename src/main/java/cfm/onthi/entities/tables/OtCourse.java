@@ -79,7 +79,7 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
     /**
      * The column <code>s_onthi.ot_course.SCHEDULE</code>.
      */
-    public final TableField<OtCourseRecord, Double> SCHEDULE = createField(DSL.name("SCHEDULE"), SQLDataType.FLOAT, this, "");
+    public final TableField<OtCourseRecord, String> SCHEDULE = createField(DSL.name("SCHEDULE"), SQLDataType.VARCHAR(500), this, "");
 
     /**
      * The column <code>s_onthi.ot_course.COURSE_NAME</code>.
@@ -228,14 +228,14 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row15<Long, Long, String, String, Double, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
+    public Row15<Long, Long, String, String, String, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
         return (Row15) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function15<? super Long, ? super Long, ? super String, ? super String, ? super Double, ? super String, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function15<? super Long, ? super Long, ? super String, ? super String, ? super String, ? super String, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -243,7 +243,7 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function15<? super Long, ? super Long, ? super String, ? super String, ? super Double, ? super String, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function15<? super Long, ? super Long, ? super String, ? super String, ? super String, ? super String, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

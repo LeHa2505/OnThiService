@@ -37,7 +37,7 @@ public class OtCourse implements Serializable {
     private Long idTeacher;
     private String avatarCourse;
     private String categoryName;
-    private Double schedule;
+    private String schedule;
     private String courseName;
     private Long typeCourse;
     private LocalDate startDate;
@@ -74,7 +74,7 @@ public class OtCourse implements Serializable {
         Long idTeacher,
         String avatarCourse,
         String categoryName,
-        Double schedule,
+        String schedule,
         String courseName,
         Long typeCourse,
         LocalDate startDate,
@@ -168,15 +168,15 @@ public class OtCourse implements Serializable {
     /**
      * Getter for <code>s_onthi.ot_course.SCHEDULE</code>.
      */
-    @Column(name = "SCHEDULE")
-    public Double getSchedule() {
+    @Column(name = "SCHEDULE", length = 500)
+    public String getSchedule() {
         return this.schedule;
     }
 
     /**
      * Setter for <code>s_onthi.ot_course.SCHEDULE</code>.
      */
-    public void setSchedule(Double schedule) {
+    public void setSchedule(String schedule) {
         this.schedule = schedule;
     }
 

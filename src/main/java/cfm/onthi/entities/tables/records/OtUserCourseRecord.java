@@ -16,8 +16,8 @@ import jakarta.persistence.Table;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record3;
-import org.jooq.Row3;
+import org.jooq.Record6;
+import org.jooq.Row6;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
@@ -34,7 +34,7 @@ import org.jooq.impl.UpdatableRecordImpl;
         @Index(name = "ID_USER", columnList = "ID_USER ASC")
     }
 )
-public class OtUserCourseRecord extends UpdatableRecordImpl<OtUserCourseRecord> implements Record3<Long, Long, Long> {
+public class OtUserCourseRecord extends UpdatableRecordImpl<OtUserCourseRecord> implements Record6<Long, Long, Long, Long, String, String> {
 
     private static final long serialVersionUID = 1L;
 
@@ -85,6 +85,51 @@ public class OtUserCourseRecord extends UpdatableRecordImpl<OtUserCourseRecord> 
         return (Long) get(2);
     }
 
+    /**
+     * Setter for <code>s_onthi.ot_user_course.LEARNING_LESSON</code>.
+     */
+    public void setLearningLesson(Long value) {
+        set(3, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_user_course.LEARNING_LESSON</code>.
+     */
+    @Column(name = "LEARNING_LESSON")
+    public Long getLearningLesson() {
+        return (Long) get(3);
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_user_course.LEARNED_LESSON</code>.
+     */
+    public void setLearnedLesson(String value) {
+        set(4, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_user_course.LEARNED_LESSON</code>.
+     */
+    @Column(name = "LEARNED_LESSON", length = 5000)
+    public String getLearnedLesson() {
+        return (String) get(4);
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_user_course.TIME_SCHEDULE</code>.
+     */
+    public void setTimeSchedule(String value) {
+        set(5, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_user_course.TIME_SCHEDULE</code>.
+     */
+    @Column(name = "TIME_SCHEDULE", length = 50)
+    public String getTimeSchedule() {
+        return (String) get(5);
+    }
+
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -95,17 +140,17 @@ public class OtUserCourseRecord extends UpdatableRecordImpl<OtUserCourseRecord> 
     }
 
     // -------------------------------------------------------------------------
-    // Record3 type implementation
+    // Record6 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<Long, Long, Long> fieldsRow() {
-        return (Row3) super.fieldsRow();
+    public Row6<Long, Long, Long, Long, String, String> fieldsRow() {
+        return (Row6) super.fieldsRow();
     }
 
     @Override
-    public Row3<Long, Long, Long> valuesRow() {
-        return (Row3) super.valuesRow();
+    public Row6<Long, Long, Long, Long, String, String> valuesRow() {
+        return (Row6) super.valuesRow();
     }
 
     @Override
@@ -124,6 +169,21 @@ public class OtUserCourseRecord extends UpdatableRecordImpl<OtUserCourseRecord> 
     }
 
     @Override
+    public Field<Long> field4() {
+        return OtUserCourse.OT_USER_COURSE.LEARNING_LESSON;
+    }
+
+    @Override
+    public Field<String> field5() {
+        return OtUserCourse.OT_USER_COURSE.LEARNED_LESSON;
+    }
+
+    @Override
+    public Field<String> field6() {
+        return OtUserCourse.OT_USER_COURSE.TIME_SCHEDULE;
+    }
+
+    @Override
     public Long component1() {
         return getIdUserCourse();
     }
@@ -139,6 +199,21 @@ public class OtUserCourseRecord extends UpdatableRecordImpl<OtUserCourseRecord> 
     }
 
     @Override
+    public Long component4() {
+        return getLearningLesson();
+    }
+
+    @Override
+    public String component5() {
+        return getLearnedLesson();
+    }
+
+    @Override
+    public String component6() {
+        return getTimeSchedule();
+    }
+
+    @Override
     public Long value1() {
         return getIdUserCourse();
     }
@@ -151,6 +226,21 @@ public class OtUserCourseRecord extends UpdatableRecordImpl<OtUserCourseRecord> 
     @Override
     public Long value3() {
         return getIdCourse();
+    }
+
+    @Override
+    public Long value4() {
+        return getLearningLesson();
+    }
+
+    @Override
+    public String value5() {
+        return getLearnedLesson();
+    }
+
+    @Override
+    public String value6() {
+        return getTimeSchedule();
     }
 
     @Override
@@ -172,10 +262,31 @@ public class OtUserCourseRecord extends UpdatableRecordImpl<OtUserCourseRecord> 
     }
 
     @Override
-    public OtUserCourseRecord values(Long value1, Long value2, Long value3) {
+    public OtUserCourseRecord value4(Long value) {
+        setLearningLesson(value);
+        return this;
+    }
+
+    @Override
+    public OtUserCourseRecord value5(String value) {
+        setLearnedLesson(value);
+        return this;
+    }
+
+    @Override
+    public OtUserCourseRecord value6(String value) {
+        setTimeSchedule(value);
+        return this;
+    }
+
+    @Override
+    public OtUserCourseRecord values(Long value1, Long value2, Long value3, Long value4, String value5, String value6) {
         value1(value1);
         value2(value2);
         value3(value3);
+        value4(value4);
+        value5(value5);
+        value6(value6);
         return this;
     }
 
@@ -193,12 +304,15 @@ public class OtUserCourseRecord extends UpdatableRecordImpl<OtUserCourseRecord> 
     /**
      * Create a detached, initialised OtUserCourseRecord
      */
-    public OtUserCourseRecord(Long idUserCourse, Long idUser, Long idCourse) {
+    public OtUserCourseRecord(Long idUserCourse, Long idUser, Long idCourse, Long learningLesson, String learnedLesson, String timeSchedule) {
         super(OtUserCourse.OT_USER_COURSE);
 
         setIdUserCourse(idUserCourse);
         setIdUser(idUser);
         setIdCourse(idCourse);
+        setLearningLesson(learningLesson);
+        setLearnedLesson(learnedLesson);
+        setTimeSchedule(timeSchedule);
     }
 
     /**
@@ -211,6 +325,9 @@ public class OtUserCourseRecord extends UpdatableRecordImpl<OtUserCourseRecord> 
             setIdUserCourse(value.getIdUserCourse());
             setIdUser(value.getIdUser());
             setIdCourse(value.getIdCourse());
+            setLearningLesson(value.getLearningLesson());
+            setLearnedLesson(value.getLearnedLesson());
+            setTimeSchedule(value.getTimeSchedule());
         }
     }
 }

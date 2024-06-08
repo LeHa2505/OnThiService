@@ -19,8 +19,8 @@ import java.time.LocalDateTime;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record19;
-import org.jooq.Row19;
+import org.jooq.Record21;
+import org.jooq.Row21;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
@@ -36,7 +36,7 @@ import org.jooq.impl.UpdatableRecordImpl;
         @Index(name = "ID_SCHOOL", columnList = "ID_SCHOOL ASC")
     }
 )
-public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements Record19<Long, Long, Long, String, String, String, String, Long, Long, LocalDate, String, String, String, String, String, Boolean, LocalDateTime, String, LocalDateTime> {
+public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements Record21<Long, Long, Long, String, String, String, String, Long, Long, LocalDate, String, String, String, String, String, Long, Double, Boolean, LocalDateTime, String, LocalDateTime> {
 
     private static final long serialVersionUID = 1L;
 
@@ -268,10 +268,40 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
     }
 
     /**
+     * Setter for <code>s_onthi.ot_user.ID_COURSE_LEARNING</code>.
+     */
+    public void setIdCourseLearning(Long value) {
+        set(15, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_user.ID_COURSE_LEARNING</code>.
+     */
+    @Column(name = "ID_COURSE_LEARNING")
+    public Long getIdCourseLearning() {
+        return (Long) get(15);
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_user.PAUSE_TIME</code>.
+     */
+    public void setPauseTime(Double value) {
+        set(16, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_user.PAUSE_TIME</code>.
+     */
+    @Column(name = "PAUSE_TIME")
+    public Double getPauseTime() {
+        return (Double) get(16);
+    }
+
+    /**
      * Setter for <code>s_onthi.ot_user.ACTIVE</code>.
      */
     public void setActive(Boolean value) {
-        set(15, value);
+        set(17, value);
     }
 
     /**
@@ -279,14 +309,14 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
      */
     @Column(name = "ACTIVE", nullable = false)
     public Boolean getActive() {
-        return (Boolean) get(15);
+        return (Boolean) get(17);
     }
 
     /**
      * Setter for <code>s_onthi.ot_user.CREATED_DATE</code>.
      */
     public void setCreatedDate(LocalDateTime value) {
-        set(16, value);
+        set(18, value);
     }
 
     /**
@@ -294,14 +324,14 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
      */
     @Column(name = "CREATED_DATE", precision = 6)
     public LocalDateTime getCreatedDate() {
-        return (LocalDateTime) get(16);
+        return (LocalDateTime) get(18);
     }
 
     /**
      * Setter for <code>s_onthi.ot_user.LAST_MODIFIED_BY</code>.
      */
     public void setLastModifiedBy(String value) {
-        set(17, value);
+        set(19, value);
     }
 
     /**
@@ -309,14 +339,14 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
      */
     @Column(name = "LAST_MODIFIED_BY", length = 50)
     public String getLastModifiedBy() {
-        return (String) get(17);
+        return (String) get(19);
     }
 
     /**
      * Setter for <code>s_onthi.ot_user.LAST_MODIFIED_DATE</code>.
      */
     public void setLastModifiedDate(LocalDateTime value) {
-        set(18, value);
+        set(20, value);
     }
 
     /**
@@ -324,7 +354,7 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
      */
     @Column(name = "LAST_MODIFIED_DATE", precision = 6)
     public LocalDateTime getLastModifiedDate() {
-        return (LocalDateTime) get(18);
+        return (LocalDateTime) get(20);
     }
 
     // -------------------------------------------------------------------------
@@ -337,17 +367,17 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
     }
 
     // -------------------------------------------------------------------------
-    // Record19 type implementation
+    // Record21 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row19<Long, Long, Long, String, String, String, String, Long, Long, LocalDate, String, String, String, String, String, Boolean, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row19) super.fieldsRow();
+    public Row21<Long, Long, Long, String, String, String, String, Long, Long, LocalDate, String, String, String, String, String, Long, Double, Boolean, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row21) super.fieldsRow();
     }
 
     @Override
-    public Row19<Long, Long, Long, String, String, String, String, Long, Long, LocalDate, String, String, String, String, String, Boolean, LocalDateTime, String, LocalDateTime> valuesRow() {
-        return (Row19) super.valuesRow();
+    public Row21<Long, Long, Long, String, String, String, String, Long, Long, LocalDate, String, String, String, String, String, Long, Double, Boolean, LocalDateTime, String, LocalDateTime> valuesRow() {
+        return (Row21) super.valuesRow();
     }
 
     @Override
@@ -426,22 +456,32 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
     }
 
     @Override
-    public Field<Boolean> field16() {
+    public Field<Long> field16() {
+        return OtUser.OT_USER.ID_COURSE_LEARNING;
+    }
+
+    @Override
+    public Field<Double> field17() {
+        return OtUser.OT_USER.PAUSE_TIME;
+    }
+
+    @Override
+    public Field<Boolean> field18() {
         return OtUser.OT_USER.ACTIVE;
     }
 
     @Override
-    public Field<LocalDateTime> field17() {
+    public Field<LocalDateTime> field19() {
         return OtUser.OT_USER.CREATED_DATE;
     }
 
     @Override
-    public Field<String> field18() {
+    public Field<String> field20() {
         return OtUser.OT_USER.LAST_MODIFIED_BY;
     }
 
     @Override
-    public Field<LocalDateTime> field19() {
+    public Field<LocalDateTime> field21() {
         return OtUser.OT_USER.LAST_MODIFIED_DATE;
     }
 
@@ -521,22 +561,32 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
     }
 
     @Override
-    public Boolean component16() {
+    public Long component16() {
+        return getIdCourseLearning();
+    }
+
+    @Override
+    public Double component17() {
+        return getPauseTime();
+    }
+
+    @Override
+    public Boolean component18() {
         return getActive();
     }
 
     @Override
-    public LocalDateTime component17() {
+    public LocalDateTime component19() {
         return getCreatedDate();
     }
 
     @Override
-    public String component18() {
+    public String component20() {
         return getLastModifiedBy();
     }
 
     @Override
-    public LocalDateTime component19() {
+    public LocalDateTime component21() {
         return getLastModifiedDate();
     }
 
@@ -616,22 +666,32 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
     }
 
     @Override
-    public Boolean value16() {
+    public Long value16() {
+        return getIdCourseLearning();
+    }
+
+    @Override
+    public Double value17() {
+        return getPauseTime();
+    }
+
+    @Override
+    public Boolean value18() {
         return getActive();
     }
 
     @Override
-    public LocalDateTime value17() {
+    public LocalDateTime value19() {
         return getCreatedDate();
     }
 
     @Override
-    public String value18() {
+    public String value20() {
         return getLastModifiedBy();
     }
 
     @Override
-    public LocalDateTime value19() {
+    public LocalDateTime value21() {
         return getLastModifiedDate();
     }
 
@@ -726,31 +786,43 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
     }
 
     @Override
-    public OtUserRecord value16(Boolean value) {
+    public OtUserRecord value16(Long value) {
+        setIdCourseLearning(value);
+        return this;
+    }
+
+    @Override
+    public OtUserRecord value17(Double value) {
+        setPauseTime(value);
+        return this;
+    }
+
+    @Override
+    public OtUserRecord value18(Boolean value) {
         setActive(value);
         return this;
     }
 
     @Override
-    public OtUserRecord value17(LocalDateTime value) {
+    public OtUserRecord value19(LocalDateTime value) {
         setCreatedDate(value);
         return this;
     }
 
     @Override
-    public OtUserRecord value18(String value) {
+    public OtUserRecord value20(String value) {
         setLastModifiedBy(value);
         return this;
     }
 
     @Override
-    public OtUserRecord value19(LocalDateTime value) {
+    public OtUserRecord value21(LocalDateTime value) {
         setLastModifiedDate(value);
         return this;
     }
 
     @Override
-    public OtUserRecord values(Long value1, Long value2, Long value3, String value4, String value5, String value6, String value7, Long value8, Long value9, LocalDate value10, String value11, String value12, String value13, String value14, String value15, Boolean value16, LocalDateTime value17, String value18, LocalDateTime value19) {
+    public OtUserRecord values(Long value1, Long value2, Long value3, String value4, String value5, String value6, String value7, Long value8, Long value9, LocalDate value10, String value11, String value12, String value13, String value14, String value15, Long value16, Double value17, Boolean value18, LocalDateTime value19, String value20, LocalDateTime value21) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -770,6 +842,8 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
         value17(value17);
         value18(value18);
         value19(value19);
+        value20(value20);
+        value21(value21);
         return this;
     }
 
@@ -787,7 +861,7 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
     /**
      * Create a detached, initialised OtUserRecord
      */
-    public OtUserRecord(Long idUser, Long idSchool, Long typeUser, String username, String password, String email, String phone, Long grade, Long gender, LocalDate bod, String address, String avatar, String description, String facebook, String instagram, Boolean active, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
+    public OtUserRecord(Long idUser, Long idSchool, Long typeUser, String username, String password, String email, String phone, Long grade, Long gender, LocalDate bod, String address, String avatar, String description, String facebook, String instagram, Long idCourseLearning, Double pauseTime, Boolean active, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
         super(OtUser.OT_USER);
 
         setIdUser(idUser);
@@ -805,6 +879,8 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
         setDescription(description);
         setFacebook(facebook);
         setInstagram(instagram);
+        setIdCourseLearning(idCourseLearning);
+        setPauseTime(pauseTime);
         setActive(active);
         setCreatedDate(createdDate);
         setLastModifiedBy(lastModifiedBy);
@@ -833,6 +909,8 @@ public class OtUserRecord extends UpdatableRecordImpl<OtUserRecord> implements R
             setDescription(value.getDescription());
             setFacebook(value.getFacebook());
             setInstagram(value.getInstagram());
+            setIdCourseLearning(value.getIdCourseLearning());
+            setPauseTime(value.getPauseTime());
             setActive(value.getActive());
             setCreatedDate(value.getCreatedDate());
             setLastModifiedBy(value.getLastModifiedBy());

@@ -36,7 +36,7 @@ import org.jooq.impl.UpdatableRecordImpl;
         @Index(name = "ID_TEACHER", columnList = "ID_TEACHER ASC")
     }
 )
-public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implements Record15<Long, Long, String, String, Double, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> {
+public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implements Record15<Long, Long, String, String, String, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> {
 
     private static final long serialVersionUID = 1L;
 
@@ -105,16 +105,16 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     /**
      * Setter for <code>s_onthi.ot_course.SCHEDULE</code>.
      */
-    public void setSchedule(Double value) {
+    public void setSchedule(String value) {
         set(4, value);
     }
 
     /**
      * Getter for <code>s_onthi.ot_course.SCHEDULE</code>.
      */
-    @Column(name = "SCHEDULE")
-    public Double getSchedule() {
-        return (Double) get(4);
+    @Column(name = "SCHEDULE", length = 500)
+    public String getSchedule() {
+        return (String) get(4);
     }
 
     /**
@@ -281,12 +281,12 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     // -------------------------------------------------------------------------
 
     @Override
-    public Row15<Long, Long, String, String, Double, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
+    public Row15<Long, Long, String, String, String, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
         return (Row15) super.fieldsRow();
     }
 
     @Override
-    public Row15<Long, Long, String, String, Double, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> valuesRow() {
+    public Row15<Long, Long, String, String, String, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> valuesRow() {
         return (Row15) super.valuesRow();
     }
 
@@ -311,7 +311,7 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public Field<Double> field5() {
+    public Field<String> field5() {
         return OtCourse.OT_COURSE.SCHEDULE;
     }
 
@@ -386,7 +386,7 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public Double component5() {
+    public String component5() {
         return getSchedule();
     }
 
@@ -461,7 +461,7 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public Double value5() {
+    public String value5() {
         return getSchedule();
     }
 
@@ -540,7 +540,7 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public OtCourseRecord value5(Double value) {
+    public OtCourseRecord value5(String value) {
         setSchedule(value);
         return this;
     }
@@ -606,7 +606,7 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public OtCourseRecord values(Long value1, Long value2, String value3, String value4, Double value5, String value6, Long value7, LocalDate value8, LocalDate value9, Double value10, Double value11, String value12, LocalDateTime value13, String value14, LocalDateTime value15) {
+    public OtCourseRecord values(Long value1, Long value2, String value3, String value4, String value5, String value6, Long value7, LocalDate value8, LocalDate value9, Double value10, Double value11, String value12, LocalDateTime value13, String value14, LocalDateTime value15) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -639,7 +639,7 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     /**
      * Create a detached, initialised OtCourseRecord
      */
-    public OtCourseRecord(Long idCourse, Long idTeacher, String avatarCourse, String categoryName, Double schedule, String courseName, Long typeCourse, LocalDate startDate, LocalDate endDate, Double price, Double discount, String description, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
+    public OtCourseRecord(Long idCourse, Long idTeacher, String avatarCourse, String categoryName, String schedule, String courseName, Long typeCourse, LocalDate startDate, LocalDate endDate, Double price, Double discount, String description, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
         super(OtCourse.OT_COURSE);
 
         setIdCourse(idCourse);
