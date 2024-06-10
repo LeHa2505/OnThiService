@@ -25,6 +25,11 @@ public interface CourseService {
     ResponseDTO deleteReview(Long  id);
     ResponseDTO enrollCourse(UserCourseDTO userCourseDTO);
     ResponseDTO updateLearningProcess(UserCourseDTO userCourseDTO);
+    ResponseDTO saveNote(NoteDTO noteDTO);
+    ResponseDTO updateNote(NoteDTO noteDTO);
+    ResponseDTO getNote(InputCondition inputCondition);
+    ResponseDTO getListExercise(InputCondition inputCondition);
+    ResponseDTO getDetailExercise(Long id);
 }
 
 @Service
@@ -38,6 +43,7 @@ class CourseServiceImpl extends BaseService implements CourseService {
     private NoteRepository noteRepository;
     private ReviewUserRepository reviewUserRepository;
     private UserCourseRepository userCourseRepository;
+    private ExerciseRepository exerciseRepository;
 
     public CourseServiceImpl(
             TransactionTemplate transactionTemplate,
@@ -49,7 +55,8 @@ class CourseServiceImpl extends BaseService implements CourseService {
             DocumentRepository documentRepository,
             NoteRepository noteRepository,
             ReviewUserRepository reviewUserRepository,
-            UserCourseRepository userCourseRepository
+            UserCourseRepository userCourseRepository,
+            ExerciseRepository exerciseRepository
     ) {
         super();
         this.courseRepository = courseRepository;
@@ -61,6 +68,7 @@ class CourseServiceImpl extends BaseService implements CourseService {
         this.noteRepository = noteRepository;
         this.reviewUserRepository = reviewUserRepository;
         this.userCourseRepository = userCourseRepository;
+        this.exerciseRepository = exerciseRepository;
     }
 
     @Override
@@ -220,6 +228,44 @@ class CourseServiceImpl extends BaseService implements CourseService {
         else {
             return new ResponseDTO(false, "Có lỗi xảy ra!", null);
         }
+    }
+
+    @Override
+    public ResponseDTO saveNote(NoteDTO noteDTO) {
+        if (noteRepository.save(noteDTO)) {
+            return new ResponseDTO(true, "Lưu ghi chú thành công", null);
+        }
+        else {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
+    }
+
+    @Override
+    public ResponseDTO updateNote(NoteDTO noteDTO) {
+        if (noteRepository.update(noteDTO)) {
+            return new ResponseDTO(true, "Cập nhật ghi chú thành công", null);
+        }
+        else {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
+    }
+
+    @Override
+    public ResponseDTO getNote(InputCondition inputCondition) {
+        NoteDTO noteDTO = noteRepository.getByInputCondition(inputCondition);
+        return new ResponseDTO(true, "OK!", noteDTO);
+    }
+
+    @Override
+    public ResponseDTO getListExercise(InputCondition inputCondition) {
+        List<ExerciseDTO> exerciseDTOList = exerciseRepository.getListByInputCondition(inputCondition);
+        return new ResponseDTO(true, "OK!", exerciseDTOList);
+    }
+
+    @Override
+    public ResponseDTO getDetailExercise(Long id) {
+        ExerciseDTO exerciseDTO = exerciseRepository.getByID(id);
+        return new ResponseDTO(true, "OK!", exerciseDTO);
     }
 
 }

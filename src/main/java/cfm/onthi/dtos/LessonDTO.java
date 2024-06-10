@@ -44,8 +44,8 @@ public class LessonDTO {
     @JsonProperty(value = "DESCRIPTION")
     public String description;
 
-    @JsonProperty(value = "QUIZ_INFO")
-    public List<QuizDTO> quizInfo;
+    @JsonProperty(value = "EXERCISE_INFO")
+    public List<ExerciseDTO> exerciseInfo;
 
     @JsonProperty(value = "DOCUMENTS_INFO")
     public List<DocumentDTO> documentsInfo;

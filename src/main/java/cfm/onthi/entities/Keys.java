@@ -6,6 +6,7 @@ package cfm.onthi.entities;
 
 import cfm.onthi.entities.tables.OtCourse;
 import cfm.onthi.entities.tables.OtDocument;
+import cfm.onthi.entities.tables.OtExercise;
 import cfm.onthi.entities.tables.OtGroup;
 import cfm.onthi.entities.tables.OtLesson;
 import cfm.onthi.entities.tables.OtMenu;
@@ -14,6 +15,7 @@ import cfm.onthi.entities.tables.OtMessageRecipient;
 import cfm.onthi.entities.tables.OtNote;
 import cfm.onthi.entities.tables.OtProvince;
 import cfm.onthi.entities.tables.OtQuiz;
+import cfm.onthi.entities.tables.OtQuizUser;
 import cfm.onthi.entities.tables.OtReview;
 import cfm.onthi.entities.tables.OtReviewUser;
 import cfm.onthi.entities.tables.OtRole;
@@ -25,6 +27,7 @@ import cfm.onthi.entities.tables.OtUserGroup;
 import cfm.onthi.entities.tables.OtUserRole;
 import cfm.onthi.entities.tables.records.OtCourseRecord;
 import cfm.onthi.entities.tables.records.OtDocumentRecord;
+import cfm.onthi.entities.tables.records.OtExerciseRecord;
 import cfm.onthi.entities.tables.records.OtGroupRecord;
 import cfm.onthi.entities.tables.records.OtLessonRecord;
 import cfm.onthi.entities.tables.records.OtMenuRecord;
@@ -33,6 +36,7 @@ import cfm.onthi.entities.tables.records.OtMessageRecord;
 import cfm.onthi.entities.tables.records.OtNoteRecord;
 import cfm.onthi.entities.tables.records.OtProvinceRecord;
 import cfm.onthi.entities.tables.records.OtQuizRecord;
+import cfm.onthi.entities.tables.records.OtQuizUserRecord;
 import cfm.onthi.entities.tables.records.OtReviewRecord;
 import cfm.onthi.entities.tables.records.OtReviewUserRecord;
 import cfm.onthi.entities.tables.records.OtRoleMenuRecord;
@@ -63,6 +67,7 @@ public class Keys {
 
     public static final UniqueKey<OtCourseRecord> KEY_OT_COURSE_PRIMARY = Internal.createUniqueKey(OtCourse.OT_COURSE, DSL.name("KEY_ot_course_PRIMARY"), new TableField[] { OtCourse.OT_COURSE.ID_COURSE }, true);
     public static final UniqueKey<OtDocumentRecord> KEY_OT_DOCUMENT_PRIMARY = Internal.createUniqueKey(OtDocument.OT_DOCUMENT, DSL.name("KEY_ot_document_PRIMARY"), new TableField[] { OtDocument.OT_DOCUMENT.ID_DOCUMENT }, true);
+    public static final UniqueKey<OtExerciseRecord> KEY_OT_EXERCISE_PRIMARY = Internal.createUniqueKey(OtExercise.OT_EXERCISE, DSL.name("KEY_ot_exercise_PRIMARY"), new TableField[] { OtExercise.OT_EXERCISE.ID_EXERCISE }, true);
     public static final UniqueKey<OtGroupRecord> KEY_OT_GROUP_PRIMARY = Internal.createUniqueKey(OtGroup.OT_GROUP, DSL.name("KEY_ot_group_PRIMARY"), new TableField[] { OtGroup.OT_GROUP.ID_GROUP }, true);
     public static final UniqueKey<OtLessonRecord> KEY_OT_LESSON_PRIMARY = Internal.createUniqueKey(OtLesson.OT_LESSON, DSL.name("KEY_ot_lesson_PRIMARY"), new TableField[] { OtLesson.OT_LESSON.ID_LESSON }, true);
     public static final UniqueKey<OtMenuRecord> KEY_OT_MENU_PRIMARY = Internal.createUniqueKey(OtMenu.OT_MENU, DSL.name("KEY_ot_menu_PRIMARY"), new TableField[] { OtMenu.OT_MENU.ID_MENU }, true);
@@ -71,6 +76,7 @@ public class Keys {
     public static final UniqueKey<OtNoteRecord> KEY_OT_NOTE_PRIMARY = Internal.createUniqueKey(OtNote.OT_NOTE, DSL.name("KEY_ot_note_PRIMARY"), new TableField[] { OtNote.OT_NOTE.ID_NOTE }, true);
     public static final UniqueKey<OtProvinceRecord> KEY_OT_PROVINCE_PRIMARY = Internal.createUniqueKey(OtProvince.OT_PROVINCE, DSL.name("KEY_ot_province_PRIMARY"), new TableField[] { OtProvince.OT_PROVINCE.ID_PROVINCE }, true);
     public static final UniqueKey<OtQuizRecord> KEY_OT_QUIZ_PRIMARY = Internal.createUniqueKey(OtQuiz.OT_QUIZ, DSL.name("KEY_ot_quiz_PRIMARY"), new TableField[] { OtQuiz.OT_QUIZ.ID_QUIZ }, true);
+    public static final UniqueKey<OtQuizUserRecord> KEY_OT_QUIZ_USER_PRIMARY = Internal.createUniqueKey(OtQuizUser.OT_QUIZ_USER, DSL.name("KEY_ot_quiz_user_PRIMARY"), new TableField[] { OtQuizUser.OT_QUIZ_USER.ID_QUIZ_USER }, true);
     public static final UniqueKey<OtReviewRecord> KEY_OT_REVIEW_PRIMARY = Internal.createUniqueKey(OtReview.OT_REVIEW, DSL.name("KEY_ot_review_PRIMARY"), new TableField[] { OtReview.OT_REVIEW.ID_REVIEW }, true);
     public static final UniqueKey<OtReviewUserRecord> KEY_OT_REVIEW_USER_PRIMARY = Internal.createUniqueKey(OtReviewUser.OT_REVIEW_USER, DSL.name("KEY_ot_review_user_PRIMARY"), new TableField[] { OtReviewUser.OT_REVIEW_USER.ID_REVIEW_USER }, true);
     public static final UniqueKey<OtRoleRecord> KEY_OT_ROLE_PRIMARY = Internal.createUniqueKey(OtRole.OT_ROLE, DSL.name("KEY_ot_role_PRIMARY"), new TableField[] { OtRole.OT_ROLE.ID_ROLE }, true);
@@ -90,12 +96,14 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     public static final ForeignKey<OtDocumentRecord, OtLessonRecord> OT_DOCUMENT_IBFK_1 = Internal.createForeignKey(OtDocument.OT_DOCUMENT, DSL.name("ot_document_ibfk_1"), new TableField[] { OtDocument.OT_DOCUMENT.ID_LESSON }, Keys.KEY_OT_LESSON_PRIMARY, new TableField[] { OtLesson.OT_LESSON.ID_LESSON }, true);
+    public static final ForeignKey<OtExerciseRecord, OtLessonRecord> OT_EXERCISE_OT_LESSON_ID_LESSON_FK = Internal.createForeignKey(OtExercise.OT_EXERCISE, DSL.name("ot_exercise_ot_lesson_ID_LESSON_fk"), new TableField[] { OtExercise.OT_EXERCISE.ID_LESSON }, Keys.KEY_OT_LESSON_PRIMARY, new TableField[] { OtLesson.OT_LESSON.ID_LESSON }, true);
     public static final ForeignKey<OtLessonRecord, OtCourseRecord> OT_LESSON_IBFK_1 = Internal.createForeignKey(OtLesson.OT_LESSON, DSL.name("ot_lesson_ibfk_1"), new TableField[] { OtLesson.OT_LESSON.ID_COURSE }, Keys.KEY_OT_COURSE_PRIMARY, new TableField[] { OtCourse.OT_COURSE.ID_COURSE }, true);
     public static final ForeignKey<OtMessageRecord, OtUserRecord> OT_MESSAGE_IBFK_1 = Internal.createForeignKey(OtMessage.OT_MESSAGE, DSL.name("ot_message_ibfk_1"), new TableField[] { OtMessage.OT_MESSAGE.ID_CREATOR }, Keys.KEY_OT_USER_PRIMARY, new TableField[] { OtUser.OT_USER.ID_USER }, true);
     public static final ForeignKey<OtMessageRecipientRecord, OtMessageRecord> OT_MESSAGE_RECIPIENT_IBFK_1 = Internal.createForeignKey(OtMessageRecipient.OT_MESSAGE_RECIPIENT, DSL.name("ot_message_recipient_ibfk_1"), new TableField[] { OtMessageRecipient.OT_MESSAGE_RECIPIENT.ID_MESSAGE }, Keys.KEY_OT_MESSAGE_PRIMARY, new TableField[] { OtMessage.OT_MESSAGE.ID_MESSAGE }, true);
     public static final ForeignKey<OtMessageRecipientRecord, OtGroupRecord> OT_MESSAGE_RECIPIENT_OT_GROUP_ID_GROUP_FK = Internal.createForeignKey(OtMessageRecipient.OT_MESSAGE_RECIPIENT, DSL.name("ot_message_recipient_ot_group_ID_GROUP_fk"), new TableField[] { OtMessageRecipient.OT_MESSAGE_RECIPIENT.ID_RECIPIENT_GROUP }, Keys.KEY_OT_GROUP_PRIMARY, new TableField[] { OtGroup.OT_GROUP.ID_GROUP }, true);
     public static final ForeignKey<OtNoteRecord, OtLessonRecord> OT_NOTE_IBFK_1 = Internal.createForeignKey(OtNote.OT_NOTE, DSL.name("ot_note_ibfk_1"), new TableField[] { OtNote.OT_NOTE.ID_LESSON }, Keys.KEY_OT_LESSON_PRIMARY, new TableField[] { OtLesson.OT_LESSON.ID_LESSON }, true);
-    public static final ForeignKey<OtQuizRecord, OtLessonRecord> OT_QUIZ_IBFK_1 = Internal.createForeignKey(OtQuiz.OT_QUIZ, DSL.name("ot_quiz_ibfk_1"), new TableField[] { OtQuiz.OT_QUIZ.ID_LESSON }, Keys.KEY_OT_LESSON_PRIMARY, new TableField[] { OtLesson.OT_LESSON.ID_LESSON }, true);
+    public static final ForeignKey<OtQuizUserRecord, OtQuizRecord> OT_QUIZ_USER_OT_QUIZ_ID_QUIZ_FK = Internal.createForeignKey(OtQuizUser.OT_QUIZ_USER, DSL.name("ot_quiz_user_ot_quiz_ID_QUIZ_fk"), new TableField[] { OtQuizUser.OT_QUIZ_USER.ID_QUIZ }, Keys.KEY_OT_QUIZ_PRIMARY, new TableField[] { OtQuiz.OT_QUIZ.ID_QUIZ }, true);
+    public static final ForeignKey<OtQuizUserRecord, OtUserRecord> OT_QUIZ_USER_OT_USER_ID_USER_FK = Internal.createForeignKey(OtQuizUser.OT_QUIZ_USER, DSL.name("ot_quiz_user_ot_user_ID_USER_fk"), new TableField[] { OtQuizUser.OT_QUIZ_USER.ID_USER }, Keys.KEY_OT_USER_PRIMARY, new TableField[] { OtUser.OT_USER.ID_USER }, true);
     public static final ForeignKey<OtReviewRecord, OtCourseRecord> OT_REVIEW_IBFK_1 = Internal.createForeignKey(OtReview.OT_REVIEW, DSL.name("ot_review_ibfk_1"), new TableField[] { OtReview.OT_REVIEW.ID_COURSE }, Keys.KEY_OT_COURSE_PRIMARY, new TableField[] { OtCourse.OT_COURSE.ID_COURSE }, true);
     public static final ForeignKey<OtReviewUserRecord, OtReviewRecord> OT_REVIEW_USER_OT_REVIEW_ID_REVIEW_FK = Internal.createForeignKey(OtReviewUser.OT_REVIEW_USER, DSL.name("ot_review_user_ot_review_ID_REVIEW_fk"), new TableField[] { OtReviewUser.OT_REVIEW_USER.ID_REVIEW }, Keys.KEY_OT_REVIEW_PRIMARY, new TableField[] { OtReview.OT_REVIEW.ID_REVIEW }, true);
     public static final ForeignKey<OtReviewUserRecord, OtUserRecord> OT_REVIEW_USER_OT_USER_ID_USER_FK = Internal.createForeignKey(OtReviewUser.OT_REVIEW_USER, DSL.name("ot_review_user_ot_user_ID_USER_fk"), new TableField[] { OtReviewUser.OT_REVIEW_USER.ID_USER }, Keys.KEY_OT_USER_PRIMARY, new TableField[] { OtUser.OT_USER.ID_USER }, true);

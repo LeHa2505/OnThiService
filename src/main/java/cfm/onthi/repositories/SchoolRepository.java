@@ -69,7 +69,7 @@ class SchoolRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     schoolDTO.provinceInfo = provinceRepository.getByID(schoolDTO.idProvince);
 
                     return schoolDTO;
-                }).collect(Collectors.toList());;
+                }).collect(Collectors.toList());
         return schoolDTOS != null && !schoolDTOS.isEmpty() ? schoolDTOS.get(0) : null;
     }
 

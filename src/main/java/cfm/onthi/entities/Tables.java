@@ -6,6 +6,7 @@ package cfm.onthi.entities;
 
 import cfm.onthi.entities.tables.OtCourse;
 import cfm.onthi.entities.tables.OtDocument;
+import cfm.onthi.entities.tables.OtExercise;
 import cfm.onthi.entities.tables.OtGroup;
 import cfm.onthi.entities.tables.OtLesson;
 import cfm.onthi.entities.tables.OtMenu;
@@ -14,6 +15,7 @@ import cfm.onthi.entities.tables.OtMessageRecipient;
 import cfm.onthi.entities.tables.OtNote;
 import cfm.onthi.entities.tables.OtProvince;
 import cfm.onthi.entities.tables.OtQuiz;
+import cfm.onthi.entities.tables.OtQuizUser;
 import cfm.onthi.entities.tables.OtReview;
 import cfm.onthi.entities.tables.OtReviewUser;
 import cfm.onthi.entities.tables.OtRole;
@@ -40,6 +42,11 @@ public class Tables {
      * The table <code>s_onthi.ot_document</code>.
      */
     public static final OtDocument OT_DOCUMENT = OtDocument.OT_DOCUMENT;
+
+    /**
+     * The table <code>s_onthi.ot_exercise</code>.
+     */
+    public static final OtExercise OT_EXERCISE = OtExercise.OT_EXERCISE;
 
     /**
      * The table <code>s_onthi.ot_group</code>.
@@ -80,6 +87,11 @@ public class Tables {
      * The table <code>s_onthi.ot_quiz</code>.
      */
     public static final OtQuiz OT_QUIZ = OtQuiz.OT_QUIZ;
+
+    /**
+     * The table <code>s_onthi.ot_quiz_user</code>.
+     */
+    public static final OtQuizUser OT_QUIZ_USER = OtQuizUser.OT_QUIZ_USER;
 
     /**
      * The table <code>s_onthi.ot_review</code>.

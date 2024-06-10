@@ -9,7 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
@@ -23,20 +22,19 @@ import java.time.LocalDateTime;
 @Entity
 @Table(
     name = "ot_quiz",
-    schema = "s_onthi",
-    indexes = {
-        @Index(name = "ID_LESSON", columnList = "ID_LESSON ASC")
-    }
+    schema = "s_onthi"
 )
 public class OtQuiz implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long idQuiz;
-    private Long idLesson;
+    private Long idExercise;
     private String contentQuiz;
+    private String options;
     private Long quizType;
     private String answer;
+    private String description;
     private Long quizStatus;
     private Integer order;
     private LocalDateTime createdDate;
@@ -47,10 +45,12 @@ public class OtQuiz implements Serializable {
 
     public OtQuiz(OtQuiz value) {
         this.idQuiz = value.idQuiz;
-        this.idLesson = value.idLesson;
+        this.idExercise = value.idExercise;
         this.contentQuiz = value.contentQuiz;
+        this.options = value.options;
         this.quizType = value.quizType;
         this.answer = value.answer;
+        this.description = value.description;
         this.quizStatus = value.quizStatus;
         this.order = value.order;
         this.createdDate = value.createdDate;
@@ -60,10 +60,12 @@ public class OtQuiz implements Serializable {
 
     public OtQuiz(
         Long idQuiz,
-        Long idLesson,
+        Long idExercise,
         String contentQuiz,
+        String options,
         Long quizType,
         String answer,
+        String description,
         Long quizStatus,
         Integer order,
         LocalDateTime createdDate,
@@ -71,10 +73,12 @@ public class OtQuiz implements Serializable {
         LocalDateTime lastModifiedDate
     ) {
         this.idQuiz = idQuiz;
-        this.idLesson = idLesson;
+        this.idExercise = idExercise;
         this.contentQuiz = contentQuiz;
+        this.options = options;
         this.quizType = quizType;
         this.answer = answer;
+        this.description = description;
         this.quizStatus = quizStatus;
         this.order = order;
         this.createdDate = createdDate;
@@ -100,24 +104,24 @@ public class OtQuiz implements Serializable {
     }
 
     /**
-     * Getter for <code>s_onthi.ot_quiz.ID_LESSON</code>.
+     * Getter for <code>s_onthi.ot_quiz.ID_EXERCISE</code>.
      */
-    @Column(name = "ID_LESSON", nullable = false)
-    public Long getIdLesson() {
-        return this.idLesson;
+    @Column(name = "ID_EXERCISE", nullable = false)
+    public Long getIdExercise() {
+        return this.idExercise;
     }
 
     /**
-     * Setter for <code>s_onthi.ot_quiz.ID_LESSON</code>.
+     * Setter for <code>s_onthi.ot_quiz.ID_EXERCISE</code>.
      */
-    public void setIdLesson(Long idLesson) {
-        this.idLesson = idLesson;
+    public void setIdExercise(Long idExercise) {
+        this.idExercise = idExercise;
     }
 
     /**
      * Getter for <code>s_onthi.ot_quiz.CONTENT_QUIZ</code>.
      */
-    @Column(name = "CONTENT_QUIZ", nullable = false, length = 2000)
+    @Column(name = "CONTENT_QUIZ", nullable = false)
     public String getContentQuiz() {
         return this.contentQuiz;
     }
@@ -127,6 +131,21 @@ public class OtQuiz implements Serializable {
      */
     public void setContentQuiz(String contentQuiz) {
         this.contentQuiz = contentQuiz;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_quiz.OPTIONS</code>.
+     */
+    @Column(name = "OPTIONS")
+    public String getOptions() {
+        return this.options;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_quiz.OPTIONS</code>.
+     */
+    public void setOptions(String options) {
+        this.options = options;
     }
 
     /**
@@ -157,6 +176,21 @@ public class OtQuiz implements Serializable {
      */
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_quiz.DESCRIPTION</code>.
+     */
+    @Column(name = "DESCRIPTION")
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_quiz.DESCRIPTION</code>.
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
@@ -249,17 +283,23 @@ public class OtQuiz implements Serializable {
         }
         else if (!this.idQuiz.equals(other.idQuiz))
             return false;
-        if (this.idLesson == null) {
-            if (other.idLesson != null)
+        if (this.idExercise == null) {
+            if (other.idExercise != null)
                 return false;
         }
-        else if (!this.idLesson.equals(other.idLesson))
+        else if (!this.idExercise.equals(other.idExercise))
             return false;
         if (this.contentQuiz == null) {
             if (other.contentQuiz != null)
                 return false;
         }
         else if (!this.contentQuiz.equals(other.contentQuiz))
+            return false;
+        if (this.options == null) {
+            if (other.options != null)
+                return false;
+        }
+        else if (!this.options.equals(other.options))
             return false;
         if (this.quizType == null) {
             if (other.quizType != null)
@@ -272,6 +312,12 @@ public class OtQuiz implements Serializable {
                 return false;
         }
         else if (!this.answer.equals(other.answer))
+            return false;
+        if (this.description == null) {
+            if (other.description != null)
+                return false;
+        }
+        else if (!this.description.equals(other.description))
             return false;
         if (this.quizStatus == null) {
             if (other.quizStatus != null)
@@ -311,10 +357,12 @@ public class OtQuiz implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((this.idQuiz == null) ? 0 : this.idQuiz.hashCode());
-        result = prime * result + ((this.idLesson == null) ? 0 : this.idLesson.hashCode());
+        result = prime * result + ((this.idExercise == null) ? 0 : this.idExercise.hashCode());
         result = prime * result + ((this.contentQuiz == null) ? 0 : this.contentQuiz.hashCode());
+        result = prime * result + ((this.options == null) ? 0 : this.options.hashCode());
         result = prime * result + ((this.quizType == null) ? 0 : this.quizType.hashCode());
         result = prime * result + ((this.answer == null) ? 0 : this.answer.hashCode());
+        result = prime * result + ((this.description == null) ? 0 : this.description.hashCode());
         result = prime * result + ((this.quizStatus == null) ? 0 : this.quizStatus.hashCode());
         result = prime * result + ((this.order == null) ? 0 : this.order.hashCode());
         result = prime * result + ((this.createdDate == null) ? 0 : this.createdDate.hashCode());
@@ -328,10 +376,12 @@ public class OtQuiz implements Serializable {
         StringBuilder sb = new StringBuilder("OtQuiz (");
 
         sb.append(idQuiz);
-        sb.append(", ").append(idLesson);
+        sb.append(", ").append(idExercise);
         sb.append(", ").append(contentQuiz);
+        sb.append(", ").append(options);
         sb.append(", ").append(quizType);
         sb.append(", ").append(answer);
+        sb.append(", ").append(description);
         sb.append(", ").append(quizStatus);
         sb.append(", ").append(order);
         sb.append(", ").append(createdDate);

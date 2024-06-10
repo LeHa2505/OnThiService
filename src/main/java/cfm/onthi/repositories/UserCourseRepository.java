@@ -69,12 +69,12 @@ class UserCourseRepositoryImpl extends BaseRepositoryImpl implements BaseReposit
                 .map(entry -> {
                     UserCourseDTO userCourseDTO = new UserCourseDTO();
 
+                    userCourseDTO.idUserCourse = entry.getKey().getIdUserCourse();
                     userCourseDTO.idCourse = entry.getKey().getIdCourse();
                     userCourseDTO.idUser = entry.getKey().getIdUser();
                     userCourseDTO.learnedLesson = entry.getKey().getLearnedLesson();
                     userCourseDTO.learningLesson = entry.getKey().getLearningLesson();
                     userCourseDTO.timeSchedule = entry.getKey().getTimeSchedule();
-
                     userCourseDTO.courseInfo = courseRepository.getByID(userCourseDTO.idCourse);
                     userCourseDTO.classmates = findUsersByCourseId(userCourseDTO.idCourse);
 

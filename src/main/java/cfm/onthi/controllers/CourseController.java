@@ -1,5 +1,6 @@
 package cfm.onthi.controllers;
 
+import cfm.onthi.dtos.NoteDTO;
 import cfm.onthi.dtos.ReviewDTO;
 import cfm.onthi.dtos.UserCourseDTO;
 import cfm.onthi.dtos.base.InputCondition;
@@ -119,5 +120,30 @@ public class CourseController {
     @PostMapping("/user/updateLearningProcess")
     public ResponseEntity<?> updateLearningProcess(@RequestBody UserCourseDTO userCourseDTO) throws IOException {
         return ResponseEntity.ok(courseService.updateLearningProcess(userCourseDTO));
+    }
+
+    @PostMapping("/user/saveNote")
+    public ResponseEntity<?> saveNote(@RequestBody NoteDTO noteDTO) throws IOException {
+        return ResponseEntity.ok(courseService.saveNote(noteDTO));
+    }
+
+    @PostMapping("/user/updateNote")
+    public ResponseEntity<?> updateNote(@RequestBody NoteDTO noteDTO) throws IOException {
+        return ResponseEntity.ok(courseService.updateNote(noteDTO));
+    }
+
+    @PostMapping("/user/getNote")
+    public ResponseEntity<?> getNote(@RequestBody InputCondition inputCondition) throws IOException {
+        return ResponseEntity.ok(courseService.getNote(inputCondition));
+    }
+
+    @PostMapping("/user/getListExercise")
+    public ResponseEntity<?> getListExercise(@RequestBody InputCondition inputCondition) throws IOException {
+        return ResponseEntity.ok(courseService.getListExercise(inputCondition));
+    }
+
+    @GetMapping("/user/getDetailExercise/{idExercise}")
+    public ResponseEntity<?> getDetailExercise(@PathVariable("idExercise") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body((courseService.getDetailExercise(id)));
     }
 }

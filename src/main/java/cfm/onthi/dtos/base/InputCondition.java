@@ -58,4 +58,13 @@ public class InputCondition {
 
     @JsonProperty(value = "ID_REVIEW")
     public Long ID_REVIEW;
+
+    @JsonProperty(value = "ID_NOTE")
+    public Long ID_NOTE;
+
+    @JsonProperty(value = "ID_QUIZ")
+    public Long ID_QUIZ;
+
+    @JsonProperty(value = "ID_EXERCISE")
+    public Long ID_EXERCISE;
 }

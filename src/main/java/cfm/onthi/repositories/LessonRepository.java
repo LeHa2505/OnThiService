@@ -37,15 +37,18 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
     OtLesson lesson = OtLesson.OT_LESSON.as("OtLesson");
     QuizRepository quizRepository;
     DocumentRepository documentRepository;
+    ExerciseRepository exerciseRepository;
 
     public LessonRepositoryImpl(@Qualifier(DefineProperties.DSLContextOnThi) DSLContext dslContext,
                                 @Qualifier(DefineProperties.entityManagerOnThi) EntityManager entityManager,
                                 @Qualifier(DefineProperties.connectionProviderOnThi) DataSourceConnectionProvider connectionProvider,
                                 QuizRepository quizRepository,
-                                DocumentRepository documentRepository) {
+                                DocumentRepository documentRepository,
+                                ExerciseRepository exerciseRepository) {
         super(dslContext, entityManager);
         this.quizRepository = quizRepository;
         this.documentRepository = documentRepository;
+        this.exerciseRepository = exerciseRepository;
     }
 
     @Override
@@ -101,7 +104,7 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
             condition = condition.and(lesson.ID_LESSON.eq(inputCondition.ID_LESSON));
         }
 
-        List<LessonDTO> courseDTOList = dslContext.select()
+        List<LessonDTO> lessonDTOList = dslContext.select()
                 .from(lesson).where(condition).fetch()
                 .stream()
                 .collect(Collectors.groupingBy(record -> record.into(lesson), LinkedHashMap::new, Collectors.toList()))
@@ -124,11 +127,12 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     InputCondition inputConditionIDCourse = new InputCondition();
                     inputConditionIDCourse.ID_LESSON = lessonDTO.idLesson;
                     lessonDTO.documentsInfo = documentRepository.getListByInputCondition(inputConditionIDCourse);
+                    lessonDTO.exerciseInfo = exerciseRepository.getListByInputCondition(inputConditionIDCourse);
 
                     return lessonDTO;
                 }).collect(Collectors.toList());
 
-        return courseDTOList != null && !courseDTOList.isEmpty() ? courseDTOList.get(0) : null;
+        return lessonDTOList != null && !lessonDTOList.isEmpty() ? lessonDTOList.get(0) : null;
     }
 
     @Override
@@ -337,7 +341,7 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
 
                     InputCondition quizInputCondition = new InputCondition();
                     quizInputCondition.ID_LESSON = lessonDTO.idLesson;
-                    lessonDTO.quizInfo = quizRepository.getListByInputCondition(quizInputCondition);
+                    lessonDTO.exerciseInfo = exerciseRepository.getListByInputCondition(quizInputCondition);
                     lessonDTO.documentsInfo = documentRepository.getListByInputCondition(quizInputCondition);
 
                     return lessonDTO;
@@ -347,6 +351,7 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
         for (int i = 5; i < lessonDTOList.size(); i++) {
             lessonDTOList.get(i).setLinkVideo(null);
             lessonDTOList.get(i).setView(null);
+            lessonDTOList.get(i).setExerciseInfo(null);
         }
 
         return lessonDTOList;

@@ -6,6 +6,7 @@ package cfm.onthi.entities;
 
 import cfm.onthi.entities.tables.OtCourse;
 import cfm.onthi.entities.tables.OtDocument;
+import cfm.onthi.entities.tables.OtExercise;
 import cfm.onthi.entities.tables.OtGroup;
 import cfm.onthi.entities.tables.OtLesson;
 import cfm.onthi.entities.tables.OtMenu;
@@ -14,6 +15,7 @@ import cfm.onthi.entities.tables.OtMessageRecipient;
 import cfm.onthi.entities.tables.OtNote;
 import cfm.onthi.entities.tables.OtProvince;
 import cfm.onthi.entities.tables.OtQuiz;
+import cfm.onthi.entities.tables.OtQuizUser;
 import cfm.onthi.entities.tables.OtReview;
 import cfm.onthi.entities.tables.OtReviewUser;
 import cfm.onthi.entities.tables.OtRole;
@@ -56,6 +58,11 @@ public class SOnthi extends SchemaImpl {
     public final OtDocument OT_DOCUMENT = OtDocument.OT_DOCUMENT;
 
     /**
+     * The table <code>s_onthi.ot_exercise</code>.
+     */
+    public final OtExercise OT_EXERCISE = OtExercise.OT_EXERCISE;
+
+    /**
      * The table <code>s_onthi.ot_group</code>.
      */
     public final OtGroup OT_GROUP = OtGroup.OT_GROUP;
@@ -94,6 +101,11 @@ public class SOnthi extends SchemaImpl {
      * The table <code>s_onthi.ot_quiz</code>.
      */
     public final OtQuiz OT_QUIZ = OtQuiz.OT_QUIZ;
+
+    /**
+     * The table <code>s_onthi.ot_quiz_user</code>.
+     */
+    public final OtQuizUser OT_QUIZ_USER = OtQuizUser.OT_QUIZ_USER;
 
     /**
      * The table <code>s_onthi.ot_review</code>.
@@ -158,6 +170,7 @@ public class SOnthi extends SchemaImpl {
         return Arrays.asList(
             OtCourse.OT_COURSE,
             OtDocument.OT_DOCUMENT,
+            OtExercise.OT_EXERCISE,
             OtGroup.OT_GROUP,
             OtLesson.OT_LESSON,
             OtMenu.OT_MENU,
@@ -166,6 +179,7 @@ public class SOnthi extends SchemaImpl {
             OtNote.OT_NOTE,
             OtProvince.OT_PROVINCE,
             OtQuiz.OT_QUIZ,
+            OtQuizUser.OT_QUIZ_USER,
             OtReview.OT_REVIEW,
             OtReviewUser.OT_REVIEW_USER,
             OtRole.OT_ROLE,
