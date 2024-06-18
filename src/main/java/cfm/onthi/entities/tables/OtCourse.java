@@ -17,13 +17,13 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function15;
+import org.jooq.Function17;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row15;
+import org.jooq.Row17;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -65,6 +65,16 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
      * The column <code>s_onthi.ot_course.ID_TEACHER</code>.
      */
     public final TableField<OtCourseRecord, Long> ID_TEACHER = createField(DSL.name("ID_TEACHER"), SQLDataType.BIGINT.nullable(false), this, "");
+
+    /**
+     * The column <code>s_onthi.ot_course.ACTIVE</code>.
+     */
+    public final TableField<OtCourseRecord, Boolean> ACTIVE = createField(DSL.name("ACTIVE"), SQLDataType.BIT.nullable(false), this, "");
+
+    /**
+     * The column <code>s_onthi.ot_course.IS_CHECK</code>.
+     */
+    public final TableField<OtCourseRecord, Boolean> IS_CHECK = createField(DSL.name("IS_CHECK"), SQLDataType.BIT.nullable(false), this, "");
 
     /**
      * The column <code>s_onthi.ot_course.AVATAR_COURSE</code>.
@@ -224,18 +234,18 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row15 type methods
+    // Row17 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row15<Long, Long, String, String, String, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row15) super.fieldsRow();
+    public Row17<Long, Long, Boolean, Boolean, String, String, String, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row17) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function15<? super Long, ? super Long, ? super String, ? super String, ? super String, ? super String, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function17<? super Long, ? super Long, ? super Boolean, ? super Boolean, ? super String, ? super String, ? super String, ? super String, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -243,7 +253,7 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function15<? super Long, ? super Long, ? super String, ? super String, ? super String, ? super String, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function17<? super Long, ? super Long, ? super Boolean, ? super Boolean, ? super String, ? super String, ? super String, ? super String, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

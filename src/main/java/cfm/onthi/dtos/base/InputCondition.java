@@ -29,6 +29,9 @@ public class InputCondition {
     @JsonProperty(value = "ID_PROVINCE")
     public Long ID_PROVINCE;
 
+    @JsonProperty(value = "PROVINCE_NAME")
+    public String PROVINCE_NAME;
+
     @JsonProperty(value = "GRADE")
     public Integer GRADE;
 
@@ -67,4 +70,10 @@ public class InputCondition {
 
     @JsonProperty(value = "ID_EXERCISE")
     public Long ID_EXERCISE;
+
+    @JsonProperty(value = "ACTIVE")
+    public Boolean ACTIVE;
+
+    @JsonProperty(value = "IS_CHECK")
+    public Boolean IS_CHECK;
 }

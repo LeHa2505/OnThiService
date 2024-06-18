@@ -30,6 +30,7 @@ public interface CourseService {
     ResponseDTO getNote(InputCondition inputCondition);
     ResponseDTO getListExercise(InputCondition inputCondition);
     ResponseDTO getDetailExercise(Long id);
+    ResponseDTO getAllCourse();
 }
 
 @Service
@@ -268,4 +269,9 @@ class CourseServiceImpl extends BaseService implements CourseService {
         return new ResponseDTO(true, "OK!", exerciseDTO);
     }
 
+    @Override
+    public ResponseDTO getAllCourse() {
+        List<CourseDTO> courseDTOList = courseRepository.getAll();
+        return new ResponseDTO(true, "OK!", courseDTOList);
+    }
 }

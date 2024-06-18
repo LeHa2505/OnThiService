@@ -69,7 +69,38 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
 
     @Override
     public List<UserInfoDTO> getAll() {
-        return List.of();
+        List<UserInfoDTO> userInfoDTOList = dslContext.select()
+                .from(user)
+                .fetch()
+                .stream()
+                .map(record -> {
+                    UserInfoDTO userInfoDTO = new UserInfoDTO();
+
+                    userInfoDTO.idUser = record.get(user.ID_USER);
+                    userInfoDTO.idSchool = record.get(user.ID_SCHOOL);
+                    userInfoDTO.typeUser = record.get(user.TYPE_USER);
+                    userInfoDTO.username = record.get(user.USERNAME);
+                    userInfoDTO.email = record.get(user.EMAIL);
+                    userInfoDTO.phone = record.get(user.PHONE);
+                    userInfoDTO.grade = record.get(user.GRADE);
+                    userInfoDTO.gender = record.get(user.GENDER);
+                    userInfoDTO.bod = record.get(user.BOD);
+                    userInfoDTO.address = record.get(user.ADDRESS);
+                    userInfoDTO.description = record.get(user.DESCRIPTION);
+                    userInfoDTO.facebook = record.get(user.FACEBOOK);
+                    userInfoDTO.instagram = record.get(user.INSTAGRAM);
+                    userInfoDTO.avatar = record.get(user.AVATAR);
+                    userInfoDTO.active = record.get(user.ACTIVE);
+
+                    // Assuming schoolRepository.getByID() is a method that fetches school information by ID
+                    if (userInfoDTO.idSchool != null) {
+                        userInfoDTO.schoolInfo = schoolRepository.getByID(userInfoDTO.idSchool);
+                    }
+                    return userInfoDTO;
+                })
+                .collect(Collectors.toList());
+
+        return userInfoDTOList;
     }
 
     @Override
@@ -111,7 +142,9 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
                     userInfoDTO.avatar = entry.getKey().getAvatar();
                     userInfoDTO.active = entry.getKey().getActive();
 
-                    userInfoDTO.schoolInfo = schoolRepository.getByID(userInfoDTO.idSchool);
+                    if (userInfoDTO.idSchool != null) {
+                        userInfoDTO.schoolInfo = schoolRepository.getByID(userInfoDTO.idSchool);
+                    }
 
                     return userInfoDTO;
                 }).collect(Collectors.toList());
@@ -153,7 +186,9 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
                     userInfoDTO.avatar = entry.getKey().getAvatar();
                     userInfoDTO.active = entry.getKey().getActive();
 
-                    userInfoDTO.schoolInfo = schoolRepository.getByID(userInfoDTO.idSchool);
+                    if (userInfoDTO.idSchool != null) {
+                        userInfoDTO.schoolInfo = schoolRepository.getByID(userInfoDTO.idSchool);
+                    }
 
                     return userInfoDTO;
                 }).collect(Collectors.toList());
@@ -182,7 +217,7 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
                 .fetchInto(UserInfoDTO.class);
 
         for (UserInfoDTO userInfoDTO : result) {
-            // Gán giá trị null cho trường "password"
+            userInfoDTO.setSchoolInfo(schoolRepository.getByID(userInfoDTO.idSchool));
             userInfoDTO.setPassword(null);
         }
 
@@ -269,7 +304,6 @@ class UserRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Us
             int result = dslContext.update(user)
                     .set(user.TYPE_USER, item.getTypeUser())
                     .set(user.USERNAME, item.getUsername())
-                    .set(user.PASSWORD, item.getPassword())
                     .set(user.EMAIL, item.getEmail())
                     .set(user.PHONE, item.getPhone())
                     .set(user.GRADE, item.getGrade())

@@ -28,6 +28,8 @@ import static org.jooq.impl.DSL.trueCondition;
 
 public interface CourseRepository extends BaseRepository<CourseDTO> {
     CourseDTO guestGetByID(@NotNull Long id);
+    Boolean activeCourseExists(@NotNull Long id);
+    Boolean inactiveCourseExists(@NotNull Long id);
 }
 
 @Lazy
@@ -73,9 +75,24 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                         courseDTO.start_date = record.getValue(course.START_DATE);
                         courseDTO.end_date = record.getValue(course.END_DATE);
                         courseDTO.description = record.getValue(course.DESCRIPTION);
+                        courseDTO.active = record.getValue(course.ACTIVE);
+                        courseDTO.isCheck = record.getValue(course.IS_CHECK);
                         courseDTO.price = record.getValue(course.PRICE);
                         courseDTO.discount = record.getValue(course.DISCOUNT);
                         courseDTO.teacher_info = this.userRepository.getByID(record.getValue(course.ID_TEACHER));
+
+                        InputCondition inputConditionIDCourse = new InputCondition();
+                        inputConditionIDCourse.ID_COURSE = record.getValue(course.ID_COURSE);
+
+                        List<LessonDTO> lessons = lessonRepository.getListByInputCondition(inputConditionIDCourse);
+                        courseDTO.lesson_quantity = lessons.size();
+                        courseDTO.quiz_quantity = 0;
+
+                        for (LessonDTO lesson : lessons) {
+                            InputCondition inputConditionIDLesson = new InputCondition();
+                            inputConditionIDLesson.ID_LESSON = lesson.getIdLesson();
+                            courseDTO.quiz_quantity += quizRepository.getListByInputCondition(inputConditionIDLesson).size();
+                        }
 
                         return courseDTO;
                     })
@@ -90,9 +107,17 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
     public List<CourseDTO> getListByInputCondition(@NotNull InputCondition inputCondition) {
         Condition condition = trueCondition();
 
-//        if (inputCondition.CATEGORY_NAME != null && !inputCondition.CATEGORY_NAME.isBlank() && !inputCondition.CATEGORY_NAME.isEmpty()) {
-//            condition = condition.and(course.CATEGORY_NAME.likeIgnoreCase("%" + inputCondition.CATEGORY_NAME + "%"));
-//        }
+        if (inputCondition.ACTIVE != null) {
+            condition = condition.and(course.ACTIVE.eq(inputCondition.ACTIVE));
+        }
+
+        if (inputCondition.IS_CHECK != null) {
+            condition = condition.and(course.IS_CHECK.eq(inputCondition.IS_CHECK));
+        }
+
+        if (inputCondition.ID_USER != null) {
+            condition = condition.and(course.ID_TEACHER.eq(inputCondition.ID_USER));
+        }
 
         if (inputCondition.LIST_CATEGORY_NAME != null && !inputCondition.LIST_CATEGORY_NAME.isEmpty()) {
             // Convert each CATEGORY_NAME in LIST_CATEGORY_NAME to lowercase
@@ -136,6 +161,7 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
 
                     courseDTO.id_course = entry.getKey().getIdCourse();
                     courseDTO.id_teacher = entry.getKey().getIdTeacher();
+                    courseDTO.active = entry.getKey().getActive();
                     courseDTO.avatar_course = entry.getKey().getAvatarCourse();
                     courseDTO.category_name = entry.getKey().getCategoryName();
                     courseDTO.schedule = entry.getKey().getSchedule();
@@ -173,7 +199,10 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
 
         InputCondition inputCondition = new InputCondition();
         inputCondition.ID_COURSE = id;
+        inputCondition.ACTIVE = true;
+
         condition = condition.and(course.ID_COURSE.eq(inputCondition.ID_COURSE));
+        condition = condition.and(course.ACTIVE.eq(inputCondition.ACTIVE));
 
         List<CourseDTO> courseDTOList = dslContext.select()
                 .from(course).where(condition).fetch()
@@ -186,6 +215,7 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     courseDTO.id_course = entry.getKey().getIdCourse();
                     courseDTO.id_teacher = entry.getKey().getIdTeacher();
                     courseDTO.avatar_course = entry.getKey().getAvatarCourse();
+                    courseDTO.active = entry.getKey().getActive();
                     courseDTO.category_name = entry.getKey().getCategoryName();
                     courseDTO.schedule = entry.getKey().getSchedule();
                     courseDTO.course_name = entry.getKey().getCourseName();
@@ -246,6 +276,8 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
             dslContext.insertInto(course)
                     .set(course.ID_TEACHER, item.id_teacher)
                     .set(course.AVATAR_COURSE, item.avatar_course)
+                    .set(course.ACTIVE, false)
+                    .set(course.IS_CHECK, false)
                     .set(course.CATEGORY_NAME, item.category_name)
                     .set(course.SCHEDULE, item.schedule)
                     .set(course.COURSE_NAME, item.course_name)
@@ -302,6 +334,7 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     .set(course.ID_TEACHER, item.id_teacher)
                     .set(course.AVATAR_COURSE, item.avatar_course)
                     .set(course.CATEGORY_NAME, item.category_name)
+                    .set(course.ACTIVE, item.active)
                     .set(course.SCHEDULE, item.schedule)
                     .set(course.COURSE_NAME, item.course_name)
                     .set(course.TYPE_COURSE, item.type_course)
@@ -445,5 +478,35 @@ class CourseRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                 }).collect(Collectors.toList());
 
         return courseDTOList != null && !courseDTOList.isEmpty() ? courseDTOList.get(0) : null;
+    }
+
+    @Override
+    public Boolean activeCourseExists(@NotNull Long id) {
+        try {
+            int result = dslContext.update(course)
+                    .set(course.ACTIVE, true)
+                    .set(course.IS_CHECK, true)
+                    .where(course.ID_COURSE.eq(id))
+                    .execute();
+            return result > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public Boolean inactiveCourseExists(@NotNull Long id) {
+        try {
+            int result = dslContext.update(course)
+                    .set(course.ACTIVE, false)
+                    .set(course.IS_CHECK, true)
+                    .where(course.ID_COURSE.eq(id))
+                    .execute();
+            return result > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

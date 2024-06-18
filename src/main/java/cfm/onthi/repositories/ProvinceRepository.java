@@ -39,13 +39,32 @@ class ProvinceRepositoryImpl extends BaseRepositoryImpl implements ProvinceRepos
 
     @Override
     public List<ProvinceDTO> getListByInputCondition(@NotNull InputCondition inputCondition) {
-        return List.of();
+        Condition condition = trueCondition();
+        condition = condition.and(otProvince.ID_PROVINCE.like("%" + inputCondition.ID_PROVINCE + "%")); // Sử dụng LIKE với một mẫu đơn giản
+
+        List<ProvinceDTO> result = dslContext.select()
+                .from(otProvince)
+                .where(condition)
+                .fetch()
+                .stream()
+                .collect(Collectors.groupingBy(record -> record.into(otProvince)))
+                .entrySet().stream()
+                .map(entry -> {
+                    ProvinceDTO provinceDTO = new ProvinceDTO();
+
+                    provinceDTO.idProvince = entry.getKey().getIdProvince();
+                    provinceDTO.provinceName = entry.getKey().getProvinceName();
+
+                    return provinceDTO;
+                }).collect(Collectors.toList());
+
+        return result;
     }
 
     @Override
     public ProvinceDTO getByID(@NotNull Long id) {
         Condition condition = trueCondition();
-        condition = condition.and(otProvince.ID_PROVINCE.eq(id));
+        condition = condition.and(otProvince.ID_PROVINCE.like("%" + id + "%")); // Sử dụng LIKE với một mẫu đơn giản
 
         List<ProvinceDTO> result = dslContext.select()
                 .from(otProvince)
@@ -68,7 +87,33 @@ class ProvinceRepositoryImpl extends BaseRepositoryImpl implements ProvinceRepos
 
     @Override
     public ProvinceDTO getByInputCondition(@NotNull InputCondition inputCondition) {
-        return null;
+        Condition condition = trueCondition();
+
+        if (inputCondition.ID_PROVINCE != null) {
+            condition = condition.and(otProvince.ID_PROVINCE.eq(inputCondition.ID_PROVINCE));
+        }
+
+        if (inputCondition.PROVINCE_NAME != null && !inputCondition.PROVINCE_NAME.isBlank() && !inputCondition.PROVINCE_NAME.isEmpty()) {
+            condition = condition.and(otProvince.PROVINCE_NAME.like("%" + inputCondition.PROVINCE_NAME + "%")); // Sử dụng LIKE với một mẫu đơn giản
+        }
+
+        List<ProvinceDTO> result = dslContext.select()
+                .from(otProvince)
+                .where(condition)
+                .fetch()
+                .stream()
+                .collect(Collectors.groupingBy(record -> record.into(otProvince)))
+                .entrySet().stream()
+                .map(entry -> {
+                    ProvinceDTO provinceDTO = new ProvinceDTO();
+
+                    provinceDTO.idProvince = entry.getKey().getIdProvince();
+                    provinceDTO.provinceName = entry.getKey().getProvinceName();
+
+                    return provinceDTO;
+                }).collect(Collectors.toList());
+
+        return result != null && !result.isEmpty() ? result.get(0) : null;
     }
 
     @Override

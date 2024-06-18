@@ -146,4 +146,9 @@ public class CourseController {
     public ResponseEntity<?> getDetailExercise(@PathVariable("idExercise") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body((courseService.getDetailExercise(id)));
     }
+
+    @GetMapping("/user/getAllCourse")
+    public ResponseEntity<?> getAllCourse() {
+        return ResponseEntity.status(HttpStatus.OK).body((courseService.getAllCourse()));
+    }
 }
