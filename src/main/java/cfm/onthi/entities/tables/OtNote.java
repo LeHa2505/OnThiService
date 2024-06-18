@@ -78,7 +78,7 @@ public class OtNote extends TableImpl<OtNoteRecord> {
     /**
      * The column <code>s_onthi.ot_note.NOTE_TIME</code>.
      */
-    public final TableField<OtNoteRecord, Double> NOTE_TIME = createField(DSL.name("NOTE_TIME"), SQLDataType.FLOAT.nullable(false), this, "");
+    public final TableField<OtNoteRecord, Double> NOTE_TIME = createField(DSL.name("NOTE_TIME"), SQLDataType.FLOAT, this, "");
 
     /**
      * The column <code>s_onthi.ot_note.CREATED_DATE</code>.

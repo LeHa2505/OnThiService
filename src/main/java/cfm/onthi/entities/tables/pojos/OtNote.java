@@ -139,7 +139,7 @@ public class OtNote implements Serializable {
     /**
      * Getter for <code>s_onthi.ot_note.NOTE_TIME</code>.
      */
-    @Column(name = "NOTE_TIME", nullable = false)
+    @Column(name = "NOTE_TIME")
     public Double getNoteTime() {
         return this.noteTime;
     }

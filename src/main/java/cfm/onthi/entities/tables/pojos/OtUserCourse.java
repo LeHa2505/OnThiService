@@ -35,6 +35,9 @@ public class OtUserCourse implements Serializable {
     private Long idUserCourse;
     private Long idUser;
     private Long idCourse;
+    private Long learningLesson;
+    private String learnedLesson;
+    private String timeSchedule;
 
     public OtUserCourse() {}
 
@@ -42,16 +45,25 @@ public class OtUserCourse implements Serializable {
         this.idUserCourse = value.idUserCourse;
         this.idUser = value.idUser;
         this.idCourse = value.idCourse;
+        this.learningLesson = value.learningLesson;
+        this.learnedLesson = value.learnedLesson;
+        this.timeSchedule = value.timeSchedule;
     }
 
     public OtUserCourse(
         Long idUserCourse,
         Long idUser,
-        Long idCourse
+        Long idCourse,
+        Long learningLesson,
+        String learnedLesson,
+        String timeSchedule
     ) {
         this.idUserCourse = idUserCourse;
         this.idUser = idUser;
         this.idCourse = idCourse;
+        this.learningLesson = learningLesson;
+        this.learnedLesson = learnedLesson;
+        this.timeSchedule = timeSchedule;
     }
 
     /**
@@ -101,6 +113,51 @@ public class OtUserCourse implements Serializable {
         this.idCourse = idCourse;
     }
 
+    /**
+     * Getter for <code>s_onthi.ot_user_course.LEARNING_LESSON</code>.
+     */
+    @Column(name = "LEARNING_LESSON")
+    public Long getLearningLesson() {
+        return this.learningLesson;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_user_course.LEARNING_LESSON</code>.
+     */
+    public void setLearningLesson(Long learningLesson) {
+        this.learningLesson = learningLesson;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_user_course.LEARNED_LESSON</code>.
+     */
+    @Column(name = "LEARNED_LESSON", length = 5000)
+    public String getLearnedLesson() {
+        return this.learnedLesson;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_user_course.LEARNED_LESSON</code>.
+     */
+    public void setLearnedLesson(String learnedLesson) {
+        this.learnedLesson = learnedLesson;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_user_course.TIME_SCHEDULE</code>.
+     */
+    @Column(name = "TIME_SCHEDULE", length = 50)
+    public String getTimeSchedule() {
+        return this.timeSchedule;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_user_course.TIME_SCHEDULE</code>.
+     */
+    public void setTimeSchedule(String timeSchedule) {
+        this.timeSchedule = timeSchedule;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -128,6 +185,24 @@ public class OtUserCourse implements Serializable {
         }
         else if (!this.idCourse.equals(other.idCourse))
             return false;
+        if (this.learningLesson == null) {
+            if (other.learningLesson != null)
+                return false;
+        }
+        else if (!this.learningLesson.equals(other.learningLesson))
+            return false;
+        if (this.learnedLesson == null) {
+            if (other.learnedLesson != null)
+                return false;
+        }
+        else if (!this.learnedLesson.equals(other.learnedLesson))
+            return false;
+        if (this.timeSchedule == null) {
+            if (other.timeSchedule != null)
+                return false;
+        }
+        else if (!this.timeSchedule.equals(other.timeSchedule))
+            return false;
         return true;
     }
 
@@ -138,6 +213,9 @@ public class OtUserCourse implements Serializable {
         result = prime * result + ((this.idUserCourse == null) ? 0 : this.idUserCourse.hashCode());
         result = prime * result + ((this.idUser == null) ? 0 : this.idUser.hashCode());
         result = prime * result + ((this.idCourse == null) ? 0 : this.idCourse.hashCode());
+        result = prime * result + ((this.learningLesson == null) ? 0 : this.learningLesson.hashCode());
+        result = prime * result + ((this.learnedLesson == null) ? 0 : this.learnedLesson.hashCode());
+        result = prime * result + ((this.timeSchedule == null) ? 0 : this.timeSchedule.hashCode());
         return result;
     }
 
@@ -148,6 +226,9 @@ public class OtUserCourse implements Serializable {
         sb.append(idUserCourse);
         sb.append(", ").append(idUser);
         sb.append(", ").append(idCourse);
+        sb.append(", ").append(learningLesson);
+        sb.append(", ").append(learnedLesson);
+        sb.append(", ").append(timeSchedule);
 
         sb.append(")");
         return sb.toString();

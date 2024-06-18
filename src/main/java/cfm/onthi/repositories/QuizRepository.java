@@ -31,11 +31,15 @@ public interface QuizRepository extends BaseRepository<QuizDTO>{
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 class QuizRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<QuizDTO>, QuizRepository {
     OtQuiz quiz = OtQuiz.OT_QUIZ.as("OtQuiz");
+    QuizUserRepository quizUserRepository;
 
     public QuizRepositoryImpl(@Qualifier(DefineProperties.DSLContextOnThi) DSLContext dslContext,
                               @Qualifier(DefineProperties.entityManagerOnThi) EntityManager entityManager,
-                              @Qualifier(DefineProperties.connectionProviderOnThi) DataSourceConnectionProvider connectionProvider) {
+                              @Qualifier(DefineProperties.connectionProviderOnThi) DataSourceConnectionProvider connectionProvider,
+                              QuizUserRepository quizUserRepository
+    ) {
         super(dslContext, entityManager);
+        this.quizUserRepository = quizUserRepository;
     }
 
     @Override
@@ -47,8 +51,8 @@ class QuizRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Qu
     public List<QuizDTO> getListByInputCondition(@NotNull InputCondition inputCondition) {
         Condition condition = trueCondition();
 
-        if (inputCondition.ID_LESSON != null) {
-            condition = condition.and(quiz.ID_LESSON.eq(inputCondition.ID_LESSON));
+        if (inputCondition.ID_EXERCISE != null) {
+            condition = condition.and(quiz.ID_EXERCISE.eq(inputCondition.ID_EXERCISE));
         }
 
         List<QuizDTO> quizDTOList = dslContext.select()
@@ -60,12 +64,19 @@ class QuizRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<Qu
                     QuizDTO quizDTO = new QuizDTO();
 
                     quizDTO.idQuiz = entry.getKey().getIdQuiz();
-                    quizDTO.idLesson = entry.getKey().getIdLesson();
+                    quizDTO.idExercise = entry.getKey().getIdExercise();
                     quizDTO.contentQuiz = entry.getKey().getContentQuiz();
                     quizDTO.quizStatus = entry.getKey().getQuizStatus();
                     quizDTO.quizType = entry.getKey().getQuizType();
                     quizDTO.answer = entry.getKey().getAnswer();
+                    quizDTO.description = entry.getKey().getDescription();
                     quizDTO.order = entry.getKey().getOrder();
+                    quizDTO.options = entry.getKey().getOptions();
+
+                    InputCondition inputConditionIDQuiz = new InputCondition();
+                    inputConditionIDQuiz.ID_QUIZ = entry.getKey().getIdQuiz();
+                    inputConditionIDQuiz.ID_USER = inputCondition.ID_USER;
+                    quizDTO.quizUserInfo = quizUserRepository.getListByInputCondition(inputConditionIDQuiz);
 
                     return quizDTO;
                 }).collect(Collectors.toList());

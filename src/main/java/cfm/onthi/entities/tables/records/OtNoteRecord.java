@@ -111,7 +111,7 @@ public class OtNoteRecord extends UpdatableRecordImpl<OtNoteRecord> implements R
     /**
      * Getter for <code>s_onthi.ot_note.NOTE_TIME</code>.
      */
-    @Column(name = "NOTE_TIME", nullable = false)
+    @Column(name = "NOTE_TIME")
     public Double getNoteTime() {
         return (Double) get(4);
     }

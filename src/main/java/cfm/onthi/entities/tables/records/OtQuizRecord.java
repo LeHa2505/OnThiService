@@ -11,15 +11,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 
 import org.jooq.Field;
 import org.jooq.Record1;
-import org.jooq.Record10;
-import org.jooq.Row10;
+import org.jooq.Record12;
+import org.jooq.Row12;
 import org.jooq.impl.UpdatableRecordImpl;
 
 
@@ -30,12 +29,9 @@ import org.jooq.impl.UpdatableRecordImpl;
 @Entity
 @Table(
     name = "ot_quiz",
-    schema = "s_onthi",
-    indexes = {
-        @Index(name = "ID_LESSON", columnList = "ID_LESSON ASC")
-    }
+    schema = "s_onthi"
 )
-public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements Record10<Long, Long, String, Long, String, Long, Integer, LocalDateTime, String, LocalDateTime> {
+public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements Record12<Long, Long, String, String, Long, String, String, Long, Integer, LocalDateTime, String, LocalDateTime> {
 
     private static final long serialVersionUID = 1L;
 
@@ -57,17 +53,17 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
     }
 
     /**
-     * Setter for <code>s_onthi.ot_quiz.ID_LESSON</code>.
+     * Setter for <code>s_onthi.ot_quiz.ID_EXERCISE</code>.
      */
-    public void setIdLesson(Long value) {
+    public void setIdExercise(Long value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>s_onthi.ot_quiz.ID_LESSON</code>.
+     * Getter for <code>s_onthi.ot_quiz.ID_EXERCISE</code>.
      */
-    @Column(name = "ID_LESSON", nullable = false)
-    public Long getIdLesson() {
+    @Column(name = "ID_EXERCISE", nullable = false)
+    public Long getIdExercise() {
         return (Long) get(1);
     }
 
@@ -81,16 +77,31 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
     /**
      * Getter for <code>s_onthi.ot_quiz.CONTENT_QUIZ</code>.
      */
-    @Column(name = "CONTENT_QUIZ", nullable = false, length = 2000)
+    @Column(name = "CONTENT_QUIZ", nullable = false)
     public String getContentQuiz() {
         return (String) get(2);
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_quiz.OPTIONS</code>.
+     */
+    public void setOptions(String value) {
+        set(3, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_quiz.OPTIONS</code>.
+     */
+    @Column(name = "OPTIONS")
+    public String getOptions() {
+        return (String) get(3);
     }
 
     /**
      * Setter for <code>s_onthi.ot_quiz.QUIZ_TYPE</code>.
      */
     public void setQuizType(Long value) {
-        set(3, value);
+        set(4, value);
     }
 
     /**
@@ -98,14 +109,14 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
      */
     @Column(name = "QUIZ_TYPE")
     public Long getQuizType() {
-        return (Long) get(3);
+        return (Long) get(4);
     }
 
     /**
      * Setter for <code>s_onthi.ot_quiz.ANSWER</code>.
      */
     public void setAnswer(String value) {
-        set(4, value);
+        set(5, value);
     }
 
     /**
@@ -113,14 +124,29 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
      */
     @Column(name = "ANSWER")
     public String getAnswer() {
-        return (String) get(4);
+        return (String) get(5);
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_quiz.DESCRIPTION</code>.
+     */
+    public void setDescription(String value) {
+        set(6, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_quiz.DESCRIPTION</code>.
+     */
+    @Column(name = "DESCRIPTION")
+    public String getDescription() {
+        return (String) get(6);
     }
 
     /**
      * Setter for <code>s_onthi.ot_quiz.QUIZ_STATUS</code>.
      */
     public void setQuizStatus(Long value) {
-        set(5, value);
+        set(7, value);
     }
 
     /**
@@ -128,14 +154,14 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
      */
     @Column(name = "QUIZ_STATUS")
     public Long getQuizStatus() {
-        return (Long) get(5);
+        return (Long) get(7);
     }
 
     /**
      * Setter for <code>s_onthi.ot_quiz.ORDER</code>.
      */
     public void setOrder(Integer value) {
-        set(6, value);
+        set(8, value);
     }
 
     /**
@@ -143,14 +169,14 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
      */
     @Column(name = "ORDER")
     public Integer getOrder() {
-        return (Integer) get(6);
+        return (Integer) get(8);
     }
 
     /**
      * Setter for <code>s_onthi.ot_quiz.CREATED_DATE</code>.
      */
     public void setCreatedDate(LocalDateTime value) {
-        set(7, value);
+        set(9, value);
     }
 
     /**
@@ -158,14 +184,14 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
      */
     @Column(name = "CREATED_DATE", precision = 6)
     public LocalDateTime getCreatedDate() {
-        return (LocalDateTime) get(7);
+        return (LocalDateTime) get(9);
     }
 
     /**
      * Setter for <code>s_onthi.ot_quiz.LAST_MODIFIED_BY</code>.
      */
     public void setLastModifiedBy(String value) {
-        set(8, value);
+        set(10, value);
     }
 
     /**
@@ -173,14 +199,14 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
      */
     @Column(name = "LAST_MODIFIED_BY", length = 50)
     public String getLastModifiedBy() {
-        return (String) get(8);
+        return (String) get(10);
     }
 
     /**
      * Setter for <code>s_onthi.ot_quiz.LAST_MODIFIED_DATE</code>.
      */
     public void setLastModifiedDate(LocalDateTime value) {
-        set(9, value);
+        set(11, value);
     }
 
     /**
@@ -188,7 +214,7 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
      */
     @Column(name = "LAST_MODIFIED_DATE", precision = 6)
     public LocalDateTime getLastModifiedDate() {
-        return (LocalDateTime) get(9);
+        return (LocalDateTime) get(11);
     }
 
     // -------------------------------------------------------------------------
@@ -201,17 +227,17 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
     }
 
     // -------------------------------------------------------------------------
-    // Record10 type implementation
+    // Record12 type implementation
     // -------------------------------------------------------------------------
 
     @Override
-    public Row10<Long, Long, String, Long, String, Long, Integer, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row10) super.fieldsRow();
+    public Row12<Long, Long, String, String, Long, String, String, Long, Integer, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row12) super.fieldsRow();
     }
 
     @Override
-    public Row10<Long, Long, String, Long, String, Long, Integer, LocalDateTime, String, LocalDateTime> valuesRow() {
-        return (Row10) super.valuesRow();
+    public Row12<Long, Long, String, String, Long, String, String, Long, Integer, LocalDateTime, String, LocalDateTime> valuesRow() {
+        return (Row12) super.valuesRow();
     }
 
     @Override
@@ -221,7 +247,7 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
 
     @Override
     public Field<Long> field2() {
-        return OtQuiz.OT_QUIZ.ID_LESSON;
+        return OtQuiz.OT_QUIZ.ID_EXERCISE;
     }
 
     @Override
@@ -230,37 +256,47 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
     }
 
     @Override
-    public Field<Long> field4() {
+    public Field<String> field4() {
+        return OtQuiz.OT_QUIZ.OPTIONS;
+    }
+
+    @Override
+    public Field<Long> field5() {
         return OtQuiz.OT_QUIZ.QUIZ_TYPE;
     }
 
     @Override
-    public Field<String> field5() {
+    public Field<String> field6() {
         return OtQuiz.OT_QUIZ.ANSWER;
     }
 
     @Override
-    public Field<Long> field6() {
+    public Field<String> field7() {
+        return OtQuiz.OT_QUIZ.DESCRIPTION;
+    }
+
+    @Override
+    public Field<Long> field8() {
         return OtQuiz.OT_QUIZ.QUIZ_STATUS;
     }
 
     @Override
-    public Field<Integer> field7() {
+    public Field<Integer> field9() {
         return OtQuiz.OT_QUIZ.ORDER;
     }
 
     @Override
-    public Field<LocalDateTime> field8() {
+    public Field<LocalDateTime> field10() {
         return OtQuiz.OT_QUIZ.CREATED_DATE;
     }
 
     @Override
-    public Field<String> field9() {
+    public Field<String> field11() {
         return OtQuiz.OT_QUIZ.LAST_MODIFIED_BY;
     }
 
     @Override
-    public Field<LocalDateTime> field10() {
+    public Field<LocalDateTime> field12() {
         return OtQuiz.OT_QUIZ.LAST_MODIFIED_DATE;
     }
 
@@ -271,7 +307,7 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
 
     @Override
     public Long component2() {
-        return getIdLesson();
+        return getIdExercise();
     }
 
     @Override
@@ -280,37 +316,47 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
     }
 
     @Override
-    public Long component4() {
+    public String component4() {
+        return getOptions();
+    }
+
+    @Override
+    public Long component5() {
         return getQuizType();
     }
 
     @Override
-    public String component5() {
+    public String component6() {
         return getAnswer();
     }
 
     @Override
-    public Long component6() {
+    public String component7() {
+        return getDescription();
+    }
+
+    @Override
+    public Long component8() {
         return getQuizStatus();
     }
 
     @Override
-    public Integer component7() {
+    public Integer component9() {
         return getOrder();
     }
 
     @Override
-    public LocalDateTime component8() {
+    public LocalDateTime component10() {
         return getCreatedDate();
     }
 
     @Override
-    public String component9() {
+    public String component11() {
         return getLastModifiedBy();
     }
 
     @Override
-    public LocalDateTime component10() {
+    public LocalDateTime component12() {
         return getLastModifiedDate();
     }
 
@@ -321,7 +367,7 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
 
     @Override
     public Long value2() {
-        return getIdLesson();
+        return getIdExercise();
     }
 
     @Override
@@ -330,37 +376,47 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
     }
 
     @Override
-    public Long value4() {
+    public String value4() {
+        return getOptions();
+    }
+
+    @Override
+    public Long value5() {
         return getQuizType();
     }
 
     @Override
-    public String value5() {
+    public String value6() {
         return getAnswer();
     }
 
     @Override
-    public Long value6() {
+    public String value7() {
+        return getDescription();
+    }
+
+    @Override
+    public Long value8() {
         return getQuizStatus();
     }
 
     @Override
-    public Integer value7() {
+    public Integer value9() {
         return getOrder();
     }
 
     @Override
-    public LocalDateTime value8() {
+    public LocalDateTime value10() {
         return getCreatedDate();
     }
 
     @Override
-    public String value9() {
+    public String value11() {
         return getLastModifiedBy();
     }
 
     @Override
-    public LocalDateTime value10() {
+    public LocalDateTime value12() {
         return getLastModifiedDate();
     }
 
@@ -372,7 +428,7 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
 
     @Override
     public OtQuizRecord value2(Long value) {
-        setIdLesson(value);
+        setIdExercise(value);
         return this;
     }
 
@@ -383,49 +439,61 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
     }
 
     @Override
-    public OtQuizRecord value4(Long value) {
+    public OtQuizRecord value4(String value) {
+        setOptions(value);
+        return this;
+    }
+
+    @Override
+    public OtQuizRecord value5(Long value) {
         setQuizType(value);
         return this;
     }
 
     @Override
-    public OtQuizRecord value5(String value) {
+    public OtQuizRecord value6(String value) {
         setAnswer(value);
         return this;
     }
 
     @Override
-    public OtQuizRecord value6(Long value) {
+    public OtQuizRecord value7(String value) {
+        setDescription(value);
+        return this;
+    }
+
+    @Override
+    public OtQuizRecord value8(Long value) {
         setQuizStatus(value);
         return this;
     }
 
     @Override
-    public OtQuizRecord value7(Integer value) {
+    public OtQuizRecord value9(Integer value) {
         setOrder(value);
         return this;
     }
 
     @Override
-    public OtQuizRecord value8(LocalDateTime value) {
+    public OtQuizRecord value10(LocalDateTime value) {
         setCreatedDate(value);
         return this;
     }
 
     @Override
-    public OtQuizRecord value9(String value) {
+    public OtQuizRecord value11(String value) {
         setLastModifiedBy(value);
         return this;
     }
 
     @Override
-    public OtQuizRecord value10(LocalDateTime value) {
+    public OtQuizRecord value12(LocalDateTime value) {
         setLastModifiedDate(value);
         return this;
     }
 
     @Override
-    public OtQuizRecord values(Long value1, Long value2, String value3, Long value4, String value5, Long value6, Integer value7, LocalDateTime value8, String value9, LocalDateTime value10) {
+    public OtQuizRecord values(Long value1, Long value2, String value3, String value4, Long value5, String value6, String value7, Long value8, Integer value9, LocalDateTime value10, String value11, LocalDateTime value12) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -436,6 +504,8 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
         value8(value8);
         value9(value9);
         value10(value10);
+        value11(value11);
+        value12(value12);
         return this;
     }
 
@@ -453,14 +523,16 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
     /**
      * Create a detached, initialised OtQuizRecord
      */
-    public OtQuizRecord(Long idQuiz, Long idLesson, String contentQuiz, Long quizType, String answer, Long quizStatus, Integer order, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
+    public OtQuizRecord(Long idQuiz, Long idExercise, String contentQuiz, String options, Long quizType, String answer, String description, Long quizStatus, Integer order, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
         super(OtQuiz.OT_QUIZ);
 
         setIdQuiz(idQuiz);
-        setIdLesson(idLesson);
+        setIdExercise(idExercise);
         setContentQuiz(contentQuiz);
+        setOptions(options);
         setQuizType(quizType);
         setAnswer(answer);
+        setDescription(description);
         setQuizStatus(quizStatus);
         setOrder(order);
         setCreatedDate(createdDate);
@@ -476,10 +548,12 @@ public class OtQuizRecord extends UpdatableRecordImpl<OtQuizRecord> implements R
 
         if (value != null) {
             setIdQuiz(value.getIdQuiz());
-            setIdLesson(value.getIdLesson());
+            setIdExercise(value.getIdExercise());
             setContentQuiz(value.getContentQuiz());
+            setOptions(value.getOptions());
             setQuizType(value.getQuizType());
             setAnswer(value.getAnswer());
+            setDescription(value.getDescription());
             setQuizStatus(value.getQuizStatus());
             setOrder(value.getOrder());
             setCreatedDate(value.getCreatedDate());

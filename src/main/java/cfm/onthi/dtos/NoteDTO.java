@@ -22,5 +22,5 @@ public class NoteDTO {
     public String content;
 
     @JsonProperty(value = "NOTE_TIME")
-    public Float noteTime;
+    public Double noteTime;
 }

@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,7 +70,7 @@ class SchoolRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     schoolDTO.provinceInfo = provinceRepository.getByID(schoolDTO.idProvince);
 
                     return schoolDTO;
-                }).collect(Collectors.toList());;
+                }).collect(Collectors.toList());
         return schoolDTOS != null && !schoolDTOS.isEmpty() ? schoolDTOS.get(0) : null;
     }
 
@@ -144,7 +145,18 @@ class SchoolRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
 
     @Override
     public Boolean update(@NotNull SchoolDTO item) {
-        return null;
+        try {
+            int result = dslContext.update(otSchool)
+                    .set(otSchool.SCHOOL_NAME, item.schoolName)
+                    .set(otSchool.TYPE_SCHOOL, item.typeSchool)
+                    .set(otSchool.ID_PROVINCE, item.idProvince)
+                    .where(otSchool.ID_SCHOOL.eq(item.getIdSchool()))
+                    .execute();
+            return result > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

@@ -1,9 +1,6 @@
 package cfm.onthi.services;
 
-import cfm.onthi.dtos.CourseDTO;
-import cfm.onthi.dtos.LessonDTO;
-import cfm.onthi.dtos.ReviewDTO;
-import cfm.onthi.dtos.ReviewUserDTO;
+import cfm.onthi.dtos.*;
 import cfm.onthi.dtos.base.InputCondition;
 import cfm.onthi.dtos.base.ResponseDTO;
 import cfm.onthi.repositories.*;
@@ -16,14 +13,24 @@ import java.util.List;
 public interface CourseService {
     ResponseDTO getListCoursesByInputCondition(InputCondition inputCondition);
     ResponseDTO guestGetDetailCourse(Long id);
+    ResponseDTO userGetDetailCourse(Long id);
     ResponseDTO userLikeDislikeReview(ReviewDTO reviewDTO);
     ResponseDTO userUnlikeUndislikeReview(ReviewDTO reviewDTO);
     ResponseDTO userGetListReview(Long id);
     ResponseDTO userGetListComment(Long id);
     ResponseDTO userGetLessons(Long id);
     ResponseDTO userGetLessonDetail(Long id);
+    ResponseDTO getCourseByUserID(Long id);
     ResponseDTO createReview(ReviewDTO reviewDTO);
     ResponseDTO deleteReview(Long  id);
+    ResponseDTO enrollCourse(UserCourseDTO userCourseDTO);
+    ResponseDTO updateLearningProcess(UserCourseDTO userCourseDTO);
+    ResponseDTO saveNote(NoteDTO noteDTO);
+    ResponseDTO updateNote(NoteDTO noteDTO);
+    ResponseDTO getNote(InputCondition inputCondition);
+    ResponseDTO getListExercise(InputCondition inputCondition);
+    ResponseDTO getDetailExercise(Long id);
+    ResponseDTO getAllCourse();
 }
 
 @Service
@@ -36,6 +43,8 @@ class CourseServiceImpl extends BaseService implements CourseService {
     private DocumentRepository documentRepository;
     private NoteRepository noteRepository;
     private ReviewUserRepository reviewUserRepository;
+    private UserCourseRepository userCourseRepository;
+    private ExerciseRepository exerciseRepository;
 
     public CourseServiceImpl(
             TransactionTemplate transactionTemplate,
@@ -46,7 +55,9 @@ class CourseServiceImpl extends BaseService implements CourseService {
             ReviewRepository reviewRepository,
             DocumentRepository documentRepository,
             NoteRepository noteRepository,
-            ReviewUserRepository reviewUserRepository
+            ReviewUserRepository reviewUserRepository,
+            UserCourseRepository userCourseRepository,
+            ExerciseRepository exerciseRepository
     ) {
         super();
         this.courseRepository = courseRepository;
@@ -57,6 +68,8 @@ class CourseServiceImpl extends BaseService implements CourseService {
         this.documentRepository = documentRepository;
         this.noteRepository = noteRepository;
         this.reviewUserRepository = reviewUserRepository;
+        this.userCourseRepository = userCourseRepository;
+        this.exerciseRepository = exerciseRepository;
     }
 
     @Override
@@ -72,6 +85,15 @@ class CourseServiceImpl extends BaseService implements CourseService {
     @Override
     public ResponseDTO guestGetDetailCourse(Long id) {
         CourseDTO courseDTO = this.courseRepository.guestGetByID(id);
+        if (courseDTO != null) {
+            return new ResponseDTO(true, "OK!", courseDTO);
+        }
+        return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+    }
+
+    @Override
+    public ResponseDTO userGetDetailCourse(Long id) {
+        CourseDTO courseDTO = this.courseRepository.getByID(id);
         if (courseDTO != null) {
             return new ResponseDTO(true, "OK!", courseDTO);
         }
@@ -153,6 +175,14 @@ class CourseServiceImpl extends BaseService implements CourseService {
     }
 
     @Override
+    public ResponseDTO getCourseByUserID(Long id) {
+        InputCondition inputCondition = new InputCondition();
+        inputCondition.ID_USER = id;
+        List<UserCourseDTO> userCourseDTOList = userCourseRepository.getListByInputCondition(inputCondition);
+        return new ResponseDTO(true, "OK!", userCourseDTOList);
+    }
+
+    @Override
     public ResponseDTO createReview(ReviewDTO reviewDTO) {
         if (reviewRepository.save(reviewDTO)) {
             return new ResponseDTO(true, "Cảm ơn bạn vì đã góp ý về khóa học này!", null);
@@ -181,4 +211,67 @@ class CourseServiceImpl extends BaseService implements CourseService {
         }
     }
 
+    @Override
+    public ResponseDTO enrollCourse(UserCourseDTO userCourseDTO) {
+        if (userCourseRepository.save(userCourseDTO)) {
+            return new ResponseDTO(true, "Mua khóa học thành công", null);
+        }
+        else {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
+    }
+
+    @Override
+    public ResponseDTO updateLearningProcess(UserCourseDTO userCourseDTO) {
+        if (userCourseRepository.update(userCourseDTO)) {
+            return new ResponseDTO(true, "Đánh dấu đã học thành công", null);
+        }
+        else {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
+    }
+
+    @Override
+    public ResponseDTO saveNote(NoteDTO noteDTO) {
+        if (noteRepository.save(noteDTO)) {
+            return new ResponseDTO(true, "Lưu ghi chú thành công", null);
+        }
+        else {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
+    }
+
+    @Override
+    public ResponseDTO updateNote(NoteDTO noteDTO) {
+        if (noteRepository.update(noteDTO)) {
+            return new ResponseDTO(true, "Cập nhật ghi chú thành công", null);
+        }
+        else {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
+    }
+
+    @Override
+    public ResponseDTO getNote(InputCondition inputCondition) {
+        NoteDTO noteDTO = noteRepository.getByInputCondition(inputCondition);
+        return new ResponseDTO(true, "OK!", noteDTO);
+    }
+
+    @Override
+    public ResponseDTO getListExercise(InputCondition inputCondition) {
+        List<ExerciseDTO> exerciseDTOList = exerciseRepository.getListByInputCondition(inputCondition);
+        return new ResponseDTO(true, "OK!", exerciseDTOList);
+    }
+
+    @Override
+    public ResponseDTO getDetailExercise(Long id) {
+        ExerciseDTO exerciseDTO = exerciseRepository.getByID(id);
+        return new ResponseDTO(true, "OK!", exerciseDTO);
+    }
+
+    @Override
+    public ResponseDTO getAllCourse() {
+        List<CourseDTO> courseDTOList = courseRepository.getAll();
+        return new ResponseDTO(true, "OK!", courseDTOList);
+    }
 }

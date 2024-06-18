@@ -15,13 +15,13 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function3;
+import org.jooq.Function6;
 import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row3;
+import org.jooq.Row6;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -68,6 +68,21 @@ public class OtUserCourse extends TableImpl<OtUserCourseRecord> {
      * The column <code>s_onthi.ot_user_course.ID_COURSE</code>.
      */
     public final TableField<OtUserCourseRecord, Long> ID_COURSE = createField(DSL.name("ID_COURSE"), SQLDataType.BIGINT.nullable(false), this, "");
+
+    /**
+     * The column <code>s_onthi.ot_user_course.LEARNING_LESSON</code>.
+     */
+    public final TableField<OtUserCourseRecord, Long> LEARNING_LESSON = createField(DSL.name("LEARNING_LESSON"), SQLDataType.BIGINT, this, "");
+
+    /**
+     * The column <code>s_onthi.ot_user_course.LEARNED_LESSON</code>.
+     */
+    public final TableField<OtUserCourseRecord, String> LEARNED_LESSON = createField(DSL.name("LEARNED_LESSON"), SQLDataType.VARCHAR(5000), this, "");
+
+    /**
+     * The column <code>s_onthi.ot_user_course.TIME_SCHEDULE</code>.
+     */
+    public final TableField<OtUserCourseRecord, String> TIME_SCHEDULE = createField(DSL.name("TIME_SCHEDULE"), SQLDataType.VARCHAR(50), this, "");
 
     private OtUserCourse(Name alias, Table<OtUserCourseRecord> aliased) {
         this(alias, aliased, null);
@@ -190,18 +205,18 @@ public class OtUserCourse extends TableImpl<OtUserCourseRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row3 type methods
+    // Row6 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<Long, Long, Long> fieldsRow() {
-        return (Row3) super.fieldsRow();
+    public Row6<Long, Long, Long, Long, String, String> fieldsRow() {
+        return (Row6) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function3<? super Long, ? super Long, ? super Long, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function6<? super Long, ? super Long, ? super Long, ? super Long, ? super String, ? super String, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -209,7 +224,7 @@ public class OtUserCourse extends TableImpl<OtUserCourseRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super Long, ? super Long, ? super Long, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function6<? super Long, ? super Long, ? super Long, ? super Long, ? super String, ? super String, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

@@ -48,6 +48,8 @@ public class OtUser implements Serializable {
     private String description;
     private String facebook;
     private String instagram;
+    private Long idCourseLearning;
+    private Double pauseTime;
     private Boolean active;
     private LocalDateTime createdDate;
     private String lastModifiedBy;
@@ -71,6 +73,8 @@ public class OtUser implements Serializable {
         this.description = value.description;
         this.facebook = value.facebook;
         this.instagram = value.instagram;
+        this.idCourseLearning = value.idCourseLearning;
+        this.pauseTime = value.pauseTime;
         this.active = value.active;
         this.createdDate = value.createdDate;
         this.lastModifiedBy = value.lastModifiedBy;
@@ -93,6 +97,8 @@ public class OtUser implements Serializable {
         String description,
         String facebook,
         String instagram,
+        Long idCourseLearning,
+        Double pauseTime,
         Boolean active,
         LocalDateTime createdDate,
         String lastModifiedBy,
@@ -113,6 +119,8 @@ public class OtUser implements Serializable {
         this.description = description;
         this.facebook = facebook;
         this.instagram = instagram;
+        this.idCourseLearning = idCourseLearning;
+        this.pauseTime = pauseTime;
         this.active = active;
         this.createdDate = createdDate;
         this.lastModifiedBy = lastModifiedBy;
@@ -347,6 +355,36 @@ public class OtUser implements Serializable {
     }
 
     /**
+     * Getter for <code>s_onthi.ot_user.ID_COURSE_LEARNING</code>.
+     */
+    @Column(name = "ID_COURSE_LEARNING")
+    public Long getIdCourseLearning() {
+        return this.idCourseLearning;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_user.ID_COURSE_LEARNING</code>.
+     */
+    public void setIdCourseLearning(Long idCourseLearning) {
+        this.idCourseLearning = idCourseLearning;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_user.PAUSE_TIME</code>.
+     */
+    @Column(name = "PAUSE_TIME")
+    public Double getPauseTime() {
+        return this.pauseTime;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_user.PAUSE_TIME</code>.
+     */
+    public void setPauseTime(Double pauseTime) {
+        this.pauseTime = pauseTime;
+    }
+
+    /**
      * Getter for <code>s_onthi.ot_user.ACTIVE</code>.
      */
     @Column(name = "ACTIVE", nullable = false)
@@ -505,6 +543,18 @@ public class OtUser implements Serializable {
         }
         else if (!this.instagram.equals(other.instagram))
             return false;
+        if (this.idCourseLearning == null) {
+            if (other.idCourseLearning != null)
+                return false;
+        }
+        else if (!this.idCourseLearning.equals(other.idCourseLearning))
+            return false;
+        if (this.pauseTime == null) {
+            if (other.pauseTime != null)
+                return false;
+        }
+        else if (!this.pauseTime.equals(other.pauseTime))
+            return false;
         if (this.active == null) {
             if (other.active != null)
                 return false;
@@ -551,6 +601,8 @@ public class OtUser implements Serializable {
         result = prime * result + ((this.description == null) ? 0 : this.description.hashCode());
         result = prime * result + ((this.facebook == null) ? 0 : this.facebook.hashCode());
         result = prime * result + ((this.instagram == null) ? 0 : this.instagram.hashCode());
+        result = prime * result + ((this.idCourseLearning == null) ? 0 : this.idCourseLearning.hashCode());
+        result = prime * result + ((this.pauseTime == null) ? 0 : this.pauseTime.hashCode());
         result = prime * result + ((this.active == null) ? 0 : this.active.hashCode());
         result = prime * result + ((this.createdDate == null) ? 0 : this.createdDate.hashCode());
         result = prime * result + ((this.lastModifiedBy == null) ? 0 : this.lastModifiedBy.hashCode());
@@ -577,6 +629,8 @@ public class OtUser implements Serializable {
         sb.append(", ").append(description);
         sb.append(", ").append(facebook);
         sb.append(", ").append(instagram);
+        sb.append(", ").append(idCourseLearning);
+        sb.append(", ").append(pauseTime);
         sb.append(", ").append(active);
         sb.append(", ").append(createdDate);
         sb.append(", ").append(lastModifiedBy);

@@ -22,11 +22,17 @@ public class CourseDTO {
     @JsonProperty(value = "AVATAR_COURSE")
     public String avatar_course;
 
+    @JsonProperty(value = "ACTIVE")
+    public Boolean active;
+
+    @JsonProperty(value = "IS_CHECK")
+    public Boolean isCheck;
+
     @JsonProperty(value = "CATEGORY_NAME")
     public String category_name;
 
     @JsonProperty(value = "SCHEDULE")
-    public Double schedule;
+    public String schedule;
 
     @JsonProperty(value = "COURSE_NAME")
     public String course_name;

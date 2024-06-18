@@ -35,9 +35,11 @@ public class OtCourse implements Serializable {
 
     private Long idCourse;
     private Long idTeacher;
+    private Boolean active;
+    private Boolean isCheck;
     private String avatarCourse;
     private String categoryName;
-    private Double schedule;
+    private String schedule;
     private String courseName;
     private Long typeCourse;
     private LocalDate startDate;
@@ -54,6 +56,8 @@ public class OtCourse implements Serializable {
     public OtCourse(OtCourse value) {
         this.idCourse = value.idCourse;
         this.idTeacher = value.idTeacher;
+        this.active = value.active;
+        this.isCheck = value.isCheck;
         this.avatarCourse = value.avatarCourse;
         this.categoryName = value.categoryName;
         this.schedule = value.schedule;
@@ -72,9 +76,11 @@ public class OtCourse implements Serializable {
     public OtCourse(
         Long idCourse,
         Long idTeacher,
+        Boolean active,
+        Boolean isCheck,
         String avatarCourse,
         String categoryName,
-        Double schedule,
+        String schedule,
         String courseName,
         Long typeCourse,
         LocalDate startDate,
@@ -88,6 +94,8 @@ public class OtCourse implements Serializable {
     ) {
         this.idCourse = idCourse;
         this.idTeacher = idTeacher;
+        this.active = active;
+        this.isCheck = isCheck;
         this.avatarCourse = avatarCourse;
         this.categoryName = categoryName;
         this.schedule = schedule;
@@ -136,6 +144,36 @@ public class OtCourse implements Serializable {
     }
 
     /**
+     * Getter for <code>s_onthi.ot_course.ACTIVE</code>.
+     */
+    @Column(name = "ACTIVE", nullable = false)
+    public Boolean getActive() {
+        return this.active;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_course.ACTIVE</code>.
+     */
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_course.IS_CHECK</code>.
+     */
+    @Column(name = "IS_CHECK", nullable = false)
+    public Boolean getIsCheck() {
+        return this.isCheck;
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_course.IS_CHECK</code>.
+     */
+    public void setIsCheck(Boolean isCheck) {
+        this.isCheck = isCheck;
+    }
+
+    /**
      * Getter for <code>s_onthi.ot_course.AVATAR_COURSE</code>.
      */
     @Column(name = "AVATAR_COURSE", length = 5000)
@@ -168,15 +206,15 @@ public class OtCourse implements Serializable {
     /**
      * Getter for <code>s_onthi.ot_course.SCHEDULE</code>.
      */
-    @Column(name = "SCHEDULE")
-    public Double getSchedule() {
+    @Column(name = "SCHEDULE", length = 500)
+    public String getSchedule() {
         return this.schedule;
     }
 
     /**
      * Setter for <code>s_onthi.ot_course.SCHEDULE</code>.
      */
-    public void setSchedule(Double schedule) {
+    public void setSchedule(String schedule) {
         this.schedule = schedule;
     }
 
@@ -351,6 +389,18 @@ public class OtCourse implements Serializable {
         }
         else if (!this.idTeacher.equals(other.idTeacher))
             return false;
+        if (this.active == null) {
+            if (other.active != null)
+                return false;
+        }
+        else if (!this.active.equals(other.active))
+            return false;
+        if (this.isCheck == null) {
+            if (other.isCheck != null)
+                return false;
+        }
+        else if (!this.isCheck.equals(other.isCheck))
+            return false;
         if (this.avatarCourse == null) {
             if (other.avatarCourse != null)
                 return false;
@@ -438,6 +488,8 @@ public class OtCourse implements Serializable {
         int result = 1;
         result = prime * result + ((this.idCourse == null) ? 0 : this.idCourse.hashCode());
         result = prime * result + ((this.idTeacher == null) ? 0 : this.idTeacher.hashCode());
+        result = prime * result + ((this.active == null) ? 0 : this.active.hashCode());
+        result = prime * result + ((this.isCheck == null) ? 0 : this.isCheck.hashCode());
         result = prime * result + ((this.avatarCourse == null) ? 0 : this.avatarCourse.hashCode());
         result = prime * result + ((this.categoryName == null) ? 0 : this.categoryName.hashCode());
         result = prime * result + ((this.schedule == null) ? 0 : this.schedule.hashCode());
@@ -460,6 +512,8 @@ public class OtCourse implements Serializable {
 
         sb.append(idCourse);
         sb.append(", ").append(idTeacher);
+        sb.append(", ").append(active);
+        sb.append(", ").append(isCheck);
         sb.append(", ").append(avatarCourse);
         sb.append(", ").append(categoryName);
         sb.append(", ").append(schedule);
