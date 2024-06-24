@@ -38,8 +38,6 @@ public class ChatController {
     public ResponseEntity<?> chat(@Payload MessageDTO messageDTO) {
         messagingTemplate.convertAndSend("/start/initial", messageDTO);
 
-//        MessageDTO messageDTO = new MessageDTO();
-
         return ResponseEntity.status(HttpStatus.OK).body((chatService.saveMessage(messageDTO)));
     }
 

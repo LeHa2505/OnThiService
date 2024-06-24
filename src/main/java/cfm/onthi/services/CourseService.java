@@ -13,6 +13,7 @@ import java.util.List;
 public interface CourseService {
     ResponseDTO getListCoursesByInputCondition(InputCondition inputCondition);
     ResponseDTO guestGetDetailCourse(Long id);
+    ResponseDTO adminGetDetailCourse(Long id);
     ResponseDTO userGetDetailCourse(Long id);
     ResponseDTO userLikeDislikeReview(ReviewDTO reviewDTO);
     ResponseDTO userUnlikeUndislikeReview(ReviewDTO reviewDTO);
@@ -31,6 +32,13 @@ public interface CourseService {
     ResponseDTO getListExercise(InputCondition inputCondition);
     ResponseDTO getDetailExercise(Long id);
     ResponseDTO getAllCourse();
+    ResponseDTO activeCourse(Long id);
+    ResponseDTO inactiveCourse(Long id);
+    ResponseDTO getStudentsByTeacherId(Long idTeacher);
+    ResponseDTO teacherAddCourse(CourseDTO courseDTO);
+    ResponseDTO teacherAddLessonParents(List<LessonDTO> lessonDTOList);
+    ResponseDTO submitCourse(Long id);
+    ResponseDTO unSubmitCourse(Long id);
 }
 
 @Service
@@ -45,6 +53,8 @@ class CourseServiceImpl extends BaseService implements CourseService {
     private ReviewUserRepository reviewUserRepository;
     private UserCourseRepository userCourseRepository;
     private ExerciseRepository exerciseRepository;
+    private GroupRepository groupRepository;
+    private UserGroupRepository userGroupRepository;
 
     public CourseServiceImpl(
             TransactionTemplate transactionTemplate,
@@ -57,7 +67,9 @@ class CourseServiceImpl extends BaseService implements CourseService {
             NoteRepository noteRepository,
             ReviewUserRepository reviewUserRepository,
             UserCourseRepository userCourseRepository,
-            ExerciseRepository exerciseRepository
+            ExerciseRepository exerciseRepository,
+            GroupRepository groupRepository,
+            UserGroupRepository userGroupRepository
     ) {
         super();
         this.courseRepository = courseRepository;
@@ -70,6 +82,8 @@ class CourseServiceImpl extends BaseService implements CourseService {
         this.reviewUserRepository = reviewUserRepository;
         this.userCourseRepository = userCourseRepository;
         this.exerciseRepository = exerciseRepository;
+        this.groupRepository = groupRepository;
+        this.userGroupRepository = userGroupRepository;
     }
 
     @Override
@@ -85,6 +99,15 @@ class CourseServiceImpl extends BaseService implements CourseService {
     @Override
     public ResponseDTO guestGetDetailCourse(Long id) {
         CourseDTO courseDTO = this.courseRepository.guestGetByID(id);
+        if (courseDTO != null) {
+            return new ResponseDTO(true, "OK!", courseDTO);
+        }
+        return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+    }
+
+    @Override
+    public ResponseDTO adminGetDetailCourse(Long id) {
+        CourseDTO courseDTO = this.courseRepository.adminGetByID(id);
         if (courseDTO != null) {
             return new ResponseDTO(true, "OK!", courseDTO);
         }
@@ -214,7 +237,24 @@ class CourseServiceImpl extends BaseService implements CourseService {
     @Override
     public ResponseDTO enrollCourse(UserCourseDTO userCourseDTO) {
         if (userCourseRepository.save(userCourseDTO)) {
-            return new ResponseDTO(true, "Mua khóa học thành công", null);
+            InputCondition inputCondition = new InputCondition();
+            inputCondition.ID_USER_COURSE = userCourseRepository.getMaxUserCourseId();
+
+            UserCourseDTO userCourseDTOnew = userCourseRepository.getByInputCondition(inputCondition);
+
+            inputCondition.ID_COURSE = userCourseDTOnew.idCourse;
+            GroupDTO groupDTO = groupRepository.getByInputCondition(inputCondition);
+
+            UserGroupDTO userGroupDTO = new UserGroupDTO();
+            userGroupDTO.idUser = userCourseDTO.getIdUser();
+            userGroupDTO.idGroup = groupDTO.idGroup;
+
+            if (userGroupRepository.save(userGroupDTO)) {
+                return new ResponseDTO(true, "Mua khóa học thành công", null);
+            }
+            else {
+                return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+            }
         }
         else {
             return new ResponseDTO(false, "Có lỗi xảy ra!", null);
@@ -273,5 +313,85 @@ class CourseServiceImpl extends BaseService implements CourseService {
     public ResponseDTO getAllCourse() {
         List<CourseDTO> courseDTOList = courseRepository.getAll();
         return new ResponseDTO(true, "OK!", courseDTOList);
+    }
+
+    @Override
+    public ResponseDTO activeCourse(Long id) {
+        if (courseRepository.activeCourseExists(id)) {
+
+            return new ResponseDTO(true, "Mở khóa học thành công!", null);
+        }
+        else
+        {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
+    }
+
+    @Override
+    public ResponseDTO inactiveCourse(Long id) {
+        if (courseRepository.inactiveCourseExists(id)) {
+            return new ResponseDTO(true, "Khóa khóa học thành công!", null);
+        }
+        else
+        {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
+    }
+
+    @Override
+    public ResponseDTO getStudentsByTeacherId(Long idTeacher) {
+        List<UserInfoDTO> userInfoDTOList = courseRepository.getStudentsByTeacherId(idTeacher);
+        return new ResponseDTO(true, "OK!", userInfoDTOList);
+    }
+
+    @Override
+    public ResponseDTO teacherAddCourse(CourseDTO courseDTO) {
+        if (courseRepository.save(courseDTO))
+        {
+            GroupDTO groupDTO = new GroupDTO();
+            groupDTO.groupName = courseDTO.course_name;
+            groupDTO.avatarGroup = courseDTO.avatar_course;
+            Long idCourse = courseRepository.getCourseIdMax();
+            groupDTO.idCourse = idCourse;
+            if (groupRepository.save(groupDTO))
+            {
+                return new ResponseDTO(true, "Tạo khóa học thành công!", idCourse);
+            } else {
+                return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+            }
+        }
+        else {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
+    }
+
+    @Override
+    public ResponseDTO teacherAddLessonParents(List<LessonDTO> lessonDTOList) {
+        if (lessonRepository.saveList(lessonDTOList)) {
+            return new ResponseDTO(true, "Lưu các chủ đề/chương của các bài học thành công!", null);
+        }else {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
+
+    }
+
+    @Override
+    public ResponseDTO submitCourse(Long id) {
+        if (courseRepository.submitCourse(id)) {
+            return new ResponseDTO(true, "Yêu cầu mở khóa học thành công!", null);
+        }
+        else {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
+    }
+
+    @Override
+    public ResponseDTO unSubmitCourse(Long id) {
+        if (courseRepository.unSubmitCourse(id)) {
+            return new ResponseDTO(true, "Hủy yêu cầu mở khóa học thành công!", null);
+        }
+        else {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
     }
 }

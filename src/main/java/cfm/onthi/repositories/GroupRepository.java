@@ -57,6 +57,10 @@ class GroupRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<G
             condition = condition.and(group.ID_GROUP.eq(inputCondition.ID_GROUP));
         }
 
+        if (inputCondition.ID_COURSE != null) {
+            condition = condition.and(group.ID_COURSE.eq(inputCondition.ID_COURSE));
+        }
+
         List<GroupDTO> groupDTOList = dslContext.select()
                 .from(group).where(condition).fetch()
                 .stream()
@@ -66,6 +70,7 @@ class GroupRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<G
                     GroupDTO groupDTO = new GroupDTO();
 
                     groupDTO.idGroup = entry.getKey().getIdGroup();
+                    groupDTO.idCourse = entry.getKey().getIdCourse();
                     groupDTO.groupName = entry.getKey().getGroupName();
                     groupDTO.avatarGroup = entry.getKey().getAvatarGroup();
 
@@ -80,6 +85,7 @@ class GroupRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<G
         try {
             return dslContext.select(
                             group.ID_GROUP.as("idGroup"),
+                            group.ID_COURSE.as("idCourse"),
                             group.GROUP_NAME.as("groupName"),
                             group.AVATAR_GROUP.as("avatarGroup")
                     )
@@ -107,7 +113,33 @@ class GroupRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<G
 
     @Override
     public GroupDTO getByInputCondition(@NotNull InputCondition inputCondition) {
-        return null;
+        Condition condition = trueCondition();
+
+        if (inputCondition.ID_GROUP != null) {
+            condition = condition.and(group.ID_GROUP.eq(inputCondition.ID_GROUP));
+        }
+
+        if (inputCondition.ID_COURSE != null) {
+            condition = condition.and(group.ID_COURSE.eq(inputCondition.ID_COURSE));
+        }
+
+        List<GroupDTO> groupDTOList = dslContext.select()
+                .from(group).where(condition).fetch()
+                .stream()
+                .collect(Collectors.groupingBy(record -> record.into(group), LinkedHashMap::new, Collectors.toList()))
+                .entrySet().stream()
+                .map(entry -> {
+                    GroupDTO groupDTO = new GroupDTO();
+
+                    groupDTO.idGroup = entry.getKey().getIdGroup();
+                    groupDTO.idCourse = entry.getKey().getIdCourse();
+                    groupDTO.groupName = entry.getKey().getGroupName();
+                    groupDTO.avatarGroup = entry.getKey().getAvatarGroup();
+
+                    return groupDTO;
+                }).collect(Collectors.toList());
+
+        return groupDTOList != null && !groupDTOList.isEmpty() ? groupDTOList.get(0) : null;
     }
 
     @Override
@@ -133,6 +165,7 @@ class GroupRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<G
             dslContext.insertInto(group)
                     .set(group.GROUP_NAME, item.groupName)
                     .set(group.AVATAR_GROUP, item.avatarGroup)
+                    .set(group.ID_COURSE, item.idCourse)
                     .set(group.CREATED_DATE, LocalDateTime.now())
                     .execute();
             return true;
@@ -178,6 +211,7 @@ class GroupRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<G
             int result = dslContext.update(group)
                     .set(group.GROUP_NAME, item.groupName)
                     .set(group.AVATAR_GROUP, item.avatarGroup)
+                    .set(group.ID_COURSE, item.idCourse)
                     .set(group.LAST_MODIFIED_DATE, LocalDateTime.now())
                     .where(group.ID_GROUP.eq(item.getIdGroup()))
                     .execute();

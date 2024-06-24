@@ -28,6 +28,7 @@ import static org.jooq.impl.DSL.trueCondition;
 
 public interface UserCourseRepository extends BaseRepository<UserCourseDTO> {
     List<UserInfoDTO> findUsersByCourseId(@NotNull Long courseId);
+    Long getMaxUserCourseId();
 }
 
 @Lazy
@@ -61,6 +62,10 @@ class UserCourseRepositoryImpl extends BaseRepositoryImpl implements BaseReposit
             condition = condition.and(userCourse.ID_USER.eq(inputCondition.ID_USER));
         }
 
+        if (inputCondition.ID_USER_COURSE != null) {
+            condition = condition.and(userCourse.ID_USER_COURSE.eq(inputCondition.ID_USER_COURSE));
+        }
+
         List<UserCourseDTO> userCourseDTOList = dslContext.select()
                 .from(userCourse).where(condition).fetch()
                 .stream()
@@ -91,7 +96,37 @@ class UserCourseRepositoryImpl extends BaseRepositoryImpl implements BaseReposit
 
     @Override
     public UserCourseDTO getByInputCondition(@NotNull InputCondition inputCondition) {
-        return null;
+        Condition condition = trueCondition();
+
+        if (inputCondition.ID_USER != null) {
+            condition = condition.and(userCourse.ID_USER.eq(inputCondition.ID_USER));
+        }
+
+        if (inputCondition.ID_USER_COURSE != null) {
+            condition = condition.and(userCourse.ID_USER_COURSE.eq(inputCondition.ID_USER_COURSE));
+        }
+
+        List<UserCourseDTO> userCourseDTOList = dslContext.select()
+                .from(userCourse).where(condition).fetch()
+                .stream()
+                .collect(Collectors.groupingBy(record -> record.into(userCourse), LinkedHashMap::new, Collectors.toList()))
+                .entrySet().stream()
+                .map(entry -> {
+                    UserCourseDTO userCourseDTO = new UserCourseDTO();
+
+                    userCourseDTO.idUserCourse = entry.getKey().getIdUserCourse();
+                    userCourseDTO.idCourse = entry.getKey().getIdCourse();
+                    userCourseDTO.idUser = entry.getKey().getIdUser();
+                    userCourseDTO.learnedLesson = entry.getKey().getLearnedLesson();
+                    userCourseDTO.learningLesson = entry.getKey().getLearningLesson();
+                    userCourseDTO.timeSchedule = entry.getKey().getTimeSchedule();
+                    userCourseDTO.courseInfo = courseRepository.getByID(userCourseDTO.idCourse);
+                    userCourseDTO.classmates = findUsersByCourseId(userCourseDTO.idCourse);
+
+                    return userCourseDTO;
+                }).collect(Collectors.toList());
+
+        return userCourseDTOList != null && !userCourseDTOList.isEmpty() ? userCourseDTOList.get(0) : null;
     }
 
     @Override
@@ -213,5 +248,17 @@ class UserCourseRepositoryImpl extends BaseRepositoryImpl implements BaseReposit
                 }).collect(Collectors.toList());
 
         return userInfoDTOList;
+    }
+
+    @Override
+    public Long getMaxUserCourseId() {
+        try {
+            return dslContext.select(userCourse.ID_USER_COURSE.max())
+                    .from(userCourse)
+                    .fetchOne(0, Long.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -67,16 +67,6 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
     public final TableField<OtCourseRecord, Long> ID_TEACHER = createField(DSL.name("ID_TEACHER"), SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
-     * The column <code>s_onthi.ot_course.ACTIVE</code>.
-     */
-    public final TableField<OtCourseRecord, Boolean> ACTIVE = createField(DSL.name("ACTIVE"), SQLDataType.BIT.nullable(false), this, "");
-
-    /**
-     * The column <code>s_onthi.ot_course.IS_CHECK</code>.
-     */
-    public final TableField<OtCourseRecord, Boolean> IS_CHECK = createField(DSL.name("IS_CHECK"), SQLDataType.BIT.nullable(false), this, "");
-
-    /**
      * The column <code>s_onthi.ot_course.AVATAR_COURSE</code>.
      */
     public final TableField<OtCourseRecord, String> AVATAR_COURSE = createField(DSL.name("AVATAR_COURSE"), SQLDataType.VARCHAR(5000), this, "");
@@ -87,14 +77,24 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
     public final TableField<OtCourseRecord, String> CATEGORY_NAME = createField(DSL.name("CATEGORY_NAME"), SQLDataType.VARCHAR(100), this, "");
 
     /**
-     * The column <code>s_onthi.ot_course.SCHEDULE</code>.
+     * The column <code>s_onthi.ot_course.IS_SUBMITTED</code>.
      */
-    public final TableField<OtCourseRecord, String> SCHEDULE = createField(DSL.name("SCHEDULE"), SQLDataType.VARCHAR(500), this, "");
+    public final TableField<OtCourseRecord, Boolean> IS_SUBMITTED = createField(DSL.name("IS_SUBMITTED"), SQLDataType.BIT, this, "");
 
     /**
      * The column <code>s_onthi.ot_course.COURSE_NAME</code>.
      */
     public final TableField<OtCourseRecord, String> COURSE_NAME = createField(DSL.name("COURSE_NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
+
+    /**
+     * The column <code>s_onthi.ot_course.IS_CHECK</code>.
+     */
+    public final TableField<OtCourseRecord, Boolean> IS_CHECK = createField(DSL.name("IS_CHECK"), SQLDataType.BIT.nullable(false), this, "");
+
+    /**
+     * The column <code>s_onthi.ot_course.ACTIVE</code>.
+     */
+    public final TableField<OtCourseRecord, Boolean> ACTIVE = createField(DSL.name("ACTIVE"), SQLDataType.BIT.nullable(false), this, "");
 
     /**
      * The column <code>s_onthi.ot_course.TYPE_COURSE</code>.
@@ -238,14 +238,14 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row17<Long, Long, Boolean, Boolean, String, String, String, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
+    public Row17<Long, Long, String, String, Boolean, String, Boolean, Boolean, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
         return (Row17) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function17<? super Long, ? super Long, ? super Boolean, ? super Boolean, ? super String, ? super String, ? super String, ? super String, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function17<? super Long, ? super Long, ? super String, ? super String, ? super Boolean, ? super String, ? super Boolean, ? super Boolean, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -253,7 +253,7 @@ public class OtCourse extends TableImpl<OtCourseRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function17<? super Long, ? super Long, ? super Boolean, ? super Boolean, ? super String, ? super String, ? super String, ? super String, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function17<? super Long, ? super Long, ? super String, ? super String, ? super Boolean, ? super String, ? super Boolean, ? super Boolean, ? super Long, ? super LocalDate, ? super LocalDate, ? super Double, ? super Double, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

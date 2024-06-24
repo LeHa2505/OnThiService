@@ -13,6 +13,7 @@ import cfm.onthi.entities.tables.OtMenu;
 import cfm.onthi.entities.tables.OtMessage;
 import cfm.onthi.entities.tables.OtMessageRecipient;
 import cfm.onthi.entities.tables.OtNote;
+import cfm.onthi.entities.tables.OtNotification;
 import cfm.onthi.entities.tables.OtProvince;
 import cfm.onthi.entities.tables.OtQuiz;
 import cfm.onthi.entities.tables.OtQuizUser;
@@ -21,6 +22,7 @@ import cfm.onthi.entities.tables.OtReviewUser;
 import cfm.onthi.entities.tables.OtRole;
 import cfm.onthi.entities.tables.OtRoleMenu;
 import cfm.onthi.entities.tables.OtSchool;
+import cfm.onthi.entities.tables.OtShorts;
 import cfm.onthi.entities.tables.OtUser;
 import cfm.onthi.entities.tables.OtUserCourse;
 import cfm.onthi.entities.tables.OtUserGroup;
@@ -93,6 +95,11 @@ public class SOnthi extends SchemaImpl {
     public final OtNote OT_NOTE = OtNote.OT_NOTE;
 
     /**
+     * The table <code>s_onthi.ot_notification</code>.
+     */
+    public final OtNotification OT_NOTIFICATION = OtNotification.OT_NOTIFICATION;
+
+    /**
      * The table <code>s_onthi.ot_province</code>.
      */
     public final OtProvince OT_PROVINCE = OtProvince.OT_PROVINCE;
@@ -131,6 +138,11 @@ public class SOnthi extends SchemaImpl {
      * The table <code>s_onthi.ot_school</code>.
      */
     public final OtSchool OT_SCHOOL = OtSchool.OT_SCHOOL;
+
+    /**
+     * The table <code>s_onthi.ot_shorts</code>.
+     */
+    public final OtShorts OT_SHORTS = OtShorts.OT_SHORTS;
 
     /**
      * The table <code>s_onthi.ot_user</code>.
@@ -177,6 +189,7 @@ public class SOnthi extends SchemaImpl {
             OtMessage.OT_MESSAGE,
             OtMessageRecipient.OT_MESSAGE_RECIPIENT,
             OtNote.OT_NOTE,
+            OtNotification.OT_NOTIFICATION,
             OtProvince.OT_PROVINCE,
             OtQuiz.OT_QUIZ,
             OtQuizUser.OT_QUIZ_USER,
@@ -185,6 +198,7 @@ public class SOnthi extends SchemaImpl {
             OtRole.OT_ROLE,
             OtRoleMenu.OT_ROLE_MENU,
             OtSchool.OT_SCHOOL,
+            OtShorts.OT_SHORTS,
             OtUser.OT_USER,
             OtUserCourse.OT_USER_COURSE,
             OtUserGroup.OT_USER_GROUP,

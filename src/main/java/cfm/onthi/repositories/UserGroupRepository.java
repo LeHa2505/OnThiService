@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface UserGroupRepository extends BaseRepository<UserGroupDTO>{
@@ -58,7 +59,17 @@ class UserGroupRepositoryImpl extends BaseRepositoryImpl implements BaseReposito
 
     @Override
     public Boolean save(@NotNull UserGroupDTO item) {
-        return null;
+        try {
+            dslContext.insertInto(userGroup)
+                    .set(userGroup.ID_GROUP, item.idGroup)
+                    .set(userGroup.ID_USER, item.idUser)
+                    .set(userGroup.CREATED_DATE, LocalDateTime.now())
+                    .execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

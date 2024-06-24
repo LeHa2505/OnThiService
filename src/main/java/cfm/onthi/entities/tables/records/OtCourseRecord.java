@@ -36,7 +36,7 @@ import org.jooq.impl.UpdatableRecordImpl;
         @Index(name = "ID_TEACHER", columnList = "ID_TEACHER ASC")
     }
 )
-public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implements Record17<Long, Long, Boolean, Boolean, String, String, String, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> {
+public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implements Record17<Long, Long, String, String, Boolean, String, Boolean, Boolean, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> {
 
     private static final long serialVersionUID = 1L;
 
@@ -73,40 +73,10 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     /**
-     * Setter for <code>s_onthi.ot_course.ACTIVE</code>.
-     */
-    public void setActive(Boolean value) {
-        set(2, value);
-    }
-
-    /**
-     * Getter for <code>s_onthi.ot_course.ACTIVE</code>.
-     */
-    @Column(name = "ACTIVE", nullable = false)
-    public Boolean getActive() {
-        return (Boolean) get(2);
-    }
-
-    /**
-     * Setter for <code>s_onthi.ot_course.IS_CHECK</code>.
-     */
-    public void setIsCheck(Boolean value) {
-        set(3, value);
-    }
-
-    /**
-     * Getter for <code>s_onthi.ot_course.IS_CHECK</code>.
-     */
-    @Column(name = "IS_CHECK", nullable = false)
-    public Boolean getIsCheck() {
-        return (Boolean) get(3);
-    }
-
-    /**
      * Setter for <code>s_onthi.ot_course.AVATAR_COURSE</code>.
      */
     public void setAvatarCourse(String value) {
-        set(4, value);
+        set(2, value);
     }
 
     /**
@@ -114,14 +84,14 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
      */
     @Column(name = "AVATAR_COURSE", length = 5000)
     public String getAvatarCourse() {
-        return (String) get(4);
+        return (String) get(2);
     }
 
     /**
      * Setter for <code>s_onthi.ot_course.CATEGORY_NAME</code>.
      */
     public void setCategoryName(String value) {
-        set(5, value);
+        set(3, value);
     }
 
     /**
@@ -129,29 +99,29 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
      */
     @Column(name = "CATEGORY_NAME", length = 100)
     public String getCategoryName() {
-        return (String) get(5);
+        return (String) get(3);
     }
 
     /**
-     * Setter for <code>s_onthi.ot_course.SCHEDULE</code>.
+     * Setter for <code>s_onthi.ot_course.IS_SUBMITTED</code>.
      */
-    public void setSchedule(String value) {
-        set(6, value);
+    public void setIsSubmitted(Boolean value) {
+        set(4, value);
     }
 
     /**
-     * Getter for <code>s_onthi.ot_course.SCHEDULE</code>.
+     * Getter for <code>s_onthi.ot_course.IS_SUBMITTED</code>.
      */
-    @Column(name = "SCHEDULE", length = 500)
-    public String getSchedule() {
-        return (String) get(6);
+    @Column(name = "IS_SUBMITTED")
+    public Boolean getIsSubmitted() {
+        return (Boolean) get(4);
     }
 
     /**
      * Setter for <code>s_onthi.ot_course.COURSE_NAME</code>.
      */
     public void setCourseName(String value) {
-        set(7, value);
+        set(5, value);
     }
 
     /**
@@ -159,7 +129,37 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
      */
     @Column(name = "COURSE_NAME", nullable = false, length = 100)
     public String getCourseName() {
-        return (String) get(7);
+        return (String) get(5);
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_course.IS_CHECK</code>.
+     */
+    public void setIsCheck(Boolean value) {
+        set(6, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_course.IS_CHECK</code>.
+     */
+    @Column(name = "IS_CHECK", nullable = false)
+    public Boolean getIsCheck() {
+        return (Boolean) get(6);
+    }
+
+    /**
+     * Setter for <code>s_onthi.ot_course.ACTIVE</code>.
+     */
+    public void setActive(Boolean value) {
+        set(7, value);
+    }
+
+    /**
+     * Getter for <code>s_onthi.ot_course.ACTIVE</code>.
+     */
+    @Column(name = "ACTIVE", nullable = false)
+    public Boolean getActive() {
+        return (Boolean) get(7);
     }
 
     /**
@@ -311,12 +311,12 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     // -------------------------------------------------------------------------
 
     @Override
-    public Row17<Long, Long, Boolean, Boolean, String, String, String, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
+    public Row17<Long, Long, String, String, Boolean, String, Boolean, Boolean, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
         return (Row17) super.fieldsRow();
     }
 
     @Override
-    public Row17<Long, Long, Boolean, Boolean, String, String, String, String, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> valuesRow() {
+    public Row17<Long, Long, String, String, Boolean, String, Boolean, Boolean, Long, LocalDate, LocalDate, Double, Double, String, LocalDateTime, String, LocalDateTime> valuesRow() {
         return (Row17) super.valuesRow();
     }
 
@@ -331,33 +331,33 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public Field<Boolean> field3() {
-        return OtCourse.OT_COURSE.ACTIVE;
-    }
-
-    @Override
-    public Field<Boolean> field4() {
-        return OtCourse.OT_COURSE.IS_CHECK;
-    }
-
-    @Override
-    public Field<String> field5() {
+    public Field<String> field3() {
         return OtCourse.OT_COURSE.AVATAR_COURSE;
     }
 
     @Override
-    public Field<String> field6() {
+    public Field<String> field4() {
         return OtCourse.OT_COURSE.CATEGORY_NAME;
     }
 
     @Override
-    public Field<String> field7() {
-        return OtCourse.OT_COURSE.SCHEDULE;
+    public Field<Boolean> field5() {
+        return OtCourse.OT_COURSE.IS_SUBMITTED;
     }
 
     @Override
-    public Field<String> field8() {
+    public Field<String> field6() {
         return OtCourse.OT_COURSE.COURSE_NAME;
+    }
+
+    @Override
+    public Field<Boolean> field7() {
+        return OtCourse.OT_COURSE.IS_CHECK;
+    }
+
+    @Override
+    public Field<Boolean> field8() {
+        return OtCourse.OT_COURSE.ACTIVE;
     }
 
     @Override
@@ -416,33 +416,33 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public Boolean component3() {
-        return getActive();
-    }
-
-    @Override
-    public Boolean component4() {
-        return getIsCheck();
-    }
-
-    @Override
-    public String component5() {
+    public String component3() {
         return getAvatarCourse();
     }
 
     @Override
-    public String component6() {
+    public String component4() {
         return getCategoryName();
     }
 
     @Override
-    public String component7() {
-        return getSchedule();
+    public Boolean component5() {
+        return getIsSubmitted();
     }
 
     @Override
-    public String component8() {
+    public String component6() {
         return getCourseName();
+    }
+
+    @Override
+    public Boolean component7() {
+        return getIsCheck();
+    }
+
+    @Override
+    public Boolean component8() {
+        return getActive();
     }
 
     @Override
@@ -501,33 +501,33 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public Boolean value3() {
-        return getActive();
-    }
-
-    @Override
-    public Boolean value4() {
-        return getIsCheck();
-    }
-
-    @Override
-    public String value5() {
+    public String value3() {
         return getAvatarCourse();
     }
 
     @Override
-    public String value6() {
+    public String value4() {
         return getCategoryName();
     }
 
     @Override
-    public String value7() {
-        return getSchedule();
+    public Boolean value5() {
+        return getIsSubmitted();
     }
 
     @Override
-    public String value8() {
+    public String value6() {
         return getCourseName();
+    }
+
+    @Override
+    public Boolean value7() {
+        return getIsCheck();
+    }
+
+    @Override
+    public Boolean value8() {
+        return getActive();
     }
 
     @Override
@@ -588,38 +588,38 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public OtCourseRecord value3(Boolean value) {
-        setActive(value);
-        return this;
-    }
-
-    @Override
-    public OtCourseRecord value4(Boolean value) {
-        setIsCheck(value);
-        return this;
-    }
-
-    @Override
-    public OtCourseRecord value5(String value) {
+    public OtCourseRecord value3(String value) {
         setAvatarCourse(value);
         return this;
     }
 
     @Override
-    public OtCourseRecord value6(String value) {
+    public OtCourseRecord value4(String value) {
         setCategoryName(value);
         return this;
     }
 
     @Override
-    public OtCourseRecord value7(String value) {
-        setSchedule(value);
+    public OtCourseRecord value5(Boolean value) {
+        setIsSubmitted(value);
         return this;
     }
 
     @Override
-    public OtCourseRecord value8(String value) {
+    public OtCourseRecord value6(String value) {
         setCourseName(value);
+        return this;
+    }
+
+    @Override
+    public OtCourseRecord value7(Boolean value) {
+        setIsCheck(value);
+        return this;
+    }
+
+    @Override
+    public OtCourseRecord value8(Boolean value) {
+        setActive(value);
         return this;
     }
 
@@ -678,7 +678,7 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     }
 
     @Override
-    public OtCourseRecord values(Long value1, Long value2, Boolean value3, Boolean value4, String value5, String value6, String value7, String value8, Long value9, LocalDate value10, LocalDate value11, Double value12, Double value13, String value14, LocalDateTime value15, String value16, LocalDateTime value17) {
+    public OtCourseRecord values(Long value1, Long value2, String value3, String value4, Boolean value5, String value6, Boolean value7, Boolean value8, Long value9, LocalDate value10, LocalDate value11, Double value12, Double value13, String value14, LocalDateTime value15, String value16, LocalDateTime value17) {
         value1(value1);
         value2(value2);
         value3(value3);
@@ -713,17 +713,17 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
     /**
      * Create a detached, initialised OtCourseRecord
      */
-    public OtCourseRecord(Long idCourse, Long idTeacher, Boolean active, Boolean isCheck, String avatarCourse, String categoryName, String schedule, String courseName, Long typeCourse, LocalDate startDate, LocalDate endDate, Double price, Double discount, String description, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
+    public OtCourseRecord(Long idCourse, Long idTeacher, String avatarCourse, String categoryName, Boolean isSubmitted, String courseName, Boolean isCheck, Boolean active, Long typeCourse, LocalDate startDate, LocalDate endDate, Double price, Double discount, String description, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
         super(OtCourse.OT_COURSE);
 
         setIdCourse(idCourse);
         setIdTeacher(idTeacher);
-        setActive(active);
-        setIsCheck(isCheck);
         setAvatarCourse(avatarCourse);
         setCategoryName(categoryName);
-        setSchedule(schedule);
+        setIsSubmitted(isSubmitted);
         setCourseName(courseName);
+        setIsCheck(isCheck);
+        setActive(active);
         setTypeCourse(typeCourse);
         setStartDate(startDate);
         setEndDate(endDate);
@@ -744,12 +744,12 @@ public class OtCourseRecord extends UpdatableRecordImpl<OtCourseRecord> implemen
         if (value != null) {
             setIdCourse(value.getIdCourse());
             setIdTeacher(value.getIdTeacher());
-            setActive(value.getActive());
-            setIsCheck(value.getIsCheck());
             setAvatarCourse(value.getAvatarCourse());
             setCategoryName(value.getCategoryName());
-            setSchedule(value.getSchedule());
+            setIsSubmitted(value.getIsSubmitted());
             setCourseName(value.getCourseName());
+            setIsCheck(value.getIsCheck());
+            setActive(value.getActive());
             setTypeCourse(value.getTypeCourse());
             setStartDate(value.getStartDate());
             setEndDate(value.getEndDate());
