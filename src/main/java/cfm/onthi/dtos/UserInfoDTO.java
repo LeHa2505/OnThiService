@@ -62,4 +62,10 @@ public class UserInfoDTO {
 
     @JsonProperty(value = "SCHOOL_INFO")
     public SchoolDTO schoolInfo;
+
+    @JsonProperty(value = "ID_COURSE")
+    public Long idCourse;
+
+    @JsonProperty(value = "COURSE_NAME")
+    public String courseName;
 }

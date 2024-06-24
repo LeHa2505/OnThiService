@@ -9,11 +9,18 @@ spring:
       matching-strategy: ant_path_matcher
   jackson:
     time-zone: Asia/Ho_Chi_Minh
+
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+
   http:
     multipart:
       enabled: true
       max-file-size: 150MB
       max-request-size: 150MB
+
   tomcat:
     max-wait: 20000
     max-active: 50
@@ -51,7 +58,7 @@ logging:
   logback:
     rolling-policy:
       max-history: 5
-      max-file-size: 10MB
+      max-file-size: 200MB
 
 jwt:
   public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlfArQiQt7HOVsMG0MTGqYG2aOBrWspb+nXYswA9Ft9Bqm2RslDdoz4G8KuE9cJ5ZEd6m2tI1Q1qrkVBao/9MB6+npXwtETt4V72YGB6SvlsHRBn7x2EiY5igje0mT6CiJI//AtcFIxFYv4rn7sFngDtp9N6L+DDq/c8xybsQfphgmo/mUX9pL3ei8SKODjz8wJy+9GjRH0964RpmTEG2D7zyDjit36oU0rN4Ad6UPFe6D9xdeqQDuVDJG9G6zObsPlaiVzLmaVZgYnLRkhM3LXssjwRvO6ZQRJe+r/MHt0L/+KwKzQ7EXfJG2uP+3p61bzgsMt0CxsCo7pKE6k81ywIDAQAB

@@ -1,8 +1,6 @@
 package cfm.onthi.controllers;
 
-import cfm.onthi.dtos.NoteDTO;
-import cfm.onthi.dtos.ReviewDTO;
-import cfm.onthi.dtos.UserCourseDTO;
+import cfm.onthi.dtos.*;
 import cfm.onthi.dtos.base.InputCondition;
 import cfm.onthi.exceptions.GlobalExceptionHandlerController;
 import cfm.onthi.services.CloudinaryService;
@@ -19,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -46,6 +45,11 @@ public class CourseController {
     @GetMapping("/guest/getDetailCourse/{idCourse}")
     public ResponseEntity<?> guestGetDetailCourse(@PathVariable("idCourse") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body((courseService.guestGetDetailCourse(id)));
+    }
+
+    @GetMapping("/admin/getDetailCourse/{idCourse}")
+    public ResponseEntity<?> adminGetDetailCourse(@PathVariable("idCourse") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body((courseService.adminGetDetailCourse(id)));
     }
 
     @GetMapping("/user/getDetailCourse/{idCourse}")
@@ -150,5 +154,40 @@ public class CourseController {
     @GetMapping("/user/getAllCourse")
     public ResponseEntity<?> getAllCourse() {
         return ResponseEntity.status(HttpStatus.OK).body((courseService.getAllCourse()));
+    }
+
+    @PostMapping("/admin/activeCourse")
+    public ResponseEntity<?> activeCourse(@RequestBody Long id) throws IOException {
+        return ResponseEntity.ok(courseService.activeCourse(id));
+    }
+
+    @PostMapping("/admin/inactiveCourse")
+    public ResponseEntity<?> inactiveCourse(@RequestBody Long id) throws IOException {
+        return ResponseEntity.ok(courseService.inactiveCourse(id));
+    }
+
+    @GetMapping("/teacher/getListUser/{idTeacher}")
+    public ResponseEntity<?> getStudentsByTeacherId(@PathVariable("idTeacher") Long idTeacher) {
+        return ResponseEntity.status(HttpStatus.OK).body((courseService.getStudentsByTeacherId(idTeacher)));
+    }
+
+    @PostMapping("/teacher/addCourse")
+    public ResponseEntity<?> teacherAddCourse(@RequestBody CourseDTO courseDTO) throws IOException {
+        return ResponseEntity.status(HttpStatus.OK).body((courseService.teacherAddCourse(courseDTO)));
+    }
+
+    @PostMapping("/teacher/addLessonParents")
+    public ResponseEntity<?> teacherAddLessonParents(@RequestBody List<LessonDTO> lessonDTOList) throws IOException {
+        return ResponseEntity.status(HttpStatus.OK).body((courseService.teacherAddLessonParents(lessonDTOList)));
+    }
+
+    @PostMapping("/teacher/unSubmitCourse")
+    public ResponseEntity<?> unSubmitCourse(@RequestBody Long id) throws IOException {
+        return ResponseEntity.status(HttpStatus.OK).body((courseService.unSubmitCourse(id)));
+    }
+
+    @PostMapping("/teacher/submitCourse")
+    public ResponseEntity<?> submitCourse(@RequestBody Long id) throws IOException {
+        return ResponseEntity.status(HttpStatus.OK).body((courseService.submitCourse(id)));
     }
 }

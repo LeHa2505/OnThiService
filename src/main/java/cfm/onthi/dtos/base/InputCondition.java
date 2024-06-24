@@ -71,9 +71,15 @@ public class InputCondition {
     @JsonProperty(value = "ID_EXERCISE")
     public Long ID_EXERCISE;
 
+    @JsonProperty(value = "ID_USER_COURSE")
+    public Long ID_USER_COURSE;
+
     @JsonProperty(value = "ACTIVE")
     public Boolean ACTIVE;
 
     @JsonProperty(value = "IS_CHECK")
     public Boolean IS_CHECK;
+
+    @JsonProperty(value = "ID_SHORT")
+    public Long ID_SHORT;
 }

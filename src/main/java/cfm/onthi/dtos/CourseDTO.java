@@ -31,8 +31,8 @@ public class CourseDTO {
     @JsonProperty(value = "CATEGORY_NAME")
     public String category_name;
 
-    @JsonProperty(value = "SCHEDULE")
-    public String schedule;
+    @JsonProperty(value = "IS_SUBMITTED")
+    public Boolean isSubmitted ;
 
     @JsonProperty(value = "COURSE_NAME")
     public String course_name;

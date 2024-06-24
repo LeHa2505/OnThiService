@@ -12,6 +12,9 @@ public class GroupDTO {
     @JsonProperty(value = "ID_GROUP")
     public Long idGroup;
 
+    @JsonProperty(value = "ID_COURSE")
+    public Long idCourse;
+
     @JsonProperty(value = "GROUP_NAME")
     public String groupName;
 

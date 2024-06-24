@@ -13,6 +13,7 @@ import cfm.onthi.entities.tables.OtMenu;
 import cfm.onthi.entities.tables.OtMessage;
 import cfm.onthi.entities.tables.OtMessageRecipient;
 import cfm.onthi.entities.tables.OtNote;
+import cfm.onthi.entities.tables.OtNotification;
 import cfm.onthi.entities.tables.OtProvince;
 import cfm.onthi.entities.tables.OtQuiz;
 import cfm.onthi.entities.tables.OtQuizUser;
@@ -21,6 +22,7 @@ import cfm.onthi.entities.tables.OtReviewUser;
 import cfm.onthi.entities.tables.OtRole;
 import cfm.onthi.entities.tables.OtRoleMenu;
 import cfm.onthi.entities.tables.OtSchool;
+import cfm.onthi.entities.tables.OtShorts;
 import cfm.onthi.entities.tables.OtUser;
 import cfm.onthi.entities.tables.OtUserCourse;
 import cfm.onthi.entities.tables.OtUserGroup;
@@ -79,6 +81,11 @@ public class Tables {
     public static final OtNote OT_NOTE = OtNote.OT_NOTE;
 
     /**
+     * The table <code>s_onthi.ot_notification</code>.
+     */
+    public static final OtNotification OT_NOTIFICATION = OtNotification.OT_NOTIFICATION;
+
+    /**
      * The table <code>s_onthi.ot_province</code>.
      */
     public static final OtProvince OT_PROVINCE = OtProvince.OT_PROVINCE;
@@ -117,6 +124,11 @@ public class Tables {
      * The table <code>s_onthi.ot_school</code>.
      */
     public static final OtSchool OT_SCHOOL = OtSchool.OT_SCHOOL;
+
+    /**
+     * The table <code>s_onthi.ot_shorts</code>.
+     */
+    public static final OtShorts OT_SHORTS = OtShorts.OT_SHORTS;
 
     /**
      * The table <code>s_onthi.ot_user</code>.

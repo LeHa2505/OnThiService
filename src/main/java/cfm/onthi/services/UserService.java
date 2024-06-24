@@ -2,11 +2,13 @@ package cfm.onthi.services;
 
 import cfm.onthi.dtos.ProvinceDTO;
 import cfm.onthi.dtos.SchoolDTO;
+import cfm.onthi.dtos.ShortDTO;
 import cfm.onthi.dtos.UserInfoDTO;
 import cfm.onthi.dtos.base.InputCondition;
 import cfm.onthi.dtos.base.ResponseDTO;
 import cfm.onthi.repositories.ProvinceRepository;
 import cfm.onthi.repositories.SchoolRepository;
+import cfm.onthi.repositories.ShortRepository;
 import cfm.onthi.repositories.UserRepository;
 import cfm.onthi.sercurity.JwtTokenProvider;
 import org.jooq.Condition;
@@ -27,17 +29,20 @@ class UserServiceImpl extends BaseService implements UserService {
     private UserRepository userRepository;
     private SchoolRepository schoolRepository;
     private ProvinceRepository provinceRepository;
+    private ShortRepository shortRepository;
 
     public UserServiceImpl(
             TransactionTemplate transactionTemplate,
             UserRepository userRepository,
             SchoolRepository schoolRepository,
-            ProvinceRepository provinceRepository
+            ProvinceRepository provinceRepository,
+            ShortRepository shortRepository
     ) {
         super();
         this.userRepository = userRepository;
         this.schoolRepository = schoolRepository;
         this.provinceRepository = provinceRepository;
+        this.shortRepository = shortRepository;
     }
 
     @Override
