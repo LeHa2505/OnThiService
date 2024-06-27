@@ -190,4 +190,9 @@ public class CourseController {
     public ResponseEntity<?> submitCourse(@RequestBody Long id) throws IOException {
         return ResponseEntity.status(HttpStatus.OK).body((courseService.submitCourse(id)));
     }
+
+    @PostMapping("/teacher/updateCourse")
+    public ResponseEntity<?> updateCourse(@RequestBody CourseDTO courseDTO) throws IOException {
+        return ResponseEntity.status(HttpStatus.OK).body((courseService.updateCourse(courseDTO)));
+    }
 }
