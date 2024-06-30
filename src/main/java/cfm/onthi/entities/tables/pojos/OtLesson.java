@@ -38,7 +38,6 @@ public class OtLesson implements Serializable {
     private String lessonName;
     private String linkVideo;
     private Double duration;
-    private String subject;
     private Long order;
     private Double continueTime;
     private Long view;
@@ -56,7 +55,6 @@ public class OtLesson implements Serializable {
         this.lessonName = value.lessonName;
         this.linkVideo = value.linkVideo;
         this.duration = value.duration;
-        this.subject = value.subject;
         this.order = value.order;
         this.continueTime = value.continueTime;
         this.view = value.view;
@@ -73,7 +71,6 @@ public class OtLesson implements Serializable {
         String lessonName,
         String linkVideo,
         Double duration,
-        String subject,
         Long order,
         Double continueTime,
         Long view,
@@ -88,7 +85,6 @@ public class OtLesson implements Serializable {
         this.lessonName = lessonName;
         this.linkVideo = linkVideo;
         this.duration = duration;
-        this.subject = subject;
         this.order = order;
         this.continueTime = continueTime;
         this.view = view;
@@ -188,21 +184,6 @@ public class OtLesson implements Serializable {
      */
     public void setDuration(Double duration) {
         this.duration = duration;
-    }
-
-    /**
-     * Getter for <code>s_onthi.ot_lesson.SUBJECT</code>.
-     */
-    @Column(name = "SUBJECT", length = 100)
-    public String getSubject() {
-        return this.subject;
-    }
-
-    /**
-     * Setter for <code>s_onthi.ot_lesson.SUBJECT</code>.
-     */
-    public void setSubject(String subject) {
-        this.subject = subject;
     }
 
     /**
@@ -355,12 +336,6 @@ public class OtLesson implements Serializable {
         }
         else if (!this.duration.equals(other.duration))
             return false;
-        if (this.subject == null) {
-            if (other.subject != null)
-                return false;
-        }
-        else if (!this.subject.equals(other.subject))
-            return false;
         if (this.order == null) {
             if (other.order != null)
                 return false;
@@ -416,7 +391,6 @@ public class OtLesson implements Serializable {
         result = prime * result + ((this.lessonName == null) ? 0 : this.lessonName.hashCode());
         result = prime * result + ((this.linkVideo == null) ? 0 : this.linkVideo.hashCode());
         result = prime * result + ((this.duration == null) ? 0 : this.duration.hashCode());
-        result = prime * result + ((this.subject == null) ? 0 : this.subject.hashCode());
         result = prime * result + ((this.order == null) ? 0 : this.order.hashCode());
         result = prime * result + ((this.continueTime == null) ? 0 : this.continueTime.hashCode());
         result = prime * result + ((this.view == null) ? 0 : this.view.hashCode());
@@ -437,7 +411,6 @@ public class OtLesson implements Serializable {
         sb.append(", ").append(lessonName);
         sb.append(", ").append(linkVideo);
         sb.append(", ").append(duration);
-        sb.append(", ").append(subject);
         sb.append(", ").append(order);
         sb.append(", ").append(continueTime);
         sb.append(", ").append(view);
