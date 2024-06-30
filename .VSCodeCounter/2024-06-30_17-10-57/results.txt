@@ -1,0 +1,154 @@
+Date : 2024-06-30 17:10:57
+Directory : d:\do-an-tot-nghiep\OnThiService
+Total : 101 files,  7514 codes, 147 comments, 1597 blanks, all 9258 lines
+
+Languages
++-----------------+------------+------------+------------+------------+------------+
+| language        | files      | code       | comment    | blank      | total      |
++-----------------+------------+------------+------------+------------+------------+
+| Java            |         97 |      7,056 |         85 |      1,520 |      8,661 |
+| XML             |          1 |        282 |          6 |         32 |        320 |
+| Batch           |          1 |        118 |         51 |         37 |        206 |
+| YAML            |          1 |         56 |          5 |          7 |         68 |
+| Java Properties |          1 |          2 |          0 |          1 |          3 |
++-----------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                      | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                         |        101 |      7,514 |        147 |      1,597 |      9,258 |
+| . (Files)                                                                                                 |          2 |        400 |         57 |         69 |        526 |
+| .mvn                                                                                                      |          1 |          2 |          0 |          1 |          3 |
+| .mvn\wrapper                                                                                              |          1 |          2 |          0 |          1 |          3 |
+| src                                                                                                       |         98 |      7,112 |         90 |      1,527 |      8,729 |
+| src\main                                                                                                  |         97 |      7,103 |         90 |      1,522 |      8,715 |
+| src\main\java                                                                                             |         96 |      7,047 |         85 |      1,515 |      8,647 |
+| src\main\java\cfm                                                                                         |         96 |      7,047 |         85 |      1,515 |      8,647 |
+| src\main\java\cfm\onthi                                                                                   |         96 |      7,047 |         85 |      1,515 |      8,647 |
+| src\main\java\cfm\onthi (Files)                                                                           |          1 |         13 |          0 |          5 |         18 |
+| src\main\java\cfm\onthi\configurations                                                                    |          7 |        317 |         24 |         71 |        412 |
+| src\main\java\cfm\onthi\constant                                                                          |          6 |         95 |          0 |         33 |        128 |
+| src\main\java\cfm\onthi\controllers                                                                       |          7 |        400 |          4 |         95 |        499 |
+| src\main\java\cfm\onthi\dtos                                                                              |         31 |        759 |          0 |        285 |      1,044 |
+| src\main\java\cfm\onthi\dtos (Files)                                                                      |         26 |        620 |          0 |        233 |        853 |
+| src\main\java\cfm\onthi\dtos\base                                                                         |          5 |        139 |          0 |         52 |        191 |
+| src\main\java\cfm\onthi\exceptions                                                                        |          3 |        132 |          1 |         33 |        166 |
+| src\main\java\cfm\onthi\repositories                                                                      |         23 |      4,216 |         14 |        792 |      5,022 |
+| src\main\java\cfm\onthi\sercurity                                                                         |          7 |        263 |         23 |         54 |        340 |
+| src\main\java\cfm\onthi\services                                                                          |         10 |        837 |         18 |        144 |        999 |
+| src\main\java\cfm\onthi\utils                                                                             |          1 |         15 |          1 |          3 |         19 |
+| src\main\resources                                                                                        |          1 |         56 |          5 |          7 |         68 |
+| src\test                                                                                                  |          1 |          9 |          0 |          5 |         14 |
+| src\test\java                                                                                             |          1 |          9 |          0 |          5 |         14 |
+| src\test\java\cfm                                                                                         |          1 |          9 |          0 |          5 |         14 |
+| src\test\java\cfm\onthi                                                                                   |          1 |          9 |          0 |          5 |         14 |
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| filename                                                                                                  | language        | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| d:\do-an-tot-nghiep\OnThiService\.mvn\wrapper\maven-wrapper.properties                                    | Java Properties |          2 |          0 |          1 |          3 |
+| d:\do-an-tot-nghiep\OnThiService\mvnw.cmd                                                                 | Batch           |        118 |         51 |         37 |        206 |
+| d:\do-an-tot-nghiep\OnThiService\pom.xml                                                                  | XML             |        282 |          6 |         32 |        320 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\OnThiServiceApplication.java                     | Java            |         13 |          0 |          5 |         18 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\configurations\HibernateConfiguration.java       | Java            |         42 |          0 |         13 |         55 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\configurations\ModelMapperConfiguration.java     | Java            |         14 |          0 |          4 |         18 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\configurations\OnThiDataSourceConfiguration.java | Java            |         91 |          2 |         18 |        111 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\configurations\OnThiHikariConfiguration.java     | Java            |         37 |          0 |         14 |         51 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\configurations\WebSecurityConfiguration.java     | Java            |         87 |         17 |         14 |        118 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\configurations\WebSocketConfig.java              | Java            |         22 |          0 |          4 |         26 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\configurations\WebSocketEventListener.java       | Java            |         24 |          5 |          4 |         33 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\constant\ActionType.java                         | Java            |         17 |          0 |          6 |         23 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\constant\ActiveStatus.java                       | Java            |         17 |          0 |          6 |         23 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\constant\Gender.java                             | Java            |         18 |          0 |          6 |         24 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\constant\MessageType.java                        | Java            |          6 |          0 |          2 |          8 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\constant\Role.java                               | Java            |         19 |          0 |          6 |         25 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\constant\TypeCourse.java                         | Java            |         18 |          0 |          7 |         25 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\controllers\AuthController.java                  | Java            |         45 |          0 |          7 |         52 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\controllers\ChatController.java                  | Java            |         43 |          1 |         10 |         54 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\controllers\CourseController.java                | Java            |        159 |          0 |         40 |        199 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\controllers\FileController.java                  | Java            |         29 |          0 |          7 |         36 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\controllers\NotificationController.java          | Java            |         43 |          3 |         10 |         56 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\controllers\OnThiController.java                 | Java            |         22 |          0 |          6 |         28 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\controllers\UserController.java                  | Java            |         59 |          0 |         15 |         74 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\AuthResponseDTO.java                        | Java            |         16 |          0 |          4 |         20 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\CourseDTO.java                              | Java            |         51 |          0 |         22 |         73 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\DocumentDTO.java                            | Java            |         24 |          0 |          9 |         33 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\ExerciseDTO.java                            | Java            |         19 |          0 |          7 |         26 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\GroupDTO.java                               | Java            |         18 |          0 |          6 |         24 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\LessonDTO.java                              | Java            |         37 |          0 |         16 |         53 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\LoginDTO.java                               | Java            |          7 |          0 |          3 |         10 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\MenuDTO.java                                | Java            |         34 |          0 |         14 |         48 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\MessageDTO.java                             | Java            |         24 |          0 |          8 |         32 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\MessageRecipientDTO.java                    | Java            |         16 |          0 |          5 |         21 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\NoteDTO.java                                | Java            |         20 |          0 |          7 |         27 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\NotificationDTO.java                        | Java            |         23 |          0 |          9 |         32 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\ProvinceDTO.java                            | Java            |         14 |          0 |          4 |         18 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\QuizDTO.java                                | Java            |         35 |          0 |         13 |         48 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\QuizUserDTO.java                            | Java            |         18 |          0 |          6 |         24 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\RegisterDTO.java                            | Java            |         13 |          0 |          3 |         16 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\ReviewDTO.java                              | Java            |         38 |          0 |         17 |         55 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\ReviewUserDTO.java                          | Java            |         18 |          0 |          6 |         24 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\RoleDTO.java                                | Java            |         20 |          0 |          7 |         27 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\RoleMenuDTO.java                            | Java            |         16 |          0 |          5 |         21 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\SchoolDTO.java                              | Java            |         20 |          0 |          7 |         27 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\ShortDTO.java                               | Java            |         30 |          0 |         12 |         42 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\UserCourseDTO.java                          | Java            |         27 |          0 |         11 |         38 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\UserGroupDTO.java                           | Java            |         16 |          0 |          5 |         21 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\UserInfoDTO.java                            | Java            |         50 |          0 |         22 |         72 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\UserRoleDTO.java                            | Java            |         16 |          0 |          5 |         21 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\base\BaseDTO.java                           | Java            |         21 |          0 |          8 |         29 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\base\DefaultResponse.java                   | Java            |         14 |          0 |          4 |         18 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\base\InputCondition.java                    | Java            |         59 |          0 |         27 |         86 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\base\OutputError.java                       | Java            |         18 |          0 |          3 |         21 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\dtos\base\ResponseDTO.java                       | Java            |         27 |          0 |         10 |         37 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\exceptions\CustomException.java                  | Java            |         19 |          0 |         10 |         29 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\exceptions\ExceptionTranslator.java              | Java            |         14 |          0 |          5 |         19 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\exceptions\GlobalExceptionHandlerController.java | Java            |         99 |          1 |         18 |        118 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\BaseRepository.java                 | Java            |         24 |          0 |         22 |         46 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\BaseRepositoryImpl.java             | Java            |         47 |          0 |         19 |         66 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\CourseRepository.java               | Java            |        567 |          4 |         84 |        655 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\DocumentRepository.java             | Java            |        226 |          0 |         30 |        256 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\ExerciseRepository.java             | Java            |        154 |          0 |         38 |        192 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\GroupRepository.java                | Java            |        261 |          0 |         38 |        299 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\LessonRepository.java               | Java            |        308 |          1 |         46 |        355 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\MessageRecipientRepository.java     | Java            |        112 |          0 |         24 |        136 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\MessageRepository.java              | Java            |        156 |          0 |         24 |        180 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\NoteRepository.java                 | Java            |        179 |          0 |         38 |        217 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\NotificationRepository.java         | Java            |        151 |          0 |         29 |        180 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\OnThiRepository.java                | Java            |         19 |          0 |          9 |         28 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\ProvinceRepository.java             | Java            |        150 |          0 |         38 |        188 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\QuizRepository.java                 | Java            |        136 |          0 |         31 |        167 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\QuizUserRepository.java             | Java            |        145 |          0 |         30 |        175 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\ReviewRepository.java               | Java            |        221 |          5 |         43 |        269 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\ReviewUserRepository.java           | Java            |        195 |          1 |         37 |        233 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\SchoolRepository.java               | Java            |        150 |          2 |         35 |        187 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\ShortRepository.java                | Java            |        228 |          0 |         37 |        265 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\UserCourseRepository.java           | Java            |        220 |          0 |         45 |        265 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\UserGroupRepository.java            | Java            |        111 |          0 |         23 |        134 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\UserRepository.java                 | Java            |        355 |          1 |         47 |        403 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\repositories\UserRoleRepository.java             | Java            |        101 |          0 |         25 |        126 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\sercurity\CustomGrantedAuthority.java            | Java            |         15 |          0 |          5 |         20 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\sercurity\CustomPermissionEvaluator.java         | Java            |         33 |          0 |          6 |         39 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\sercurity\CustomUserDetailsService.java          | Java            |         49 |          2 |          8 |         59 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\sercurity\JWTAuthenticationFilter.java           | Java            |         49 |          0 |          9 |         58 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\sercurity\JwtAuthEntryPoint.java                 | Java            |         16 |          0 |          3 |         19 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\sercurity\JwtTokenProvider.java                  | Java            |         97 |         21 |         21 |        139 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\sercurity\SecurityConstants.java                 | Java            |          4 |          0 |          2 |          6 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\services\AuthService.java                        | Java            |         76 |          2 |         12 |         90 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\services\BaseService.java                        | Java            |         60 |          4 |         21 |         85 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\services\ChatService.java                        | Java            |         59 |          0 |         10 |         69 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\services\CloudService.java                       | Java            |         31 |         12 |         10 |         53 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\services\CloudinaryService.java                  | Java            |         41 |          0 |         10 |         51 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\services\CourseService.java                      | Java            |        368 |          0 |         41 |        409 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\services\NotificationService.java                | Java            |         49 |          0 |          9 |         58 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\services\OnThiService.java                       | Java            |         26 |          0 |          9 |         35 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\services\ShortsService.java                      | Java            |         58 |          0 |         11 |         69 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\services\UserService.java                        | Java            |         69 |          0 |         11 |         80 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\java\cfm\onthi\utils\DefineProperties.java                      | Java            |         15 |          1 |          3 |         19 |
+| d:\do-an-tot-nghiep\OnThiService\src\main\resources\application.yml                                       | YAML            |         56 |          5 |          7 |         68 |
+| d:\do-an-tot-nghiep\OnThiService\src\test\java\cfm\onthi\OnThiServiceApplicationTests.java                | Java            |          9 |          0 |          5 |         14 |
+| Total                                                                                                     |                 |      7,514 |        147 |      1,597 |      9,258 |
++-----------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+

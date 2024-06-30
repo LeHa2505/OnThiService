@@ -39,6 +39,7 @@ public interface CourseService {
     ResponseDTO teacherAddLessonParents(List<LessonDTO> lessonDTOList);
     ResponseDTO submitCourse(Long id);
     ResponseDTO unSubmitCourse(Long id);
+    ResponseDTO updateCourse(CourseDTO courseDTO);
 }
 
 @Service
@@ -389,6 +390,16 @@ class CourseServiceImpl extends BaseService implements CourseService {
     public ResponseDTO unSubmitCourse(Long id) {
         if (courseRepository.unSubmitCourse(id)) {
             return new ResponseDTO(true, "Hủy yêu cầu mở khóa học thành công!", null);
+        }
+        else {
+            return new ResponseDTO(false, "Có lỗi xảy ra!", null);
+        }
+    }
+
+    @Override
+    public ResponseDTO updateCourse(CourseDTO courseDTO) {
+        if (courseRepository.update(courseDTO)) {
+            return new ResponseDTO(true, "Thay đổi thông tin khóa học thành công!", null);
         }
         else {
             return new ResponseDTO(false, "Có lỗi xảy ra!", null);

@@ -78,7 +78,6 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     lessonDTO.lessonName = entry.getKey().getLessonName();
                     lessonDTO.linkVideo = entry.getKey().getLinkVideo();
                     lessonDTO.duration = entry.getKey().getDuration();
-                    lessonDTO.subject = entry.getKey().getSubject();
                     lessonDTO.order = entry.getKey().getOrder();
                     lessonDTO.continueTime = entry.getKey().getContinueTime();
                     lessonDTO.view = entry.getKey().getView();
@@ -118,7 +117,6 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     lessonDTO.lessonName = entry.getKey().getLessonName();
                     lessonDTO.linkVideo = entry.getKey().getLinkVideo();
                     lessonDTO.duration = entry.getKey().getDuration();
-                    lessonDTO.subject = entry.getKey().getSubject();
                     lessonDTO.order = entry.getKey().getOrder();
                     lessonDTO.continueTime = entry.getKey().getContinueTime();
                     lessonDTO.view = entry.getKey().getView();
@@ -166,7 +164,6 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     .set(lesson.LESSON_NAME, item.lessonName)
                     .set(lesson.LINK_VIDEO, item.linkVideo)
                     .set(lesson.DURATION, item.duration)
-                    .set(lesson.SUBJECT, item.subject)
                     .set(lesson.ORDER, item.order)
                     .set(lesson.CONTINUE_TIME, item.continueTime)
                     .set(lesson.VIEW, item.view)
@@ -220,7 +217,6 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     .set(lesson.LESSON_NAME, item.lessonName)
                     .set(lesson.LINK_VIDEO, item.linkVideo)
                     .set(lesson.DURATION, item.duration)
-                    .set(lesson.SUBJECT, item.subject)
                     .set(lesson.ORDER, item.order)
                     .set(lesson.CONTINUE_TIME, item.continueTime)
                     .set(lesson.VIEW, item.view)
@@ -333,7 +329,6 @@ class LessonRepositoryImpl extends BaseRepositoryImpl implements BaseRepository<
                     lessonDTO.lessonName = entry.getKey().getLessonName();
                     lessonDTO.linkVideo = entry.getKey().getLinkVideo();
                     lessonDTO.duration = entry.getKey().getDuration();
-                    lessonDTO.subject = entry.getKey().getSubject();
                     lessonDTO.order = entry.getKey().getOrder();
                     lessonDTO.continueTime = entry.getKey().getContinueTime();
                     lessonDTO.view = entry.getKey().getView();
