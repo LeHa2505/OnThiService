@@ -57,8 +57,8 @@ The High School Entrance Exam Preparation System is a comprehensive web applicat
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Kiengabby/high-school-entrance-exam-prep-BE.git
-   cd high-school-entrance-exam-prep-BE
+   git clone https://github.com/LeHa2505/OnThiService.git
+   cd OnThiService
    ```
 
 2. **Database Configuration**
