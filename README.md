@@ -172,17 +172,6 @@ Authorization: Bearer <your_jwt_token>
 3. Set up proper logging configuration
 4. Configure CORS for production frontend URL
 
-### Docker Deployment (Optional)
-```bash
-# Build the application
-mvn clean package
-
-# Build Docker image
-docker build -t exam-prep-backend .
-
-# Run container
-docker run -p 8080:8080 exam-prep-backend
-```
 
 ## Contributing
 
@@ -200,14 +189,4 @@ Contributions are welcome! Please follow these steps:
 - Add comprehensive comments for complex logic
 - Write unit tests for new features
 - Ensure all tests pass before submitting PR
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
-## Contact
-
-- **Developer**: Kienhm
-- **Email**: kiengabby@example.com
-- **Project Repository**: [https://github.com/Kiengabby/high-school-entrance-exam-prep-BE](https://github.com/Kiengabby/high-school-entrance-exam-prep-BE)
 
